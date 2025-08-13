@@ -1,0 +1,15 @@
+import java.awt.Color;
+
+import javax.swing.JPanel;
+
+public class BP extends JPanel {
+
+	/**
+	 * Create the panel.
+	 */
+	public BP() {
+		setSize(778, 431);
+		setBackground(Color.white);
+	}
+	
+}

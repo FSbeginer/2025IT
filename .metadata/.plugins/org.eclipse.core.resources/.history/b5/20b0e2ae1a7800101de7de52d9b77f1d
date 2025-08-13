@@ -1,0 +1,12 @@
+import javax.swing.JPanel;
+
+public class PageHandle extends JPanel {
+
+	/**
+	 * Create the panel.
+	 */
+	public PageHandle() {
+		setSize(778, 431);
+	}
+
+}

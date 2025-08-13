@@ -1,0 +1,45 @@
+import javax.swing.JPanel;
+import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.Graphics;
+import java.awt.Image;
+
+import javax.swing.JLabel;
+import javax.swing.SwingConstants;
+
+public class PanelProfile extends JPanel {
+	public JLabel label;
+	public JLabel label_1;
+
+	/**
+	 * Create the panel.
+	 */
+	public PanelProfile() {
+		setSize(50, 50);
+		setLayout(new BorderLayout(0, 0));
+		
+		label = new JLabel(BF.getIcon("./datafiles/logo/蜡历.png",35,35)) {
+			@Override
+			protected void paintComponent(Graphics g) {
+				super.paintComponent(g);
+				if(BF.uno == 0 && !BF.isAdmin) {
+					g.drawImage(BF.getIcon("./datafiles/logo/蜡历.png",35,35).getImage(), 0,0, null);
+				}
+				else if(BF.uno != 0) {
+					g.drawImage(BF.getColorImage(BF.getIcon("./datafiles/logo/蜡历.png",35,35).getImage(),Color.blue), 0,0, null);
+				}
+				else {
+					g.drawImage(BF.getColorImage(BF.getIcon("./datafiles/logo/蜡历.png",35,35).getImage(),Color.red), 0,0, null);
+				}
+			}
+		};
+		label.setHorizontalAlignment(SwingConstants.CENTER);
+		add(label, BorderLayout.CENTER);
+		
+		label_1 = new JLabel("New label");
+		label_1.setHorizontalAlignment(SwingConstants.CENTER);
+		add(label_1, BorderLayout.SOUTH);
+		
+	}
+
+}

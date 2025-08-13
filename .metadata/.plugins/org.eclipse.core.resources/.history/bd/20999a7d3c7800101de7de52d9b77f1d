@@ -1,0 +1,93 @@
+import javax.swing.JPanel;
+import javax.swing.JToolTip;
+
+import java.awt.Color;
+import java.awt.Dimension;
+
+import javax.swing.JLabel;
+import javax.swing.SwingConstants;
+import javax.swing.border.LineBorder;
+import java.awt.Font;
+import java.awt.Graphics;
+import java.awt.Rectangle;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
+import java.awt.event.MouseWheelListener;
+import java.awt.event.MouseWheelEvent;
+
+public class 막대패널 extends JPanel {
+	public JLabel label;
+	public JPanel panel;
+	private int cno = 1;
+	List<String> category = new ArrayList<String>();
+	
+	public 막대패널() {
+		setBackground(new Color(255, 255, 255));
+		setSize(754, 374);
+		setLayout(null);
+		
+		label = new JLabel("New label");
+		label.addMouseWheelListener(new LabelMouseWheelListener());
+		label.setFont(new Font("맑은 고딕", Font.BOLD, 30));
+		label.setBorder(new LineBorder(new Color(0, 0, 0)));
+		label.setOpaque(true);
+		label.setBackground(new Color(255, 255, 255));
+		label.setHorizontalAlignment(SwingConstants.CENTER);
+		label.setBounds(278, 10, 175, 50);
+		add(label);
+		
+		panel = new JPanel() {
+			@Override
+			public JToolTip createToolTip() {
+				JToolTip tool = new JToolTip();
+				tool.setBackground(Color.white);
+				return tool;
+			}
+			@Override
+			protected void paintComponent(Graphics g) {
+				super.paintComponent(g);
+			}
+		};
+		panel.setBackground(new Color(255, 255, 255));
+		panel.setBounds(29, 67, 691, 277);
+		add(panel);
+		
+		try (var rs = BF.res("select cnam from category")) {
+			while(rs.next())
+				category.add(rs.getString(1));
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		getData();
+	}
+
+	int max;
+	private void getData() {
+		panel.removeAll();
+		try (var rs = BF.res("select pname, rank() over(order by count(*) desc), count(*), description from product p join `order` o using(pno) where cno = "+cno+" group by pno;")) {
+			int w = panel.getWidth()/14;
+			while(rs.next()) {
+				if(rs.getInt(2)==1) max =rs.getInt(3);
+				LineItem pp = new LineItem();
+				pp.top.setText(rs.getInt(3)+"");
+				pp.value.setBackground(rs.getInt(2)==1?Color.red:Color.blue);
+				pp.name.setText(rs.getString(1));
+				pp.name.setPreferredSize(new Dimension(0, ));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		panel.repaint();
+		panel.revalidate();
+	}
+
+	private class LabelMouseWheelListener implements MouseWheelListener {
+
+		public void mouseWheelMoved(MouseWheelEvent e) {
+			int dx = e.getWheelRotation()<0?1:-1;
+			cno = Math.max(1, Math.min(category.size(), cno+dx));
+			getData();
+		}
+	}
+}

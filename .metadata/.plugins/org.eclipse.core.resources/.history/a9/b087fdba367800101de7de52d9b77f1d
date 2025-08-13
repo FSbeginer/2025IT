@@ -1,0 +1,12 @@
+import javax.swing.JPanel;
+
+public class 막대패널 extends JPanel {
+
+	/**
+	 * Create the panel.
+	 */
+	public 막대패널() {
+		setSize(754, 374);
+	}
+
+}

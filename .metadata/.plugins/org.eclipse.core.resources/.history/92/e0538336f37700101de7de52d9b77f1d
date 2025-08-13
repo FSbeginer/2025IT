@@ -1,0 +1,126 @@
+import java.awt.EventQueue;
+
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.border.EmptyBorder;
+import javax.swing.JLabel;
+import java.awt.Graphics;
+import javax.swing.border.LineBorder;
+import java.awt.Color;
+import javax.swing.SwingConstants;
+import javax.swing.JComboBox;
+import javax.swing.JTextField;
+import javax.swing.JButton;
+
+public class ModifyForm extends BF {
+
+	private JPanel contentPane;
+	public JLabel label;
+	public JLabel label_1;
+	public JLabel label_2;
+	public JLabel label_3;
+	public JLabel label_4;
+	public JLabel label_6;
+	public JComboBox comboBox;
+	public JTextField textField;
+	public JTextField textField_1;
+	public JTextField textField_2;
+	public JTextField textField_3;
+	public JButton button;
+
+	/**
+	 * Launch the application.
+	 */
+	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					ModifyForm frame = new ModifyForm();
+					frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
+
+	/**
+	 * Create the frame.
+	 */
+	public ModifyForm{
+		this();
+		
+	}
+	
+	public ModifyForm() {
+		setTitle("\uC0C1\uD488\uC218\uC815");
+		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+		setBounds(100, 100, 324, 483);
+		contentPane = new JPanel();
+		contentPane.setBackground(new Color(255, 255, 255));
+		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+
+		setContentPane(contentPane);
+		contentPane.setLayout(null);
+		
+		label = new JLabel();
+		label.setBorder(new LineBorder(new Color(0, 0, 0), 2));
+		label.setBounds(12, 10, 275, 192);
+		contentPane.add(label);
+		
+		label_1 = new JLabel("\uC0C1\uD488\uBA85");
+		label_1.setBounds(12, 245, 68, 15);
+		contentPane.add(label_1);
+		
+		label_2 = new JLabel("\uC124\uBA85");
+		label_2.setVerticalAlignment(SwingConstants.TOP);
+		label_2.setBounds(12, 291, 68, 15);
+		contentPane.add(label_2);
+		
+		label_3 = new JLabel("\uCE74\uD14C\uACE0\uB9AC");
+		label_3.setBounds(12, 212, 68, 23);
+		contentPane.add(label_3);
+		
+		label_4 = new JLabel("\uAC00\uACA9");
+		label_4.setBounds(12, 330, 68, 23);
+		contentPane.add(label_4);
+		
+		label_6 = new JLabel("\uC218\uB7C9");
+		label_6.setBounds(12, 363, 72, 23);
+		contentPane.add(label_6);
+		
+		comboBox = new JComboBox();
+		comboBox.setBounds(92, 212, 185, 23);
+		contentPane.add(comboBox);
+		
+		textField = new JTextField();
+		textField.setBounds(92, 242, 185, 28);
+		contentPane.add(textField);
+		textField.setColumns(10);
+		
+		textField_1 = new JTextField();
+		textField_1.setColumns(10);
+		textField_1.setBounds(92, 285, 185, 28);
+		contentPane.add(textField_1);
+		
+		textField_2 = new JTextField();
+		textField_2.setColumns(10);
+		textField_2.setBounds(92, 323, 185, 28);
+		contentPane.add(textField_2);
+		
+		textField_3 = new JTextField();
+		textField_3.setColumns(10);
+		textField_3.setBounds(92, 361, 185, 28);
+		contentPane.add(textField_3);
+		
+		button = new JButton("\uC218\uC815");
+		button.setBounds(12, 396, 284, 38);
+		contentPane.add(button);
+		
+		addcategory();
+	}
+
+	private void addcategory() {
+		
+	}
+}

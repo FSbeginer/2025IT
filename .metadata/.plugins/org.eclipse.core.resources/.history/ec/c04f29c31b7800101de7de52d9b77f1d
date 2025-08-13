@@ -1,0 +1,61 @@
+import javax.swing.JPanel;
+
+import java.awt.Checkbox;
+import java.awt.Color;
+import javax.swing.JComboBox;
+import javax.swing.DefaultComboBoxModel;
+import javax.swing.JButton;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
+import javax.swing.JLabel;
+
+public class PageHandle extends JPanel {
+	public JComboBox comboBox;
+	public JButton button;
+	public JScrollPane scrollPane;
+	public JTable table;
+	public JLabel label;
+
+	/**
+	 * Create the panel.
+	 */
+	public PageHandle() {
+		setBackground(new Color(255, 255, 255));
+		setSize(778, 431);
+		setLayout(null);
+		
+		comboBox = new JComboBox();
+		comboBox.setModel(new DefaultComboBoxModel(new String[] {"\uC804\uCCB4", "\uACB0\uC81C\uC804", "\uBC30\uC1A1\uC900\uBE44", "\uBC30\uC1A1\uC911"}));
+		comboBox.setBounds(12, 10, 74, 23);
+		add(comboBox);
+		
+		button = new JButton("\uC77C\uAD04\uCC98\uB9AC");
+		button.setBounds(98, 10, 81, 23);
+		add(button);
+		
+		scrollPane = new JScrollPane();
+		scrollPane.setBounds(12, 50, 754, 336);
+		add(scrollPane);
+		
+		table = new JTable() {
+			@Override
+			public Class<?> getColumnClass(int column) {
+				if(column==0)
+					return Checkbox.class;
+				return super.getColumnClass(column);
+			}
+		};
+		scrollPane.setViewportView(table);
+		
+		label = new JLabel("");
+		label.setBounds(12, 396, 395, 25);
+		add(label);
+		
+		setmodel();
+	}
+
+	private void setmodel() {
+		
+	}
+
+}

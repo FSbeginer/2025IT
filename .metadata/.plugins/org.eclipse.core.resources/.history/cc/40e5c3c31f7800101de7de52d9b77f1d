@@ -1,0 +1,171 @@
+import javax.swing.JPanel;
+
+import java.awt.Checkbox;
+import java.awt.Color;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.swing.JComboBox;
+import javax.swing.DefaultComboBoxModel;
+import javax.swing.JButton;
+import javax.swing.JCheckBox;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
+import javax.swing.table.DefaultTableCellRenderer;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.JLabel;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+
+public class PageHandle extends JPanel {
+	public JComboBox comboBox;
+	public JButton button;
+	public JScrollPane scrollPane;
+	public JTable table;
+	public JLabel label;
+	private DefaultTableModel model;
+	private String where;
+	List<Integer> onos = new ArrayList<Integer>();
+
+	/**
+	 * Create the panel.
+	 */
+	public PageHandle() {
+		setBackground(new Color(255, 255, 255));
+		setSize(778, 431);
+		setLayout(null);
+
+		comboBox = new JComboBox();
+		comboBox.addItemListener(new ComboBoxItemListener());
+		comboBox.setModel(new DefaultComboBoxModel(new String[] { "\uC804\uCCB4", "\uACB0\uC81C\uC804",
+				"\uBC30\uC1A1\uC900\uBE44", "\uBC30\uC1A1\uC911" }));
+		comboBox.setBounds(12, 10, 74, 23);
+		add(comboBox);
+
+		button = new JButton("\uC77C\uAD04\uCC98\uB9AC");
+		button.addActionListener(new ButtonActionListener());
+		button.setBounds(98, 10, 81, 23);
+		add(button);
+
+		scrollPane = new JScrollPane();
+		scrollPane.setBounds(12, 50, 754, 336);
+		add(scrollPane);
+
+		table = new JTable() {
+			@Override
+			public Class<?> getColumnClass(int column) {
+				if (column == 0)
+					return Checkbox.class;
+				return super.getColumnClass(column);
+			}
+		};
+		scrollPane.setViewportView(table);
+
+		label = new JLabel("");
+		label.setBounds(12, 396, 395, 25);
+		add(label);
+
+		setmodel();
+		load();
+	}
+
+	private void load() {
+		model.setRowCount(0);
+		onos.clear();
+		try (var rs = BF.res(
+				"select ono, pname, uname, o.quantity, p.price, p.price * o.quantity, pay, delivery from `user` u join `order` o using(uno) join product p using(pno) where delivery != 3 "
+						+ where + " order by ono;")) {
+			while (rs.next()) {
+				int ono = rs.getInt(1);
+				JCheckBox ck = new JCheckBox();
+				ck.addItemListener(new ItemListener() {
+					@Override
+					public void itemStateChanged(ItemEvent e) {
+						if (ck.isSelected()) {
+							onos.add(ono);
+						} else {
+							onos.remove(ono);
+						}
+					}
+				});
+				model.addRow(new Object[] { ck, model.getRowCount(), rs.getString(2), rs.getString(3), rs.getString(4),
+						rs.getInt(5), String.format("%,d", rs.getInt(6)), String.format("%,d", rs.getInt(7)),
+						getDeliveryText(rs.getInt(8), rs.getInt(9)) });
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		setTot();
+	}
+
+	private void setTot() {
+		try (var rs = BF.res(
+				"select ono, pname, uname, o.quantity, p.price, p.price * o.quantity, pay, delivery from `user` u join `order` o using(uno) join product p using(pno) where delivery != 3 "
+						+ where + " order by ono;")) {
+			int[] cnt = { 0, 0, 0, 0 };
+			while (rs.next()) {
+
+				int pay = rs.getInt(8);
+				int delivery = rs.getInt(9);
+				if (pay == 0 && delivery == 0)
+					cnt[0]++;
+				else
+					cnt[delivery + 1]++;
+			}
+			label.setText(String.format("결제 전:%d건 결제완료:%d건 배송준비:%d건 배송중:%d건", cnt[0], cnt[1], cnt[2], cnt[3], cnt[4]));
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+
+	private String getDeliveryText(int p, int d) {
+		if (p == 0 && d == 0)
+			return "결제전";
+		else
+			return d == 0 ? "결제완료" : d == 1 ? "배송준비" : d == 2 ? "배송중" : "배송완료";
+	}
+
+	private void setmodel() {
+		model = new DefaultTableModel(" ,번호,상품명,회원명,수량,가격,총금액,배송현황".split(","), 0);
+		table.setModel(model);
+		DefaultTableCellRenderer render = new DefaultTableCellRenderer() {
+			{
+				setHorizontalAlignment(0);
+			}
+		};
+		for (int i = 1; i < table.getColumnCount(); i++) {
+			table.getColumnModel().getColumn(i).setCellRenderer(render);
+		}
+	}
+
+	private class ButtonActionListener implements ActionListener {
+		public void actionPerformed(ActionEvent e) {
+			if (onos.size() == 0) {
+				BF.msgErr("배송 처리할 리스트를 선택하세요.");
+				return;
+			}
+			for (Integer integer : onos) {
+				try {
+					BF.execute("update `order` set delivery = delivery +1 where ono = " + integer);
+				} catch (SQLException e1) {
+					e1.printStackTrace();
+				}
+			}
+		}
+	}
+
+	private class ComboBoxItemListener implements ItemListener {
+		public void itemStateChanged(ItemEvent e) {
+			if (comboBox.getSelectedIndex() == 0) {
+				where = "";
+			} else if (comboBox.getSelectedIndex() == 1) {
+				where = "and pay = 0 and delivery = 0";
+			} else {
+				where = "and delivery = " + comboBox.getSelectedIndex();
+			}
+		}
+	}
+}

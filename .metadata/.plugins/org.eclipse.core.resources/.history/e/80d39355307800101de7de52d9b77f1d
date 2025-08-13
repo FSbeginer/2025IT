@@ -1,0 +1,47 @@
+import javax.swing.JPanel;
+import java.awt.Color;
+import javax.swing.JComboBox;
+import javax.swing.DefaultComboBoxModel;
+import java.awt.BorderLayout;
+import java.awt.event.ItemListener;
+import java.awt.event.ItemEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+
+public class PageAnalyze extends JPanel {
+	public JComboBox comboBox;
+	public JPanel panel;
+
+	/**
+	 * Create the panel.
+	 */
+	public PageAnalyze() {
+		setBackground(new Color(255, 255, 255));
+		setSize(778, 431);
+		setLayout(null);
+		
+		comboBox = new JComboBox();
+		comboBox.addItemListener(new ComboBoxItemListener());
+		comboBox.setModel(new DefaultComboBoxModel(new String[] {"\uC804\uCCB4", "\uCE74\uD14C\uACE0\uB9AC"}));
+		comboBox.setBounds(12, 10, 113, 27);
+		add(comboBox);
+		
+		panel = new JPanel();
+		panel.setBounds(12, 47, 754, 374);
+		add(panel);
+		panel.setLayout(new BorderLayout(0, 0));
+		comboBox.setSelectedIndex(1);
+	}	
+
+	private class ComboBoxItemListener implements ItemListener {
+		public void itemStateChanged(ItemEvent e) {
+			panel.removeAll();
+			if(comboBox.getSelectedIndex()==0)
+				panel.add(new 버블패널());
+			else
+				panel.add(new 막대패널());
+			panel.repaint();
+			panel.revalidate();
+		}
+	}
+}

@@ -1,0 +1,44 @@
+import javax.swing.JPanel;
+import java.awt.BorderLayout;
+import java.awt.Color;
+import javax.swing.JLabel;
+import javax.swing.SwingConstants;
+
+public class PanelProfile extends JPanel {
+	public JLabel label;
+	public JLabel label_1;
+
+	/**
+	 * Create the panel.
+	 */
+	public PanelProfile() {
+		setBackground(new Color(255, 255, 255));
+		setSize(35, 60);
+		setLayout(new BorderLayout(0, 0));
+		
+		label = new JLabel();
+		label.setHorizontalAlignment(SwingConstants.CENTER);
+		add(label, BorderLayout.CENTER);
+		
+		label_1 = new JLabel();
+		label_1.setHorizontalAlignment(SwingConstants.CENTER);
+		add(label_1, BorderLayout.SOUTH);
+		
+		load();
+	}
+
+	public void load() {
+		if(BF.uno == 0 && !BF.isAdmin) {
+			label.setIcon(BF.getIcon("logo/蜡历.png",35,35));
+		}
+		else if(BF.uno != 0) {
+			label.setIcon(BF.getIcon("logo/蜡历.png", 35, 35, Color.blue));
+			label.setText(BF.uname);
+		}
+		else {
+			label.setIcon(BF.getIcon("logo/蜡历.png", 35, 35, Color.red));
+			label_1.setText("包府磊");
+		}
+	}
+
+}

@@ -1,0 +1,93 @@
+import java.awt.EventQueue;
+
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.border.EmptyBorder;
+import java.awt.Color;
+import java.awt.BorderLayout;
+import javax.swing.JLabel;
+import javax.swing.SwingConstants;
+import java.awt.Font;
+import java.awt.Dimension;
+import java.awt.GridLayout;
+
+public class MainForm extends BF {
+
+	private JPanel contentPane;
+	public JPanel panel;
+	public JPanel panel_1;
+	public JLabel label;
+	public JLabel lblHome;
+	public JLabel lblSearch;
+	public JLabel lblShop;
+	public JLabel lblList;
+	public JLabel lblShip;
+
+	/**
+	 * Launch the application.
+	 */
+	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					MainForm frame = new MainForm();
+					frame.setLocationRelativeTo(null);
+					frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
+
+	/**
+	 * Create the frame.
+	 */
+	public MainForm() {
+		setTitle("\uBA54\uC778");
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setBounds(100, 100, 794, 539);
+		contentPane = new JPanel();
+		contentPane.setBackground(new Color(255, 255, 255));
+
+		setContentPane(contentPane);
+		contentPane.setLayout(new BorderLayout(0, 0));
+		
+		panel = new JPanel();
+		panel.setPreferredSize(new Dimension(10, 60));
+		contentPane.add(panel, BorderLayout.NORTH);
+		panel.setLayout(null);
+		
+		label = new JLabel("Roupang");
+		label.setBounds(0, 0, 778, 60);
+		label.setPreferredSize(new Dimension(50, 50));
+		label.setFont(new Font("¸¼Àº °íµñ", Font.BOLD, 20));
+		label.setHorizontalAlignment(SwingConstants.CENTER);
+		panel.add(label);
+		
+		panel_1 = new JPanel();
+		panel_1.setPreferredSize(new Dimension(10, 60));
+		contentPane.add(panel_1, BorderLayout.SOUTH);
+		panel_1.setLayout(new GridLayout(0, 5, 0, 0));
+		
+		lblHome = new JLabel("New label");
+		lblHome.setHorizontalAlignment(SwingConstants.CENTER);
+		panel_1.add(lblHome);
+		
+		lblSearch = new JLabel("New label");
+		lblSearch.setHorizontalAlignment(SwingConstants.CENTER);
+		panel_1.add(lblSearch);
+		
+		lblShop = new JLabel("New label");
+		lblShop.setHorizontalAlignment(SwingConstants.CENTER);
+		panel_1.add(lblShop);
+		
+		lblList = new JLabel("New label");
+		lblList.setHorizontalAlignment(SwingConstants.CENTER);
+		panel_1.add(lblList);
+		
+		lblShip = new JLabel("New label");
+		lblShip.setHorizontalAlignment(SwingConstants.CENTER);
+		panel_1.add(lblShip);
+	}
+}

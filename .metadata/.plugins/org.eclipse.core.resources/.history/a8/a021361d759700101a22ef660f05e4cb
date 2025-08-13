@@ -1,0 +1,27 @@
+import javax.swing.JPanel;
+import java.awt.BorderLayout;
+import javax.swing.JLabel;
+import javax.swing.SwingConstants;
+
+public class PanelProfile extends JPanel {
+	public JLabel label;
+	public JLabel label_1;
+
+	/**
+	 * Create the panel.
+	 */
+	public PanelProfile() {
+		setSize(50, 50);
+		setLayout(new BorderLayout(0, 0));
+		
+		label = new JLabel("New label");
+		label.setHorizontalAlignment(SwingConstants.CENTER);
+		add(label, BorderLayout.CENTER);
+		
+		label_1 = new JLabel("New label");
+		label_1.setHorizontalAlignment(SwingConstants.CENTER);
+		add(label_1, BorderLayout.SOUTH);
+		
+	}
+
+}

@@ -1,0 +1,147 @@
+import java.awt.Color;
+import java.awt.Image;
+import java.awt.Window;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+import java.awt.image.BufferedImage;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.Arrays;
+import java.util.Stack;
+
+import javax.swing.ImageIcon;
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
+
+public class BF extends JFrame {
+	public static int uno = 0;
+	public static String uname;
+	public static boolean isAdmin;
+	public static Color blue = new Color(100, 150, 255);
+	
+	public static Connection con;
+	public static Statement stmt;
+	static {
+		try {
+			con = DriverManager.getConnection("jdbc:mysql://localhost?serverTimezone=UTC", "root", "1234");
+			stmt = con.createStatement();
+			stmt.execute("use roupang");
+		} catch (SQLException e) {
+		}
+	}
+	
+	public static PreparedStatement pre(String sql) throws SQLException {
+		return con.prepareStatement(sql);
+	}
+	
+	public static ResultSet res(String sql ) throws SQLException {
+		return pre(sql).executeQuery();
+	}
+	
+	public static void execute(String sql) throws SQLException {
+		stmt.execute(sql);
+	}
+	
+	public static void preSet(PreparedStatement pre, Object...objects) throws SQLException {
+		int i = 1;
+		for (Object object : objects) {
+			pre.setObject(i++, object);
+		}
+	}
+	
+	public BF() {
+		
+	}
+	
+	public static void msgInfo(String msg) {
+		JOptionPane.showMessageDialog(null, msg, "정보", 1);
+	}
+	public static void msgErr(String msg) {
+		JOptionPane.showMessageDialog(null, msg, "오류", 0);
+	}
+	public static int msgCon(String msg) {
+		return JOptionPane.showConfirmDialog(null, msg, "확인질문", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+	}
+	
+	public static ImageIcon getIcon(String path) {
+		return new ImageIcon(new ImageIcon("./datafiles/"+path).getImage());
+	}
+	public static ImageIcon getIcon(byte[] data) {
+		return new ImageIcon(new ImageIcon(data).getImage());
+	}
+	public static ImageIcon getIcon(String path, int w, int h) {
+		return new ImageIcon(new ImageIcon("./datafiles/"+path).getImage().getScaledInstance(w, h, 1));
+	}
+	public static ImageIcon getIcon(byte[] data, int w, int h) {
+		return new ImageIcon(new ImageIcon(data).getImage().getScaledInstance(w, h, 1));
+	}
+	public static ImageIcon getIcon(String path, int w, int h, Color c) {
+		Image img = getIcon(path, w, h).getImage();
+		return getIcon(img, c);
+	}
+	public static ImageIcon getIcon(Image img, Color c) {
+		BufferedImage bi = new BufferedImage(img.getWidth(null), img.getHeight(null), 2);
+		
+		var g = bi.createGraphics();
+		g.drawImage(img, 0, 0, null);
+		
+		for (int x = 0; x < bi.getWidth(); x++) {
+			for (int y = 0; y < bi.getHeight(); y++) {
+				if(bi.getRGB(x, y)==0) continue;
+				bi.setRGB(x, y, c.getRGB());
+			}
+		}
+		return new ImageIcon(bi);
+	}
+	
+	public void showPage(JFrame jf, String name) {
+		jf.setLocationRelativeTo(null);
+		jf.setVisible(true);
+		jf.setName(name);
+		jf.addWindowListener(new WindowAdapter() {
+			@Override
+			public void windowClosed(WindowEvent e) {
+				if(jf.getName().equals(name)) {
+					updateForm();
+					setVisible(true);
+				}
+			}
+		});
+		setVisible(false);
+	}
+	
+	public void updateForm() {
+		
+	}
+	
+	public void showPage(String name) {
+		var stack = new Stack<Window>();
+		stack.addAll(Arrays.asList(Window.getWindows()));
+		while (!stack.isEmpty()) {
+			var window = stack.pop();
+			if(window.getName().equals(name))
+				break;
+			else {
+				window.setName("삭제");
+				window.dispose();
+			}
+		}
+	}
+	public JFrame getPage(String name) {
+		var stack = new Stack<Window>();
+		stack.addAll(Arrays.asList(Window.getWindows()));
+		while (!stack.isEmpty()) {
+			var window = stack.pop();
+			if(window.getName().equals(name)) {
+				return (JFrame) window;
+			}
+		}
+		return null;
+	}
+	
+	
+}

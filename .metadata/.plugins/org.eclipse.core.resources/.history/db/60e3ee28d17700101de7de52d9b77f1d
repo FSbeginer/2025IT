@@ -1,0 +1,48 @@
+import javax.swing.JPanel;
+import java.awt.BorderLayout;
+import javax.swing.JCheckBox;
+import javax.swing.JLabel;
+import java.awt.Dimension;
+import java.awt.GridLayout;
+
+public class PanelShop extends JPanel {
+	public JCheckBox checkBox;
+	public JLabel label;
+	public JPanel panel;
+	public JLabel label_1;
+	public JLabel label_2;
+	public JLabel label_3;
+	public JLabel label_4;
+
+	/**
+	 * Create the panel.
+	 */
+	public PanelShop() {
+		setLayout(new BorderLayout(0, 0));
+		
+		checkBox = new JCheckBox("");
+		add(checkBox, BorderLayout.WEST);
+		
+		label = new JLabel();
+		add(label, BorderLayout.CENTER);
+		
+		panel = new JPanel();
+		panel.setPreferredSize(new Dimension(120, 10));
+		add(panel, BorderLayout.EAST);
+		panel.setLayout(new GridLayout(0, 1, 0, 0));
+		
+		label_1 = new JLabel("New label");
+		panel.add(label_1);
+		
+		label_2 = new JLabel("New label");
+		panel.add(label_2);
+		
+		label_3 = new JLabel("New label");
+		panel.add(label_3);
+		
+		label_4 = new JLabel("New label");
+		panel.add(label_4);
+
+	}
+
+}

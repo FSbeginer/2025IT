@@ -1,0 +1,12 @@
+import javax.swing.JPanel;
+
+public class te extends JPanel {
+
+	/**
+	 * Create the panel.
+	 */
+	public te() {
+
+	}
+
+}

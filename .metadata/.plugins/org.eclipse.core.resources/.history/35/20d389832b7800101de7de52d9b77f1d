@@ -1,0 +1,12 @@
+import javax.swing.JPanel;
+
+public class PageAnalyze extends JPanel {
+
+	/**
+	 * Create the panel.
+	 */
+	public PageAnalyze() {
+		setSize(778, 431);
+	}	
+
+}

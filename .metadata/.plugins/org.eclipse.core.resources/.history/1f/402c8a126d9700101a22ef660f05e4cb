@@ -1,0 +1,18 @@
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
+import java.sql.Statement;
+
+import javax.swing.JFrame;
+
+public class BF extends JFrame {
+	public static Connection con;
+	public static Statement stmt;
+	static {
+		try {
+			con = DriverManager.getConnection("jdbc:mysql://localhost?serverTimezone=UTC", "root", "1234");
+			
+		} catch (SQLException e) {
+		}
+	}
+}

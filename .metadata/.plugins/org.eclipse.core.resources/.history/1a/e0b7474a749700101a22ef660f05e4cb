@@ -1,0 +1,13 @@
+import javax.swing.JPanel;
+
+public class PanelProfile extends JPanel {
+
+	/**
+	 * Create the panel.
+	 */
+	public PanelProfile() {
+		setSize(50, 50);
+		
+	}
+
+}

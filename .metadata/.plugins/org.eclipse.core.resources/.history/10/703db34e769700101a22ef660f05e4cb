@@ -1,0 +1,46 @@
+import javax.swing.JPanel;
+import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.Graphics;
+import java.awt.Image;
+
+import javax.swing.ImageIcon;
+import javax.swing.JLabel;
+import javax.swing.SwingConstants;
+
+public class PanelProfile extends JPanel {
+	public JLabel label;
+	public JLabel label_1;
+
+	/**
+	 * Create the panel.
+	 */
+	public PanelProfile() {
+		setSize(35, 60);
+		setLayout(new BorderLayout(0, 0));
+		
+		label = new JLabel() {
+			@Override
+			protected void paintComponent(Graphics g) {
+				super.paintComponent(g);
+				if(BF.uno == 0 && !BF.isAdmin) {
+					setIcon(BF.getIcon("logo/유저.png",35,35));
+				}
+				else if(BF.uno != 0) {
+					setIcon(BF.getColorImage("logo/유저.png", 35, 35, Color.blue));
+				}
+				else {
+					setIcon(BF.getColorImage("logo/유저.png", 35, 35, Color.red));
+				}
+			}
+		};
+		label.setHorizontalAlignment(SwingConstants.CENTER);
+		add(label, BorderLayout.CENTER);
+		
+		label_1 = new JLabel("New label");
+		label_1.setHorizontalAlignment(SwingConstants.CENTER);
+		add(label_1, BorderLayout.SOUTH);
+		
+	}
+
+}

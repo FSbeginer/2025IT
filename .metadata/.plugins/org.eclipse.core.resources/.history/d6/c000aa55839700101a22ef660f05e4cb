@@ -1,0 +1,53 @@
+import javax.swing.JPanel;
+import java.awt.Color;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.sql.SQLException;
+
+import javax.swing.JComboBox;
+import javax.swing.DefaultComboBoxModel;
+
+public class PageMain extends JPanel {
+	public JPanel panel;
+	public JComboBox comboBox;
+
+	/**
+	 * Create the panel.
+	 */
+	public PageMain() {
+		setBackground(new Color(255, 255, 255));
+		setSize(778, 431);
+		setLayout(null);
+		
+		panel = new JPanel();
+		panel.setBackground(new Color(255, 255, 255));
+		panel.setBounds(12, 64, 754, 357);
+		add(panel);
+		panel.setLayout(null);
+		
+		comboBox = new JComboBox();
+		comboBox.setModel(new DefaultComboBoxModel(new String[] {"\uC804\uCCB4"}));
+		comboBox.setBounds(12, 31, 115, 23);
+		add(comboBox);
+		
+		load();
+	}
+
+	private void load() {
+		try (var rs = BF.res("SELECT pno, img, pname, price, count(*) cnt, avg(rating) FROM product p join `order` o using(pno) left join review using(ono) group by pno order by pno;")) {
+			while(rs.next()) {
+				PanelMain pp = new PanelMain(BF.getIcon(rs.getBytes(2), 100,100),rs.getString(3), rs.getInt(4), rs.getInt(5), rs.getDouble(6));
+				int pno = rs.getInt(1);
+				pp.addMouseListener(new MouseAdapter() {
+					@Override
+					public void mouseClicked(MouseEvent e) {
+						super.mouseClicked(e);
+						
+					}
+				});
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+}
