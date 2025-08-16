@@ -88,8 +88,8 @@ public class Calendar extends JPanel {
 	int min = now.getMonthValue();
 	
 	private void loadDate() {
-		int start = now.getDayOfWeek().getValue() % 7;
 		LocalDate date = LocalDate.of(now.getYear(), now.getMonth(), 1);
+		int start = date.getDayOfWeek().getValue() % 7;
 		for (int i = 0; i < days.length; i++) {
 			LocalDate d = date.plusDays(i - start);
 			days[i].setVisible(date.getMonthValue() == d.getMonthValue());
