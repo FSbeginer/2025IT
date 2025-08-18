@@ -1,0 +1,86 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="SkillCinemaModelStoreContainer" CdmEntityContainer="SkillCinemaEntities">
+    <EntitySetMapping Name="age">
+      <EntityTypeMapping TypeName="SkillCinemaModel.age">
+        <MappingFragment StoreEntitySet="age">
+          <ScalarProperty Name="ano" ColumnName="ano" />
+          <ScalarProperty Name="age1" ColumnName="age" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="genre">
+      <EntityTypeMapping TypeName="SkillCinemaModel.genre">
+        <MappingFragment StoreEntitySet="genre">
+          <ScalarProperty Name="gno" ColumnName="gno" />
+          <ScalarProperty Name="gname" ColumnName="gname" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="movie">
+      <EntityTypeMapping TypeName="SkillCinemaModel.movie">
+        <MappingFragment StoreEntitySet="movie">
+          <ScalarProperty Name="mno" ColumnName="mno" />
+          <ScalarProperty Name="mname" ColumnName="mname" />
+          <ScalarProperty Name="gno" ColumnName="gno" />
+          <ScalarProperty Name="introduction" ColumnName="introduction" />
+          <ScalarProperty Name="director" ColumnName="director" />
+          <ScalarProperty Name="actor" ColumnName="actor" />
+          <ScalarProperty Name="sdate" ColumnName="sdate" />
+          <ScalarProperty Name="edate" ColumnName="edate" />
+          <ScalarProperty Name="rtime" ColumnName="rtime" />
+          <ScalarProperty Name="tno" ColumnName="tno" />
+          <ScalarProperty Name="ano" ColumnName="ano" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="reservation">
+      <EntityTypeMapping TypeName="SkillCinemaModel.reservation">
+        <MappingFragment StoreEntitySet="reservation">
+          <ScalarProperty Name="rno" ColumnName="rno" />
+          <ScalarProperty Name="uno" ColumnName="uno" />
+          <ScalarProperty Name="mno" ColumnName="mno" />
+          <ScalarProperty Name="rdate" ColumnName="rdate" />
+          <ScalarProperty Name="rtime" ColumnName="rtime" />
+          <ScalarProperty Name="adult" ColumnName="adult" />
+          <ScalarProperty Name="teenager" ColumnName="teenager" />
+          <ScalarProperty Name="senior" ColumnName="senior" />
+          <ScalarProperty Name="seat" ColumnName="seat" />
+          <ScalarProperty Name="coupon" ColumnName="coupon" />
+          <ScalarProperty Name="price" ColumnName="price" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="review">
+      <EntityTypeMapping TypeName="SkillCinemaModel.review">
+        <MappingFragment StoreEntitySet="review">
+          <ScalarProperty Name="rvno" ColumnName="rvno" />
+          <ScalarProperty Name="rno" ColumnName="rno" />
+          <ScalarProperty Name="likecount" ColumnName="likecount" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="theater">
+      <EntityTypeMapping TypeName="SkillCinemaModel.theater">
+        <MappingFragment StoreEntitySet="theater">
+          <ScalarProperty Name="tno" ColumnName="tno" />
+          <ScalarProperty Name="div" ColumnName="div" />
+          <ScalarProperty Name="seat" ColumnName="seat" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="users">
+      <EntityTypeMapping TypeName="SkillCinemaModel.users">
+        <MappingFragment StoreEntitySet="users">
+          <ScalarProperty Name="uno" ColumnName="uno" />
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="pw" ColumnName="pw" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="gender" ColumnName="gender" />
+          <ScalarProperty Name="birth" ColumnName="birth" />
+          <ScalarProperty Name="seatcount" ColumnName="seatcount" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

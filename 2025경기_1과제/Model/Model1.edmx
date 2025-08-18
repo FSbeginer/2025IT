@@ -1,0 +1,493 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="SkillCinemaModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="age">
+          <Key>
+            <PropertyRef Name="ano" />
+          </Key>
+          <Property Name="ano" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="age" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="genre">
+          <Key>
+            <PropertyRef Name="gno" />
+          </Key>
+          <Property Name="gno" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="gname" Type="varchar" MaxLength="20" Nullable="false" />
+        </EntityType>
+        <EntityType Name="movie">
+          <Key>
+            <PropertyRef Name="mno" />
+          </Key>
+          <Property Name="mno" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="mname" Type="varchar" MaxLength="40" Nullable="false" />
+          <Property Name="gno" Type="int" Nullable="false" />
+          <Property Name="introduction" Type="ntext" Nullable="false" />
+          <Property Name="director" Type="varchar" MaxLength="60" Nullable="false" />
+          <Property Name="actor" Type="varchar" MaxLength="100" />
+          <Property Name="sdate" Type="date" Nullable="false" />
+          <Property Name="edate" Type="date" Nullable="false" />
+          <Property Name="rtime" Type="int" Nullable="false" />
+          <Property Name="tno" Type="int" Nullable="false" />
+          <Property Name="ano" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="reservation">
+          <Key>
+            <PropertyRef Name="rno" />
+          </Key>
+          <Property Name="rno" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="uno" Type="int" Nullable="false" />
+          <Property Name="mno" Type="int" Nullable="false" />
+          <Property Name="rdate" Type="date" Nullable="false" />
+          <Property Name="rtime" Type="time" Precision="7" Nullable="false" />
+          <Property Name="adult" Type="int" />
+          <Property Name="teenager" Type="int" />
+          <Property Name="senior" Type="int" />
+          <Property Name="seat" Type="varchar" MaxLength="20" />
+          <Property Name="coupon" Type="int" />
+          <Property Name="price" Type="int" />
+        </EntityType>
+        <EntityType Name="review">
+          <Key>
+            <PropertyRef Name="rvno" />
+          </Key>
+          <Property Name="rvno" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="rno" Type="int" Nullable="false" />
+          <Property Name="likecount" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="theater">
+          <Key>
+            <PropertyRef Name="tno" />
+          </Key>
+          <Property Name="tno" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="div" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="seat" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="users">
+          <Key>
+            <PropertyRef Name="uno" />
+          </Key>
+          <Property Name="uno" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="id" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="pw" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="name" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="gender" Type="int" Nullable="false" />
+          <Property Name="birth" Type="date" Nullable="false" />
+          <Property Name="seatcount" Type="int" Nullable="false" />
+        </EntityType>
+        <Association Name="FK__movie__ano__4316F928">
+          <End Role="age" Type="Self.age" Multiplicity="1" />
+          <End Role="movie" Type="Self.movie" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="age">
+              <PropertyRef Name="ano" />
+            </Principal>
+            <Dependent Role="movie">
+              <PropertyRef Name="ano" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__movie__gno__440B1D61">
+          <End Role="genre" Type="Self.genre" Multiplicity="1" />
+          <End Role="movie" Type="Self.movie" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="genre">
+              <PropertyRef Name="gno" />
+            </Principal>
+            <Dependent Role="movie">
+              <PropertyRef Name="gno" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__movie__tno__44FF419A">
+          <End Role="theater" Type="Self.theater" Multiplicity="1" />
+          <End Role="movie" Type="Self.movie" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="theater">
+              <PropertyRef Name="tno" />
+            </Principal>
+            <Dependent Role="movie">
+              <PropertyRef Name="tno" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__reservation__mno__47DBAE45">
+          <End Role="movie" Type="Self.movie" Multiplicity="1" />
+          <End Role="reservation" Type="Self.reservation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="movie">
+              <PropertyRef Name="mno" />
+            </Principal>
+            <Dependent Role="reservation">
+              <PropertyRef Name="mno" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__reservation__uno__45F365D3">
+          <End Role="users" Type="Self.users" Multiplicity="1" />
+          <End Role="reservation" Type="Self.reservation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="users">
+              <PropertyRef Name="uno" />
+            </Principal>
+            <Dependent Role="reservation">
+              <PropertyRef Name="uno" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__review__rno__46E78A0C">
+          <End Role="reservation" Type="Self.reservation" Multiplicity="1" />
+          <End Role="review" Type="Self.review" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="reservation">
+              <PropertyRef Name="rno" />
+            </Principal>
+            <Dependent Role="review">
+              <PropertyRef Name="rno" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="SkillCinemaModelStoreContainer">
+          <EntitySet Name="age" EntityType="Self.age" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="genre" EntityType="Self.genre" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="movie" EntityType="Self.movie" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="reservation" EntityType="Self.reservation" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="review" EntityType="Self.review" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="theater" EntityType="Self.theater" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="users" EntityType="Self.users" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__movie__ano__4316F928" Association="Self.FK__movie__ano__4316F928">
+            <End Role="age" EntitySet="age" />
+            <End Role="movie" EntitySet="movie" />
+          </AssociationSet>
+          <AssociationSet Name="FK__movie__gno__440B1D61" Association="Self.FK__movie__gno__440B1D61">
+            <End Role="genre" EntitySet="genre" />
+            <End Role="movie" EntitySet="movie" />
+          </AssociationSet>
+          <AssociationSet Name="FK__movie__tno__44FF419A" Association="Self.FK__movie__tno__44FF419A">
+            <End Role="theater" EntitySet="theater" />
+            <End Role="movie" EntitySet="movie" />
+          </AssociationSet>
+          <AssociationSet Name="FK__reservation__mno__47DBAE45" Association="Self.FK__reservation__mno__47DBAE45">
+            <End Role="movie" EntitySet="movie" />
+            <End Role="reservation" EntitySet="reservation" />
+          </AssociationSet>
+          <AssociationSet Name="FK__reservation__uno__45F365D3" Association="Self.FK__reservation__uno__45F365D3">
+            <End Role="users" EntitySet="users" />
+            <End Role="reservation" EntitySet="reservation" />
+          </AssociationSet>
+          <AssociationSet Name="FK__review__rno__46E78A0C" Association="Self.FK__review__rno__46E78A0C">
+            <End Role="reservation" EntitySet="reservation" />
+            <End Role="review" EntitySet="review" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="SkillCinemaModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="age">
+          <Key>
+            <PropertyRef Name="ano" />
+          </Key>
+          <Property Name="ano" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="age1" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="movie" Relationship="Self.FK__movie__ano__4316F928" FromRole="age" ToRole="movie" />
+        </EntityType>
+        <EntityType Name="genre">
+          <Key>
+            <PropertyRef Name="gno" />
+          </Key>
+          <Property Name="gno" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="gname" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="movie" Relationship="Self.FK__movie__gno__440B1D61" FromRole="genre" ToRole="movie" />
+        </EntityType>
+        <EntityType Name="movie">
+          <Key>
+            <PropertyRef Name="mno" />
+          </Key>
+          <Property Name="mno" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="mname" Type="String" MaxLength="40" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="gno" Type="Int32" Nullable="false" />
+          <Property Name="introduction" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="director" Type="String" MaxLength="60" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="actor" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="sdate" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="edate" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="rtime" Type="Int32" Nullable="false" />
+          <Property Name="tno" Type="Int32" Nullable="false" />
+          <Property Name="ano" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="age" Relationship="Self.FK__movie__ano__4316F928" FromRole="movie" ToRole="age" />
+          <NavigationProperty Name="genre" Relationship="Self.FK__movie__gno__440B1D61" FromRole="movie" ToRole="genre" />
+          <NavigationProperty Name="theater" Relationship="Self.FK__movie__tno__44FF419A" FromRole="movie" ToRole="theater" />
+          <NavigationProperty Name="reservation" Relationship="Self.FK__reservation__mno__47DBAE45" FromRole="movie" ToRole="reservation" />
+        </EntityType>
+        <EntityType Name="reservation">
+          <Key>
+            <PropertyRef Name="rno" />
+          </Key>
+          <Property Name="rno" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="uno" Type="Int32" Nullable="false" />
+          <Property Name="mno" Type="Int32" Nullable="false" />
+          <Property Name="rdate" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="rtime" Type="Time" Nullable="false" Precision="7" />
+          <Property Name="adult" Type="Int32" />
+          <Property Name="teenager" Type="Int32" />
+          <Property Name="senior" Type="Int32" />
+          <Property Name="seat" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="coupon" Type="Int32" />
+          <Property Name="price" Type="Int32" />
+          <NavigationProperty Name="movie" Relationship="Self.FK__reservation__mno__47DBAE45" FromRole="reservation" ToRole="movie" />
+          <NavigationProperty Name="users" Relationship="Self.FK__reservation__uno__45F365D3" FromRole="reservation" ToRole="users" />
+          <NavigationProperty Name="review" Relationship="Self.FK__review__rno__46E78A0C" FromRole="reservation" ToRole="review" />
+        </EntityType>
+        <EntityType Name="review">
+          <Key>
+            <PropertyRef Name="rvno" />
+          </Key>
+          <Property Name="rvno" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="rno" Type="Int32" Nullable="false" />
+          <Property Name="likecount" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="reservation" Relationship="Self.FK__review__rno__46E78A0C" FromRole="review" ToRole="reservation" />
+        </EntityType>
+        <EntityType Name="theater">
+          <Key>
+            <PropertyRef Name="tno" />
+          </Key>
+          <Property Name="tno" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="div" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="seat" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="movie" Relationship="Self.FK__movie__tno__44FF419A" FromRole="theater" ToRole="movie" />
+        </EntityType>
+        <EntityType Name="users">
+          <Key>
+            <PropertyRef Name="uno" />
+          </Key>
+          <Property Name="uno" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="id" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="pw" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="name" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="gender" Type="Int32" Nullable="false" />
+          <Property Name="birth" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="seatcount" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="reservation" Relationship="Self.FK__reservation__uno__45F365D3" FromRole="users" ToRole="reservation" />
+        </EntityType>
+        <Association Name="FK__movie__ano__4316F928">
+          <End Role="age" Type="Self.age" Multiplicity="1" />
+          <End Role="movie" Type="Self.movie" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="age">
+              <PropertyRef Name="ano" />
+            </Principal>
+            <Dependent Role="movie">
+              <PropertyRef Name="ano" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__movie__gno__440B1D61">
+          <End Role="genre" Type="Self.genre" Multiplicity="1" />
+          <End Role="movie" Type="Self.movie" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="genre">
+              <PropertyRef Name="gno" />
+            </Principal>
+            <Dependent Role="movie">
+              <PropertyRef Name="gno" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__movie__tno__44FF419A">
+          <End Role="theater" Type="Self.theater" Multiplicity="1" />
+          <End Role="movie" Type="Self.movie" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="theater">
+              <PropertyRef Name="tno" />
+            </Principal>
+            <Dependent Role="movie">
+              <PropertyRef Name="tno" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__reservation__mno__47DBAE45">
+          <End Role="movie" Type="Self.movie" Multiplicity="1" />
+          <End Role="reservation" Type="Self.reservation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="movie">
+              <PropertyRef Name="mno" />
+            </Principal>
+            <Dependent Role="reservation">
+              <PropertyRef Name="mno" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__reservation__uno__45F365D3">
+          <End Role="users" Type="Self.users" Multiplicity="1" />
+          <End Role="reservation" Type="Self.reservation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="users">
+              <PropertyRef Name="uno" />
+            </Principal>
+            <Dependent Role="reservation">
+              <PropertyRef Name="uno" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__review__rno__46E78A0C">
+          <End Role="reservation" Type="Self.reservation" Multiplicity="1" />
+          <End Role="review" Type="Self.review" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="reservation">
+              <PropertyRef Name="rno" />
+            </Principal>
+            <Dependent Role="review">
+              <PropertyRef Name="rno" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="SkillCinemaEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="age" EntityType="Self.age" />
+          <EntitySet Name="genre" EntityType="Self.genre" />
+          <EntitySet Name="movie" EntityType="Self.movie" />
+          <EntitySet Name="reservation" EntityType="Self.reservation" />
+          <EntitySet Name="review" EntityType="Self.review" />
+          <EntitySet Name="theater" EntityType="Self.theater" />
+          <EntitySet Name="users" EntityType="Self.users" />
+          <AssociationSet Name="FK__movie__ano__4316F928" Association="Self.FK__movie__ano__4316F928">
+            <End Role="age" EntitySet="age" />
+            <End Role="movie" EntitySet="movie" />
+          </AssociationSet>
+          <AssociationSet Name="FK__movie__gno__440B1D61" Association="Self.FK__movie__gno__440B1D61">
+            <End Role="genre" EntitySet="genre" />
+            <End Role="movie" EntitySet="movie" />
+          </AssociationSet>
+          <AssociationSet Name="FK__movie__tno__44FF419A" Association="Self.FK__movie__tno__44FF419A">
+            <End Role="theater" EntitySet="theater" />
+            <End Role="movie" EntitySet="movie" />
+          </AssociationSet>
+          <AssociationSet Name="FK__reservation__mno__47DBAE45" Association="Self.FK__reservation__mno__47DBAE45">
+            <End Role="movie" EntitySet="movie" />
+            <End Role="reservation" EntitySet="reservation" />
+          </AssociationSet>
+          <AssociationSet Name="FK__reservation__uno__45F365D3" Association="Self.FK__reservation__uno__45F365D3">
+            <End Role="users" EntitySet="users" />
+            <End Role="reservation" EntitySet="reservation" />
+          </AssociationSet>
+          <AssociationSet Name="FK__review__rno__46E78A0C" Association="Self.FK__review__rno__46E78A0C">
+            <End Role="reservation" EntitySet="reservation" />
+            <End Role="review" EntitySet="review" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="SkillCinemaModelStoreContainer" CdmEntityContainer="SkillCinemaEntities">
+          <EntitySetMapping Name="age">
+            <EntityTypeMapping TypeName="SkillCinemaModel.age">
+              <MappingFragment StoreEntitySet="age">
+                <ScalarProperty Name="ano" ColumnName="ano" />
+                <ScalarProperty Name="age1" ColumnName="age" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="genre">
+            <EntityTypeMapping TypeName="SkillCinemaModel.genre">
+              <MappingFragment StoreEntitySet="genre">
+                <ScalarProperty Name="gno" ColumnName="gno" />
+                <ScalarProperty Name="gname" ColumnName="gname" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="movie">
+            <EntityTypeMapping TypeName="SkillCinemaModel.movie">
+              <MappingFragment StoreEntitySet="movie">
+                <ScalarProperty Name="mno" ColumnName="mno" />
+                <ScalarProperty Name="mname" ColumnName="mname" />
+                <ScalarProperty Name="gno" ColumnName="gno" />
+                <ScalarProperty Name="introduction" ColumnName="introduction" />
+                <ScalarProperty Name="director" ColumnName="director" />
+                <ScalarProperty Name="actor" ColumnName="actor" />
+                <ScalarProperty Name="sdate" ColumnName="sdate" />
+                <ScalarProperty Name="edate" ColumnName="edate" />
+                <ScalarProperty Name="rtime" ColumnName="rtime" />
+                <ScalarProperty Name="tno" ColumnName="tno" />
+                <ScalarProperty Name="ano" ColumnName="ano" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="reservation">
+            <EntityTypeMapping TypeName="SkillCinemaModel.reservation">
+              <MappingFragment StoreEntitySet="reservation">
+                <ScalarProperty Name="rno" ColumnName="rno" />
+                <ScalarProperty Name="uno" ColumnName="uno" />
+                <ScalarProperty Name="mno" ColumnName="mno" />
+                <ScalarProperty Name="rdate" ColumnName="rdate" />
+                <ScalarProperty Name="rtime" ColumnName="rtime" />
+                <ScalarProperty Name="adult" ColumnName="adult" />
+                <ScalarProperty Name="teenager" ColumnName="teenager" />
+                <ScalarProperty Name="senior" ColumnName="senior" />
+                <ScalarProperty Name="seat" ColumnName="seat" />
+                <ScalarProperty Name="coupon" ColumnName="coupon" />
+                <ScalarProperty Name="price" ColumnName="price" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="review">
+            <EntityTypeMapping TypeName="SkillCinemaModel.review">
+              <MappingFragment StoreEntitySet="review">
+                <ScalarProperty Name="rvno" ColumnName="rvno" />
+                <ScalarProperty Name="rno" ColumnName="rno" />
+                <ScalarProperty Name="likecount" ColumnName="likecount" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="theater">
+            <EntityTypeMapping TypeName="SkillCinemaModel.theater">
+              <MappingFragment StoreEntitySet="theater">
+                <ScalarProperty Name="tno" ColumnName="tno" />
+                <ScalarProperty Name="div" ColumnName="div" />
+                <ScalarProperty Name="seat" ColumnName="seat" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="users">
+            <EntityTypeMapping TypeName="SkillCinemaModel.users">
+              <MappingFragment StoreEntitySet="users">
+                <ScalarProperty Name="uno" ColumnName="uno" />
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="pw" ColumnName="pw" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="gender" ColumnName="gender" />
+                <ScalarProperty Name="birth" ColumnName="birth" />
+                <ScalarProperty Name="seatcount" ColumnName="seatcount" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="true" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="없음" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
