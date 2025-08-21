@@ -1,0 +1,368 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="ITTRAINModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Division">
+          <Key>
+            <PropertyRef Name="d_no" />
+          </Key>
+          <Property Name="d_no" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="d_name" Type="varchar" MaxLength="10" />
+          <Property Name="d_sTime" Type="time" Precision="7" />
+          <Property Name="d_eTime" Type="time" Precision="7" />
+          <Property Name="d_interval" Type="time" Precision="7" />
+          <Property Name="d_carS" Type="int" />
+          <Property Name="d_carR" Type="int" />
+        </EntityType>
+        <EntityType Name="Information">
+          <Key>
+            <PropertyRef Name="i_no" />
+          </Key>
+          <Property Name="i_no" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="stationname" Type="varchar" MaxLength="20" />
+          <Property Name="address" Type="varchar" MaxLength="100" />
+          <Property Name="x" Type="int" />
+          <Property Name="y" Type="int" />
+        </EntityType>
+        <EntityType Name="Reservation">
+          <Key>
+            <PropertyRef Name="r_no" />
+          </Key>
+          <Property Name="r_no" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="u_no" Type="int" />
+          <Property Name="r_date" Type="date" />
+          <Property Name="r_start" Type="int" />
+          <Property Name="r_end" Type="int" />
+          <Property Name="r_time" Type="time" Precision="7" />
+          <Property Name="r_car" Type="int" />
+          <Property Name="r_seat" Type="varchar" MaxLength="3" />
+        </EntityType>
+        <EntityType Name="Station">
+          <Key>
+            <PropertyRef Name="s_no" />
+          </Key>
+          <Property Name="s_no" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="s_code" Type="int" />
+          <Property Name="i_no" Type="int" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="u_no" />
+          </Key>
+          <Property Name="u_no" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="u_name" Type="varchar" MaxLength="10" />
+          <Property Name="u_id" Type="varchar" MaxLength="15" />
+          <Property Name="u_pw" Type="varchar" MaxLength="15" />
+          <Property Name="u_birth" Type="date" />
+          <Property Name="u_tel" Type="varchar" MaxLength="25" />
+          <Property Name="u_email" Type="varchar" MaxLength="30" />
+          <Property Name="u_mileage" Type="int" />
+          <Property Name="onoff" Type="tinyint" />
+        </EntityType>
+        <Association Name="FK__Reservati__r_end__3F466844">
+          <End Role="Station" Type="Self.Station" Multiplicity="0..1" />
+          <End Role="Reservation" Type="Self.Reservation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Station">
+              <PropertyRef Name="s_no" />
+            </Principal>
+            <Dependent Role="Reservation">
+              <PropertyRef Name="r_end" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Reservati__r_sta__403A8C7D">
+          <End Role="Station" Type="Self.Station" Multiplicity="0..1" />
+          <End Role="Reservation" Type="Self.Reservation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Station">
+              <PropertyRef Name="s_no" />
+            </Principal>
+            <Dependent Role="Reservation">
+              <PropertyRef Name="r_start" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Reservatio__u_no__412EB0B6">
+          <End Role="User" Type="Self.User" Multiplicity="0..1" />
+          <End Role="Reservation" Type="Self.Reservation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="u_no" />
+            </Principal>
+            <Dependent Role="Reservation">
+              <PropertyRef Name="u_no" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Station__i_no__4222D4EF">
+          <End Role="Information" Type="Self.Information" Multiplicity="0..1" />
+          <End Role="Station" Type="Self.Station" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Information">
+              <PropertyRef Name="i_no" />
+            </Principal>
+            <Dependent Role="Station">
+              <PropertyRef Name="i_no" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="ITTRAINModelStoreContainer">
+          <EntitySet Name="Division" EntityType="Self.Division" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Information" EntityType="Self.Information" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Reservation" EntityType="Self.Reservation" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Station" EntityType="Self.Station" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__Reservati__r_end__3F466844" Association="Self.FK__Reservati__r_end__3F466844">
+            <End Role="Station" EntitySet="Station" />
+            <End Role="Reservation" EntitySet="Reservation" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Reservati__r_sta__403A8C7D" Association="Self.FK__Reservati__r_sta__403A8C7D">
+            <End Role="Station" EntitySet="Station" />
+            <End Role="Reservation" EntitySet="Reservation" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Reservatio__u_no__412EB0B6" Association="Self.FK__Reservatio__u_no__412EB0B6">
+            <End Role="User" EntitySet="User" />
+            <End Role="Reservation" EntitySet="Reservation" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Station__i_no__4222D4EF" Association="Self.FK__Station__i_no__4222D4EF">
+            <End Role="Information" EntitySet="Information" />
+            <End Role="Station" EntitySet="Station" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="ITTRAINModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Division">
+          <Key>
+            <PropertyRef Name="d_no" />
+          </Key>
+          <Property Name="d_no" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="d_name" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="d_sTime" Type="Time" Precision="7" />
+          <Property Name="d_eTime" Type="Time" Precision="7" />
+          <Property Name="d_interval" Type="Time" Precision="7" />
+          <Property Name="d_carS" Type="Int32" />
+          <Property Name="d_carR" Type="Int32" />
+        </EntityType>
+        <EntityType Name="Information">
+          <Key>
+            <PropertyRef Name="i_no" />
+          </Key>
+          <Property Name="i_no" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="stationname" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="address" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="x" Type="Int32" />
+          <Property Name="y" Type="Int32" />
+          <NavigationProperty Name="Station" Relationship="Self.FK__Station__i_no__4222D4EF" FromRole="Information" ToRole="Station" />
+        </EntityType>
+        <EntityType Name="Reservation">
+          <Key>
+            <PropertyRef Name="r_no" />
+          </Key>
+          <Property Name="r_no" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="u_no" Type="Int32" />
+          <Property Name="r_date" Type="DateTime" Precision="0" />
+          <Property Name="r_start" Type="Int32" />
+          <Property Name="r_end" Type="Int32" />
+          <Property Name="r_time" Type="Time" Precision="7" />
+          <Property Name="r_car" Type="Int32" />
+          <Property Name="r_seat" Type="String" MaxLength="3" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Station" Relationship="Self.FK__Reservati__r_end__3F466844" FromRole="Reservation" ToRole="Station" />
+          <NavigationProperty Name="Station1" Relationship="Self.FK__Reservati__r_sta__403A8C7D" FromRole="Reservation" ToRole="Station" />
+          <NavigationProperty Name="User" Relationship="Self.FK__Reservatio__u_no__412EB0B6" FromRole="Reservation" ToRole="User" />
+        </EntityType>
+        <EntityType Name="Station">
+          <Key>
+            <PropertyRef Name="s_no" />
+          </Key>
+          <Property Name="s_no" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="s_code" Type="Int32" />
+          <Property Name="i_no" Type="Int32" />
+          <NavigationProperty Name="Information" Relationship="Self.FK__Station__i_no__4222D4EF" FromRole="Station" ToRole="Information" />
+          <NavigationProperty Name="Reservation" Relationship="Self.FK__Reservati__r_end__3F466844" FromRole="Station" ToRole="Reservation" />
+          <NavigationProperty Name="Reservation1" Relationship="Self.FK__Reservati__r_sta__403A8C7D" FromRole="Station" ToRole="Reservation" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="u_no" />
+          </Key>
+          <Property Name="u_no" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="u_name" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="u_id" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="u_pw" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="u_birth" Type="DateTime" Precision="0" />
+          <Property Name="u_tel" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+          <Property Name="u_email" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="u_mileage" Type="Int32" />
+          <Property Name="onoff" Type="Byte" />
+          <NavigationProperty Name="Reservation" Relationship="Self.FK__Reservatio__u_no__412EB0B6" FromRole="User" ToRole="Reservation" />
+        </EntityType>
+        <Association Name="FK__Station__i_no__4222D4EF">
+          <End Role="Information" Type="Self.Information" Multiplicity="0..1" />
+          <End Role="Station" Type="Self.Station" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Information">
+              <PropertyRef Name="i_no" />
+            </Principal>
+            <Dependent Role="Station">
+              <PropertyRef Name="i_no" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Reservati__r_end__3F466844">
+          <End Role="Station" Type="Self.Station" Multiplicity="0..1" />
+          <End Role="Reservation" Type="Self.Reservation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Station">
+              <PropertyRef Name="s_no" />
+            </Principal>
+            <Dependent Role="Reservation">
+              <PropertyRef Name="r_end" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Reservati__r_sta__403A8C7D">
+          <End Role="Station" Type="Self.Station" Multiplicity="0..1" />
+          <End Role="Reservation" Type="Self.Reservation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Station">
+              <PropertyRef Name="s_no" />
+            </Principal>
+            <Dependent Role="Reservation">
+              <PropertyRef Name="r_start" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Reservatio__u_no__412EB0B6">
+          <End Role="User" Type="Self.User" Multiplicity="0..1" />
+          <End Role="Reservation" Type="Self.Reservation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="u_no" />
+            </Principal>
+            <Dependent Role="Reservation">
+              <PropertyRef Name="u_no" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="ITTRAINEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Division" EntityType="Self.Division" />
+          <EntitySet Name="Information" EntityType="Self.Information" />
+          <EntitySet Name="Reservation" EntityType="Self.Reservation" />
+          <EntitySet Name="Station" EntityType="Self.Station" />
+          <EntitySet Name="User" EntityType="Self.User" />
+          <AssociationSet Name="FK__Station__i_no__4222D4EF" Association="Self.FK__Station__i_no__4222D4EF">
+            <End Role="Information" EntitySet="Information" />
+            <End Role="Station" EntitySet="Station" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Reservati__r_end__3F466844" Association="Self.FK__Reservati__r_end__3F466844">
+            <End Role="Station" EntitySet="Station" />
+            <End Role="Reservation" EntitySet="Reservation" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Reservati__r_sta__403A8C7D" Association="Self.FK__Reservati__r_sta__403A8C7D">
+            <End Role="Station" EntitySet="Station" />
+            <End Role="Reservation" EntitySet="Reservation" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Reservatio__u_no__412EB0B6" Association="Self.FK__Reservatio__u_no__412EB0B6">
+            <End Role="User" EntitySet="User" />
+            <End Role="Reservation" EntitySet="Reservation" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="ITTRAINModelStoreContainer" CdmEntityContainer="ITTRAINEntities">
+          <EntitySetMapping Name="Division">
+            <EntityTypeMapping TypeName="ITTRAINModel.Division">
+              <MappingFragment StoreEntitySet="Division">
+                <ScalarProperty Name="d_no" ColumnName="d_no" />
+                <ScalarProperty Name="d_name" ColumnName="d_name" />
+                <ScalarProperty Name="d_sTime" ColumnName="d_sTime" />
+                <ScalarProperty Name="d_eTime" ColumnName="d_eTime" />
+                <ScalarProperty Name="d_interval" ColumnName="d_interval" />
+                <ScalarProperty Name="d_carS" ColumnName="d_carS" />
+                <ScalarProperty Name="d_carR" ColumnName="d_carR" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Information">
+            <EntityTypeMapping TypeName="ITTRAINModel.Information">
+              <MappingFragment StoreEntitySet="Information">
+                <ScalarProperty Name="i_no" ColumnName="i_no" />
+                <ScalarProperty Name="stationname" ColumnName="stationname" />
+                <ScalarProperty Name="address" ColumnName="address" />
+                <ScalarProperty Name="x" ColumnName="x" />
+                <ScalarProperty Name="y" ColumnName="y" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Reservation">
+            <EntityTypeMapping TypeName="ITTRAINModel.Reservation">
+              <MappingFragment StoreEntitySet="Reservation">
+                <ScalarProperty Name="r_no" ColumnName="r_no" />
+                <ScalarProperty Name="u_no" ColumnName="u_no" />
+                <ScalarProperty Name="r_date" ColumnName="r_date" />
+                <ScalarProperty Name="r_start" ColumnName="r_start" />
+                <ScalarProperty Name="r_end" ColumnName="r_end" />
+                <ScalarProperty Name="r_time" ColumnName="r_time" />
+                <ScalarProperty Name="r_car" ColumnName="r_car" />
+                <ScalarProperty Name="r_seat" ColumnName="r_seat" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Station">
+            <EntityTypeMapping TypeName="ITTRAINModel.Station">
+              <MappingFragment StoreEntitySet="Station">
+                <ScalarProperty Name="s_no" ColumnName="s_no" />
+                <ScalarProperty Name="s_code" ColumnName="s_code" />
+                <ScalarProperty Name="i_no" ColumnName="i_no" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="User">
+            <EntityTypeMapping TypeName="ITTRAINModel.User">
+              <MappingFragment StoreEntitySet="User">
+                <ScalarProperty Name="u_no" ColumnName="u_no" />
+                <ScalarProperty Name="u_name" ColumnName="u_name" />
+                <ScalarProperty Name="u_id" ColumnName="u_id" />
+                <ScalarProperty Name="u_pw" ColumnName="u_pw" />
+                <ScalarProperty Name="u_birth" ColumnName="u_birth" />
+                <ScalarProperty Name="u_tel" ColumnName="u_tel" />
+                <ScalarProperty Name="u_email" ColumnName="u_email" />
+                <ScalarProperty Name="u_mileage" ColumnName="u_mileage" />
+                <ScalarProperty Name="onoff" ColumnName="onoff" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="true" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="없음" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

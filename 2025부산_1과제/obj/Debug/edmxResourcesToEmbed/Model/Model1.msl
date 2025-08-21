@@ -1,0 +1,67 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="ITTRAINModelStoreContainer" CdmEntityContainer="ITTRAINEntities">
+    <EntitySetMapping Name="Division">
+      <EntityTypeMapping TypeName="ITTRAINModel.Division">
+        <MappingFragment StoreEntitySet="Division">
+          <ScalarProperty Name="d_no" ColumnName="d_no" />
+          <ScalarProperty Name="d_name" ColumnName="d_name" />
+          <ScalarProperty Name="d_sTime" ColumnName="d_sTime" />
+          <ScalarProperty Name="d_eTime" ColumnName="d_eTime" />
+          <ScalarProperty Name="d_interval" ColumnName="d_interval" />
+          <ScalarProperty Name="d_carS" ColumnName="d_carS" />
+          <ScalarProperty Name="d_carR" ColumnName="d_carR" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Information">
+      <EntityTypeMapping TypeName="ITTRAINModel.Information">
+        <MappingFragment StoreEntitySet="Information">
+          <ScalarProperty Name="i_no" ColumnName="i_no" />
+          <ScalarProperty Name="stationname" ColumnName="stationname" />
+          <ScalarProperty Name="address" ColumnName="address" />
+          <ScalarProperty Name="x" ColumnName="x" />
+          <ScalarProperty Name="y" ColumnName="y" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Reservation">
+      <EntityTypeMapping TypeName="ITTRAINModel.Reservation">
+        <MappingFragment StoreEntitySet="Reservation">
+          <ScalarProperty Name="r_no" ColumnName="r_no" />
+          <ScalarProperty Name="u_no" ColumnName="u_no" />
+          <ScalarProperty Name="r_date" ColumnName="r_date" />
+          <ScalarProperty Name="r_start" ColumnName="r_start" />
+          <ScalarProperty Name="r_end" ColumnName="r_end" />
+          <ScalarProperty Name="r_time" ColumnName="r_time" />
+          <ScalarProperty Name="r_car" ColumnName="r_car" />
+          <ScalarProperty Name="r_seat" ColumnName="r_seat" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Station">
+      <EntityTypeMapping TypeName="ITTRAINModel.Station">
+        <MappingFragment StoreEntitySet="Station">
+          <ScalarProperty Name="s_no" ColumnName="s_no" />
+          <ScalarProperty Name="s_code" ColumnName="s_code" />
+          <ScalarProperty Name="i_no" ColumnName="i_no" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="User">
+      <EntityTypeMapping TypeName="ITTRAINModel.User">
+        <MappingFragment StoreEntitySet="User">
+          <ScalarProperty Name="u_no" ColumnName="u_no" />
+          <ScalarProperty Name="u_name" ColumnName="u_name" />
+          <ScalarProperty Name="u_id" ColumnName="u_id" />
+          <ScalarProperty Name="u_pw" ColumnName="u_pw" />
+          <ScalarProperty Name="u_birth" ColumnName="u_birth" />
+          <ScalarProperty Name="u_tel" ColumnName="u_tel" />
+          <ScalarProperty Name="u_email" ColumnName="u_email" />
+          <ScalarProperty Name="u_mileage" ColumnName="u_mileage" />
+          <ScalarProperty Name="onoff" ColumnName="onoff" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>
