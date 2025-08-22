@@ -11,6 +11,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.event.MouseMotionAdapter;
 
 public class tlqk extends javax.swing.JFrame {
 
@@ -41,6 +42,7 @@ public class tlqk extends javax.swing.JFrame {
 		setDefaultCloseOperation(tlqk.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
+		contentPane.addMouseMotionListener(new ContentPaneMouseMotionListener());
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 
 		setContentPane(contentPane);
@@ -69,6 +71,7 @@ public class tlqk extends javax.swing.JFrame {
 		textField.setColumns(10);
 		
 		button = new JButton("New button");
+		button.addMouseMotionListener(new ButtonMouseMotionListener());
 		button.addMouseListener(new ButtonMouseListener());
 		button.addActionListener(new ButtonActionListener());
 		button.setEnabled(false);
@@ -85,6 +88,17 @@ public class tlqk extends javax.swing.JFrame {
 		@Override
 		public void mouseClicked(MouseEvent e) {
 			System.out.println(1);
+		}
+	}
+	private class ContentPaneMouseMotionListener extends MouseMotionAdapter {
+		@Override
+		public void mouseDragged(MouseEvent e) {
+		}
+	}
+	private class ButtonMouseMotionListener extends MouseMotionAdapter {
+		@Override
+		public void mouseDragged(MouseEvent e) {
+			System.out.println(e.getPoint());
 		}
 	}
 }

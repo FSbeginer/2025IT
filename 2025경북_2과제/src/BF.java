@@ -30,6 +30,7 @@ public class BF extends JFrame {
 			con = DriverManager.getConnection("jdbc:mysql://localhost/roupang?serverTimezone=Asia/Seoul", "root", "1234");
 			stmt = con.createStatement();
 		} catch (SQLException e) {
+			e.printStackTrace();
 		}
 	}
 	
