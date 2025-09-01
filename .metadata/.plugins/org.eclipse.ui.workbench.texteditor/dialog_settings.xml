@@ -5,28 +5,28 @@
 		<item key="DIALOG_Y_ORIGIN" value="403"/>
 	</section>
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog">
-		<item key="selection" value="pageload3"/>
+		<item key="selection" value="Model"/>
 		<item key="wrap" value="true"/>
 		<item key="casesensitive" value="false"/>
 		<item key="wholeword" value="false"/>
 		<item key="incremental" value="false"/>
 		<item key="isRegEx" value="false"/>
 		<list key="findhistory">
+			<item value="model"/>
+			<item value="nidek"/>
+			<item value="load2"/>
+			<item value="D_예매"/>
+			<item value="card"/>
+			<item value="cal()"/>
+			<item value="cal"/>
+			<item value="cak"/>
+			<item value="loadpage2"/>
+			<item value="loadpage"/>
 			<item value="pageload3"/>
+			<item value="page3"/>
 			<item value="pageload"/>
 			<item value="gray"/>
 			<item value="onos"/>
-			<item value="showpa"/>
-			<item value="br"/>
-			<item value="해당하는"/>
-			<item value="cgno"/>
-			<item value="chno"/>
-			<item value="windowclo"/>
-			<item value="AreaC"/>
-			<item value="windowclos"/>
-			<item value="areab"/>
-			<item value="object"/>
-			<item value="&#x09;&#x09;&#x09;}"/>
 		</list>
 		<list key="replacehistory">
 		</list>

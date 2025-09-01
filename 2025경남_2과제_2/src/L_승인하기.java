@@ -71,6 +71,7 @@ public class L_승인하기 extends BF {
 		getContentPane().add(label_3);
 		
 		label_4 = new JLabel("New label");
+		label_4.setFont(new Font("맑은 고딕", Font.PLAIN, 14));
 		label_4.setVerticalAlignment(SwingConstants.TOP);
 		label_4.setBorder(new LineBorder(new Color(0, 0, 0)));
 		label_4.setBounds(12, 253, 597, 147);
@@ -107,7 +108,7 @@ public class L_승인하기 extends BF {
 			label_1.setText("[지원번호 : "+rs.getInt("apno")+"]");
 			label_2.setText(rs.getString("apdate"));
 			label_3.setText(String.format("<html>성명: %s<br>아이디: %s<br>성별: %s<br>생년월알: %s<br>학력: %s",  rs.getString("uname"),rs.getString("uid"),rs.getInt("ugender")==1?"남":"여",rs.getString("ubirth"),rs.getString("ugrade")));
-			label_4.setText("<html>"+rs.getString("jname"));
+			label_4.setText("<html>"+rs.getString("udetail"));
 			label_5.setText(String.format("<html>%s<br><br>브랜드:%s<br>급여: %,d원<br>근무요일: 주 %d일<br>근무시간: %d시간<br>고용형태: %s<br><br>지원자격: %s<br>모집인원 %d명", rs.getString("jname"),rs.getString("bname"),rs.getInt("jmoney"),rs.getInt("jday"),rs.getInt("jtime"),rs.getInt("jwork")==1?"계약직":"정규직",getGrade(rs.getInt("jgrade")),rs.getInt("jpeople")));
 		} catch (SQLException e) {
 			e.printStackTrace();

@@ -52,7 +52,7 @@ public class H_찾기 extends BF {
 		setBounds(100, 100, 837, 589);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		getContentPane().setLayout(null);
-		
+
 		panel = new JPanel() {
 			@Override
 			protected void paintComponent(Graphics g) {
@@ -60,19 +60,19 @@ public class H_찾기 extends BF {
 				Graphics2D g2 = (Graphics2D) g;
 				g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
 				Image img = getIcon("지도.png", 600, 550).getImage();
-				
+
 				if (click != null) {
 					double sx = click.x;
 					double sy = click.y;
 					double dx = sx * scale;
 					double dy = sy * scale;
-					g2.translate(-dx + getWidth()/2, -dy + getHeight()/2);
+					g2.translate(-dx + getWidth() / 2, -dy + getHeight() / 2);
 					g2.scale(scale, scale);
 				}
 				g2.drawImage(img, 0, 0, null);
 				g2.setColor(Color.red);
 				for (var p : selP) {
-					g2.fillOval(p.x-4, p.y-4, 8, 8);
+					g2.fillOval(p.x - 4, p.y - 4, 8, 8);
 				}
 				af = g2.getTransform();
 			}
@@ -81,24 +81,23 @@ public class H_찾기 extends BF {
 		panel.addMouseListener(new PanelMouseListener());
 		panel.setBounds(0, 0, 600, 550);
 		getContentPane().add(panel);
-		
+
 		label = new JLabel("\uC9C1\uC885 \uCE74\uD14C\uACE0\uB9AC");
 		label.setHorizontalAlignment(SwingConstants.CENTER);
 		label.setBorder(new LineBorder(new Color(0, 0, 0)));
 		label.setBounds(611, 10, 196, 25);
 		getContentPane().add(label);
-		
+
 		panel_1 = new JPanel();
 		panel_1.setBorder(new LineBorder(new Color(0, 0, 0)));
 		panel_1.setBounds(611, 33, 196, 357);
 		getContentPane().add(panel_1);
 		panel_1.setLayout(new GridLayout(11, 1, 0, 0));
-		
-		label_1 = new MainLogo(192,121);
+
+		label_1 = new MainLogo(192, 121);
 		label_1.setBounds(615, 429, 192, 121);
 		getContentPane().add(label_1);
-		
-		
+
 		addCate();
 		selectCate(jls.get(0));
 	}
@@ -106,17 +105,19 @@ public class H_찾기 extends BF {
 	private void addCate() {
 		createCate("전체", 0);
 		try (var rs = res("select * from category")) {
-			while(rs.next()) {
+			while (rs.next()) {
 				createCate(rs.getString("cname"), rs.getInt("cno"));
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 	}
-	
+
 	List<JLabel> jls = new ArrayList<JLabel>();
-	List<List<Point>> plist=  new ArrayList<List<Point>>();
-	List<List<String>> slist=  new ArrayList<List<String>>();
+	List<List<Point>> plist = new ArrayList<List<Point>>();
+	List<List<String>> slist = new ArrayList<List<String>>();
+	List<List<Integer>> blist = new ArrayList<List<Integer>>();
+
 	private void createCate(String string, int cno) {
 		JLabel jl = new JLabel(string);
 		jl.setOpaque(true);
@@ -127,31 +128,36 @@ public class H_찾기 extends BF {
 			public void mouseClicked(MouseEvent e) {
 				selectCate(jl);
 			}
-
 		});
-		String sql = cno==0?"":"where cno = "+cno;
-		try (var rs = res("select * from brand "+sql)) {
+		String sql = cno == 0 ? "" : "where cno = " + cno;
+		try (var rs = res("select * from brand " + sql)) {
 			List<Point> list = new ArrayList<Point>();
 			List<String> list2 = new ArrayList<>();
-			while(rs.next()) {
-				list.add(new Point(rs.getInt("bxx"),rs.getInt("byy")));
+			List<Integer> list3 = new ArrayList<>();
+			while (rs.next()) {
+				list.add(new Point(rs.getInt("bxx"), rs.getInt("byy")));
 				list2.add(rs.getString("bname"));
+				list3.add(rs.getInt("bno"));
 			}
 			plist.add(list);
 			slist.add(list2);
+			blist.add(list3);
 		} catch (SQLException e1) {
 			e1.printStackTrace();
 		}
 		panel_1.add(jl);
 		jls.add(jl);
 	}
-	List<Point> selP =new ArrayList<Point>();
-	List<String> selS =new ArrayList<>();
+
+	List<Point> selP = new ArrayList<Point>();
+	List<String> selS = new ArrayList<>();
+	List<Integer> selB = new ArrayList<>();
 	double scale = 1;
 	Point click;
+
 	private void selectCate(JLabel jl) {
 		int idx = jls.indexOf(jl);
-		if(jl.getBackground()==Color.red) {
+		if (jl.getBackground() == Color.red) {
 			jl.setBackground(Color.white);
 			jl.setForeground(Color.black);
 			for (var p : plist.get(idx)) {
@@ -160,12 +166,15 @@ public class H_찾기 extends BF {
 			for (var s : slist.get(idx)) {
 				selS.remove(s);
 			}
-		}
-		else {
+			for (var b : blist.get(idx)) {
+				selB.remove(b);
+			}
+		} else {
 			jl.setBackground(Color.red);
 			jl.setForeground(Color.white);
 			selP.addAll(plist.get(idx));
 			selS.addAll(slist.get(idx));
+			selB.addAll(blist.get(idx));
 		}
 		scale = 0;
 		click = null;
@@ -175,10 +184,21 @@ public class H_찾기 extends BF {
 	private class PanelMouseListener extends MouseAdapter {
 		@Override
 		public void mouseClicked(MouseEvent e) {
-			var p = selP.stream().filter(x->x.distance(e.getPoint())<=4).findAny().orElse(null);
-			if(p!=null) {
-				click = p;
-				zoom();
+			try {
+				var cp = e.getPoint();
+				repaint();
+				Point2D invert = af.inverseTransform(cp, null);
+				var p = selP.stream().filter(x->x.distance(invert)<=4).findAny().orElse(null);
+				if (p != null) {
+					click = p;
+					zoom();
+				}
+				int idx = selP.indexOf(p);
+				if(e.getClickCount()==2) {
+					showPage(new G_브랜드정보(selB.get(idx)),"G_브랜드정보");
+				}
+			} catch (NoninvertibleTransformException e1) {
+				e1.printStackTrace();
 			}
 		}
 
@@ -186,8 +206,8 @@ public class H_찾기 extends BF {
 			new Thread(new Runnable() {
 				@Override
 				public void run() {
-					while (scale<8) {
-						scale+=0.5;
+					while (scale < 8) {
+						scale += 0.5;
 						repaint();
 						try {
 							Thread.sleep(100);
@@ -199,27 +219,27 @@ public class H_찾기 extends BF {
 			}).start();
 		}
 	}
+
 	AffineTransform af;
+
 	private class PanelMouseMotionListener extends MouseMotionAdapter {
 		@Override
 		public void mouseMoved(MouseEvent e) {
-			Point2D cp= e.getPoint();
-			if(click!=null) {
-				try {
-					cp = af.inverseTransform(cp, null);
-				} catch (NoninvertibleTransformException e1) {
-					e1.printStackTrace();
+			try {
+				var cp = e.getPoint();
+				repaint();
+				Point2D invert = af.inverseTransform(cp, null);
+				var p = selP.stream().filter(x->x.distance(invert)<=4).findAny().orElse(null);
+				if (p != null) {
+					int idx = selP.indexOf(p);
+					panel.setToolTipText(selS.get(idx));
+				} else {
+					panel.setToolTipText(null);
 				}
+			} catch (NoninvertibleTransformException e1) {
+				e1.printStackTrace();
 			}
-			
-			var p = selP.stream().filter(x->x.distance(e.getPoint())<=4).findAny().orElse(null);
-			if(p!=null) {
-				int idx = selP.indexOf(p);
-				panel.setToolTipText(selS.get(idx));
-			}
-			else {
-				panel.setToolTipText(null);
-			}
+
 		}
 	}
 }
