@@ -43,8 +43,6 @@ public class C_자격증목록 extends BF {
 	/**
 	 * Create the frame.
 	 */
-	int cgno;
-	String like = "";
 	public JLabel label;
 	public JTextField textField;
 	public JLabel label_1;
@@ -66,6 +64,8 @@ public class C_자격증목록 extends BF {
 	public JLabel label_15;
 	public JScrollPane scrollPane;
 	public JPanel panel_2;
+	int cgno;
+	String like = "";
 	boolean list = true;
 	String where = "";
 	public JLabel label_16;

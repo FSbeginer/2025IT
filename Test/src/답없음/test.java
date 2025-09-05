@@ -64,6 +64,7 @@ public class test extends JFrame {
 		panel.setBackground(Color.RED);
 		panel.setBounds(259, 53, 99, 83);
 		contentPane.add(panel);
+		System.out.println(-1/0.0);
 	}
 
 	private class TextFieldMouseListener extends MouseAdapter {
