@@ -81,7 +81,7 @@ public class B_메인 extends BF {
 		panel.setBackground(new Color(255, 128, 0));
 		panel.setBounds(0, 62, 645, 60);
 		getContentPane().add(panel);
-		panel.setLayout(new GridLayout(1, 4, 0, 0));
+		panel.setLayout(new GridLayout(0, 5, 0, 0));
 		
 		label_2 = new JLabel("\uCC44\uC6A9");
 		label_2.addMouseListener(new Label_2MouseListener());
@@ -110,6 +110,13 @@ public class B_메인 extends BF {
 		label_5.setForeground(new Color(255, 255, 255));
 		label_5.setHorizontalAlignment(SwingConstants.CENTER);
 		panel.add(label_5);
+		
+		label_14 = new JLabel("\uD1B5\uACC4");
+		label_14.addMouseListener(new Label_14MouseListener());
+		label_14.setFont(new Font("맑은 고딕", Font.BOLD, 15));
+		label_14.setForeground(Color.WHITE);
+		label_14.setHorizontalAlignment(SwingConstants.CENTER);
+		panel.add(label_14);
 		
 		panel_1 = new JPanel();
 		panel_1.setBorder(new LineBorder(new Color(0, 0, 0)));
@@ -205,6 +212,7 @@ public class B_메인 extends BF {
 	}
 
 	Random rand = new Random();
+	public JLabel label_14;
 	
 	@Override
 	public void updateForm() {
@@ -287,6 +295,12 @@ public class B_메인 extends BF {
 		@Override
 		public void mouseClicked(MouseEvent e) {
 			showPage(new F_브랜드(),"F_브랜드");
+		}
+	}
+	private class Label_14MouseListener extends MouseAdapter {
+		@Override
+		public void mouseClicked(MouseEvent e) {
+			showPage(new J_통계(),"J_통계");
 		}
 	}
 }
