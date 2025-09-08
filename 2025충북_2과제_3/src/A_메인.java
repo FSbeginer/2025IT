@@ -1,12 +1,16 @@
 import java.awt.EventQueue;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import javax.swing.SwingUtilities;
+
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
@@ -70,12 +74,12 @@ public class A_메인 extends BF {
 		panel_3.setLayout(null);
 
 		button = new JButton("영화 전체보기");
-		button.setBounds(12, 10, 108, 23);
+		button.setBounds(12, 10, 125, 23);
 		panel_3.add(button);
 
 		button_1 = new JButton("먹거리 키오스크");
 		button_1.addActionListener(new Button_1ActionListener());
-		button_1.setBounds(134, 10, 121, 23);
+		button_1.setBounds(149, 10, 121, 23);
 		panel_3.add(button_1);
 
 		psize1 = new JPanel();
@@ -257,6 +261,20 @@ public class A_메인 extends BF {
 	}
 	private class Button_1ActionListener implements ActionListener {
 		public void actionPerformed(ActionEvent e) {
+			if(uno==0) {
+				msgErr("로그인을 해주세요.");
+				var l = new B_로그인();
+				l.addWindowListener(new WindowAdapter() {
+					@Override
+					public void windowClosed(WindowEvent e) {
+						if(BF.uno!=0) {
+							button.setText("내 정보");
+						}
+					}
+				});
+				showPage(l, "B_로그인");
+				return;
+			}
 			showPage(new I_키오스크(),"I_키오스크");
 		}
 	}
