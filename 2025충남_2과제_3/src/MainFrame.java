@@ -156,7 +156,7 @@ public class MainFrame extends BF {
 	private class Label_5MouseListener extends MouseAdapter {
 		@Override
 		public void mouseClicked(MouseEvent e) {
-			if(!isAdmin) {
+			if(!isAdmin&&uno==0) {
 				showPage(new B_로그인() , "로그인");
 				label_5.setForeground(blue);
 			}
