@@ -128,7 +128,7 @@ public class J_메뉴정보 extends BF {
 				try {
 					var rs =res("select * from user where u_no = "+uno);
 					rs.next();
-					if(rs.getInt("u_price")<price) {
+					if(rs.getInt("u_price")<price*cnt) {
 						msgErr("잔액이 부족합니다.");
 					}
 					else {

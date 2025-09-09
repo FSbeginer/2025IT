@@ -17,6 +17,8 @@ import javax.swing.DefaultComboBoxModel;
 import javax.swing.JScrollPane;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 
 public class C_영화검색 extends BF {
 	public JPanel panel;
@@ -49,6 +51,7 @@ public class C_영화검색 extends BF {
 	 * Create the frame.
 	 */
 	public C_영화검색() {
+		addWindowListener(new ThisWindowListener());
 		setTitle("영화 검색");
 		setBounds(100, 100, 979, 538);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -126,7 +129,7 @@ public class C_영화검색 extends BF {
 		panel_2.removeAll();
 		try (var rs = res("with rank1 as(select m_no, rank() over(order by count(*) desc, m_no) rank1,  round(count(*)/(select count(*) from reservation) *100.0,1) per from movie left join reservation using(m_no) group by m_no order by m_no),\r\n"
 				+ "rank2 as (select m_no,rank() over(order by avg(review.re_star) desc,m_no) rank2 from movie left join review using(m_no) group by m_no order by m_no)\r\n"
-				+ "select * from movie left join rank1 using(m_no) left join rank2 using(m_no) where m_name like '%"+like+"%' "+where+" "+order)) {
+				+ "select * from movie join genre using(g_no) left join rank1 using(m_no) left join rank2 using(m_no) where m_name like '%"+like+"%' "+where+" "+order)) {
 			int w = (scrollPane.getWidth()-60)/4;
 			int h = 280,i=0;
 			while(rs.next()) {
@@ -179,9 +182,16 @@ public class C_영화검색 extends BF {
 			if(comboBox_1.getSelectedIndex()==0) {
 				where = "";
 			}
-			else if(comboBox_1.getSelectedIndex()==1) {
-				where = "and g_no ="+comboBox_1.getSelectedIndex();
+			else {
+				where = "and g_name ='"+comboBox_1.getSelectedItem()+"'";
 			}
+			load();
+		}
+	}
+	private class ThisWindowListener extends WindowAdapter {
+		@Override
+		public void windowClosed(WindowEvent e) {
+			isAdmin =false;
 		}
 	}
 }

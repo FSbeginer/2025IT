@@ -17,6 +17,7 @@
 	<section name="OptionalMessageDialog.hide.">
 		<item key="org.eclipse.jdt.ui.typecomment.deprecated" value="true"/>
 		<item key="configure_problem_severity_dialog_id" value="false"/>
+		<item key="RunnableJar.export.ipwarning" value="false"/>
 	</section>
 	<section name="NewClassWizardPage">
 		<item key="create_constructor" value="false"/>
@@ -69,5 +70,24 @@
 		<item key="CASE_SENSITIVE" value="false"/>
 		<item key="INCLUDE_MASK" value="11"/>
 		<item key="HISTORY_SIZE" value="0"/>
+	</section>
+	<section name="FatJarPackageWizard">
+		<item key="FatJarPackageWizardPage.ANTSCRIPT_SAVE" value="false"/>
+		<item key="FatJarPackageWizardPage.ANTSCRIPT_LOCATION" value="E:\---2025전국대회 과제지 선정\JavaWorkspace"/>
+		<item key="FatJarPackageWizardPage.LIBRARY_HANDLING" value="1"/>
+		<item key="FatJarPackageWizardPage.LAUNCH_CONFIGURATION_SELECTION_NAME" value="A_로그인 (1) - 2025경남_2과제_3"/>
+		<item key="FatJarPackageWizardPage.DESTINATION_PATH_SELECTION" value="C:\Users\user\Desktop\경남2과제\Project.jar"/>
+		<list key="FatJarPackageWizardPage.DESTINATION_NAMES_ID">
+			<item value="C:\Users\user\Desktop\경남2과제\Project.jar"/>
+			<item value="C:\Users\user\Desktop\전북2과제\Project.jar"/>
+			<item value="C:\Users\user\Desktop\경북2과제\Project.jar"/>
+			<item value="C:\Users\user\Desktop\충북2과제\Project.jar"/>
+			<item value="C:\Users\user\Desktop\전남2과제\Project.jar"/>
+			<item value="C:\Users\user\Desktop\충남2과제\Project.jar"/>
+		</list>
+		<list key="FatJarPackageWizardPage.ANTSCRIPT_LOCATION_HISTORY">
+			<item value="E:\---2025전국대회 과제지 선정\JavaWorkspace.xml"/>
+			<item value=".xml"/>
+		</list>
 	</section>
 </section>

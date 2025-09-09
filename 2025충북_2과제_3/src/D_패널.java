@@ -212,6 +212,7 @@ public class D_패널 extends JPanel {
 			while(rs.next()) {
 				D_리뷰 pp = new D_리뷰(BF.getIcon("user/"+rs.getInt("u_no")+".jpg",50,50), rs.getString("u_name"),rs.getString("re_com"));
 				pp.setLocation(0, (h+5)*i);
+				pp.setSize(w, h);
 				panel_1.add(pp);
 				i++;
 			}
