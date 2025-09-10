@@ -96,7 +96,7 @@ namespace _2025부산_1과제.View
                     msgErr("카드 숫자 각 4자리를 확인하세요.");
                     return;
                 }
-                if (!DateTime.TryParse(textBox6.Text.Substring(2).Length + "-" + textBox6.Text.Substring(0, 2), out _))
+                if (!DateTime.TryParse(textBox6.Text.Substring(2).Length + "-" + textBox6.Text.Substring(0, 2)+"-01", out _))
                 {
                     msgErr("유효기간형식을 확인하세요.");
                     return;

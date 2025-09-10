@@ -34,7 +34,9 @@ namespace _2025부산_1과제.View
                 var r = db.Reservation.Find(reservation.r_no);
                 map = new Map() { Division = db.Division.Find(r.Station.s_code/10000), Dock = DockStyle.Fill};
                 panel1.Controls.Add(map);
-                route = map.GetRoute(r.Station, r.Station1).Select(x=>db.Information.Find(x)).ToList();
+                Console.WriteLine(r.Station.s_no+" "+r.Station1.s_no);
+
+                route = map.GetRoute(r.Station1, r.Station).Select(x=>db.Information.Find(x)).ToList();
                 TimeSpan time = TimeSpan.FromMinutes(20*(route.Count-1));
                 label2.Text = "총소요시간 : " + time.Hours + "시간 " + time.Minutes + "분";
                 map.Paint += Map_Paint;
@@ -49,22 +51,23 @@ namespace _2025부산_1과제.View
                     flowLayoutPanel1.Controls.Add(lbl);
                     labels.Add(lbl);
                 }
-                Label start = new Label()
+                Label end = new Label()
                 {
                     AutoSize = true,
                     Location = new Point(r.Station.Information.x.Value * 4, r.Station.Information.y.Value * 4 - 30),
-                    BackColor = Color.Red,
+                    BackColor = Color.Yellow,
                     BorderStyle = BorderStyle.FixedSingle,
                     ForeColor = Color.Gray,
                     Text = r.Station.Information.stationname
                 };
-                Label end = new Label()
+                Label start = new Label()
                 {
                     AutoSize = true,
-                    Location = new Point(r.Station1.Information.x.Value * 4, r.Station1.Information.y.Value * 4 - 30),
-                    BackColor = Color.Yellow,
+                    BackColor = Color.Red,
                     BorderStyle = BorderStyle.FixedSingle,
                     ForeColor = Color.Gray,
+                    Location = new Point(r.Station1.Information.x.Value * 4, r.Station1.Information.y.Value * 4 - 30),
+                    
                     Text = r.Station1.Information.stationname
                 };
                 map.Controls.Add(start);
@@ -90,8 +93,8 @@ namespace _2025부산_1과제.View
         private void Map_Paint(object sender, PaintEventArgs e)
         {
             var g = e.Graphics;
-            using (var pen1 = new Pen(Color.DodgerBlue, 2))
-            using (var pen2 = new Pen(Color.Red, 2))
+            using (var pen1 = new Pen(Color.Red, 2))
+            using (var pen2 = new Pen(Color.DodgerBlue, 2))
             using (var pen3 = new Pen(Color.Yellow, 2))
             {
                 
