@@ -4,11 +4,13 @@ import java.awt.Window;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.time.LocalDate;
 import java.util.Arrays;
 import java.util.Stack;
 
@@ -23,7 +25,6 @@ public class BF extends JFrame {
 	
 	public static int uno;
 	public static boolean isAdmin;
-	
 	
 	public BF() {
 		setIconImage(getIcon("로고1.jpg").getImage());
@@ -107,7 +108,7 @@ public class BF extends JFrame {
 	
 	static {
 		try {
-			con = DriverManager.getConnection("jdbc:mysql://localhost/moviedb?serverTimezone=Asia/Seoul", "user", "1234");
+			con = DriverManager.getConnection("jdbc:mysql://localhost/moviedb?serverTimezone=Asia/Seoul", "root", "1234");
 			stmt = con.createStatement();
 			setUISet();
 		} catch (SQLException e) {
@@ -129,7 +130,14 @@ public class BF extends JFrame {
 			pre.setObject(i++, object);
 		}
 	}
-	
+	public static int getAge(Date date) {
+		LocalDate birth = date.toLocalDate();
+		int age = LocalDate.now().getYear() - birth.getYear();
+		if(birth.plusYears(age).isAfter(LocalDate.now())) {
+			age--;
+		}
+		return age;
+	}
 	
 }
 class BackgroundImageLabel extends JLabel{

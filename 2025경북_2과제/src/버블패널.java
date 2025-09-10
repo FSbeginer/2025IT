@@ -20,10 +20,10 @@ public class 버블패널 extends JPanel {
 		setBackground(new Color(255, 255, 255));
 		setSize(754, 374);
 		int max = 0;
-		try (var rs = BF.res("select cnam, rank() over(order by count(*) desc) - 1, count(*) from product p join `order` o using(pno) join category using(cno) group by cno;")) {
+		try (var rs = BF.res("select cnam, rank() over(order by sum(o.quantity) desc) - 1, sum(o.quantity) from product p join `order` o using(pno) join category using(cno) group by cno;")) {
 			while(rs.next()) {
 				if(max==0) max = rs.getInt(3);
-				double size = max*3 * Math.pow(0.9, rs.getInt(2));
+				double size = max/2 * Math.pow(0.9, rs.getInt(2));
 				balls.add(new Boubble(0, 0, size, rs.getString(1), Color.getHSBColor(rand.nextFloat(), 0.6f, 0.9f)));
 			}
 		} catch (SQLException e) {

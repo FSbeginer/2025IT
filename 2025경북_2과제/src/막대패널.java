@@ -58,7 +58,7 @@ public class 막대패널 extends JPanel {
 	int max;
 	private void getData() {
 		panel.removeAll();
-		try (var rs = BF.res("select pname, rank() over(order by count(*) desc), count(*), description from product p join `order` o using(pno) where cno = "+cno+" group by pno;")) {
+		try (var rs = BF.res("select pname, rank() over(order by sum(o.quantity) desc), sum(o.quantity), description from product p join `order` o using(pno) where cno = "+cno+" group by pno;")) {
 			int w = panel.getWidth()/7;
 			int maxv = panel.getHeight()-40;
 			int i = 0;

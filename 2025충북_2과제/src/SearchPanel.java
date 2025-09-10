@@ -7,6 +7,7 @@ import javax.swing.JLabel;
 import javax.swing.SwingConstants;
 import java.awt.Dimension;
 import javax.swing.border.EmptyBorder;
+import java.awt.Font;
 
 public class SearchPanel extends JPanel {
 	public JLabel lblImg;
@@ -40,8 +41,10 @@ public class SearchPanel extends JPanel {
 		add(lblTxt, BorderLayout.SOUTH);
 		
 		lblNo = new JLabel();
+		lblNo.setFont(new Font("맑은 고딕", Font.BOLD, 14));
+		lblNo.setForeground(new Color(255, 255, 255));
 		lblNo.setBackground(new Color(255, 182, 147));
-		lblNo.setOpaque(false);
+		lblNo.setOpaque(true);
 		lblNo.setHorizontalAlignment(SwingConstants.CENTER);
 		add(lblNo, BorderLayout.NORTH);
 

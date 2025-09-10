@@ -73,7 +73,7 @@ public class PageMain extends JPanel {
 	private void load() {
 		panel.removeAll();
 		try (var rs = BF.res(
-				"SELECT pno, img, pname, price, count(*) cnt, avg(rating) FROM product p left join `order` o using(pno) left join review using(ono) where true "
+				"SELECT pno, img, pname, price, sum(o.quantity) cnt, avg(rating) FROM product p left join `order` o using(pno) left join review using(ono) where true "
 						+ where + " group by pno order by " + order + " " + limit)) {
 			int w = (scrollPane.getWidth() - 40) / 5;
 			int h = (scrollPane.getHeight() - 10) / 2, i = 0;

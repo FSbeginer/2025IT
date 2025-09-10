@@ -11,6 +11,8 @@ import java.awt.event.ActionEvent;
 import javax.swing.border.EmptyBorder;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 
 public class UserPanel extends JPanel {
 	public JLabel label;
@@ -47,10 +49,21 @@ public class UserPanel extends JPanel {
 
 	private class ButtonActionListener implements ActionListener {
 		public void actionPerformed(ActionEvent e) {
-			if(BF.uno==0)
-				((BF)SwingUtilities.getWindowAncestor(UserPanel.this)).showPage(new LoginForm(), "LoginForm");
-			else
+			if(BF.uno==0) {
+				var l = new LoginForm();
+				l.addWindowListener(new WindowAdapter() {
+					@Override
+					public void windowClosed(WindowEvent e) {
+						if(BF.uno != 0) {
+							button.setText("내 정보");
+						}
+					}
+				});
+				((BF)SwingUtilities.getWindowAncestor(UserPanel.this)).showPage(l, "LoginForm");
+			}
+			else {
 				((BF)SwingUtilities.getWindowAncestor(UserPanel.this)).showPage(new MyPage(), "MyPage");
+			}
 		}
 	}
 	private class Button_1ActionListener implements ActionListener {
@@ -63,6 +76,7 @@ public class UserPanel extends JPanel {
 		public void mousePressed(MouseEvent e) {
 			BF.uno = 0;
 			BF.msgInfo("로그아웃 되었습니다.");
+			button.setText("로그인");
 		}
 	}
 }

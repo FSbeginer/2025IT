@@ -31,9 +31,8 @@ public class MovieSearch extends BF {
 	public JScrollPane scrollPane;
 	public JPanel panel;
 	public JPanel panel_1;
-	private String cmb1 = "";
-	private String cmb2 = "";
-	private String limits = "";
+	private String order = "order by m_no";
+	private String where = "";
 
 	public MovieSearch() {
 		setTitle("영화 검색");
@@ -56,7 +55,7 @@ public class MovieSearch extends BF {
 		
 		comboBox = new JComboBox();
 		comboBox.addActionListener(new ComboBoxActionListener());
-		comboBox.setModel(new DefaultComboBoxModel(new String[] {"전체"}));
+		comboBox.setModel(new DefaultComboBoxModel(new String[] {"전체", "예매순", "평점순"}));
 		comboBox.setBounds(378, 74, 103, 25);
 		getContentPane().add(comboBox);
 		
@@ -78,7 +77,9 @@ public class MovieSearch extends BF {
 		panel.setBounds(0, 0, 1036, 65);
 		getContentPane().add(panel);
 		panel.setLayout(new BorderLayout(0, 0));
-		panel.add(new UserPanel());
+		
+		if(!isAdmin)
+			panel.add(new UserPanel());
 		
 		try {
 			combAdd();
@@ -97,21 +98,33 @@ public class MovieSearch extends BF {
 
 	private void loadMovies() throws SQLException {
 		panel_1.removeAll();
-		var rs = res("select *, round(count(*)/tot*100,1) cnt from movie m left join review r using(m_no) join movie_limit using(l_no), (select count(*) tot from review) sub where true "+cmb2+" group by m_no "+cmb1+limits);
+		var rs = res("with rank1 as(select m_no, round(count(*)/(select count(*) from reservation)*100,1) per, rank() over(order by round(count(*)/(select count(*) from reservation)*100,1) desc,m_no) rank1 from reservation join movie using(m_no) group by m_no) ,\r\n"
+				+ "rank2 as(select m_no, avg(re_star) star,  rank() over(order by avg(re_star) desc,m_no) rank2 from review right join movie using(m_no) group by m_no)\r\n"
+				+ "select * from movie m join rank1 using(m_no) join rank2 using(m_no) where true "+where+" "+order);
 		int w = (scrollPane.getWidth()-30)/4;
 		int h = scrollPane.getHeight()-30;
 		int i = 0;
+		int idx =comboBox.getSelectedIndex();
 		while(rs.next()) {
-			SearchPanel pp = new SearchPanel(getIcon("movies/"+rs.getInt("m_no")+".jpg", w-80, h-50), getIcon("limits/"+rs.getInt("l_no")+".png",40,40), rs.getString("m_name"), rs.getDouble("cnt"), rs.getString("re_date"));
+			SearchPanel pp = new SearchPanel(getIcon("movies/"+rs.getInt("m_no")+".jpg", w-80, h-70), getIcon("limits/"+rs.getInt("l_no")+".png",40,40), rs.getString("m_name"), rs.getDouble("per"), rs.getString("m_startday"));
 			pp.setSize(w,h);
 			pp.setLocation((w+10)*(i%4), (h+10)*(i/4));
 			int mno = rs.getInt("m_no");
 			pp.addMouseListener(new MouseAdapter() {
 				@Override
 				public void mouseClicked(MouseEvent e) {
-					showPage(new MovieInfoForm(mno), "MovieInfoForm");
+					if(isAdmin)
+						showPage(new MovieModify(mno),"MovieModify");
+					else
+						showPage(new MovieInfoForm(mno), "MovieInfoForm");
 				}
 			});
+			if(idx == 1 && rs.getInt("rank1")<=10) {
+				pp.lblNo.setText("No. "+rs.getInt("rank1"));
+			}
+			else if(idx==2 && rs.getInt("rank2")<=5) {
+				pp.lblNo.setText("No. "+rs.getInt("rank2"));
+			}
 			panel_1.add(pp);
 			i++;
 		}
@@ -122,10 +135,10 @@ public class MovieSearch extends BF {
 	private class ComboBox_1ActionListener implements ActionListener {
 		public void actionPerformed(ActionEvent e) {
 			if(comboBox_1.getSelectedIndex()==0) {
-				cmb2 = "";
+				where = "";
 			}
 			else {
-				cmb2 = " and gno = "+comboBox_1.getSelectedIndex();
+				where = " and g_no = "+comboBox_1.getSelectedIndex();
 			}
 			try {
 				loadMovies();
@@ -136,7 +149,20 @@ public class MovieSearch extends BF {
 	}
 	private class ComboBoxActionListener implements ActionListener {
 		public void actionPerformed(ActionEvent e) {
-//			cmb1 = 
+			if(comboBox.getSelectedIndex()==0) {
+				order = "order by m_no";
+			}
+			else if(comboBox.getSelectedIndex()==1) {
+				order = "order by rank1";
+			}
+			else {
+				order = "order by rank2";
+			}
+			try {
+				loadMovies();
+			} catch (SQLException e1) {
+				e1.printStackTrace();
+			}
 		}
 	}
 }
