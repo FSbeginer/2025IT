@@ -23,7 +23,7 @@ public class D_상세정보 extends BF {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					D_상세정보 frame = new D_상세정보(1);
+					D_상세정보 frame = new D_상세정보(2);
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -123,11 +123,12 @@ public class D_상세정보 extends BF {
 	}
 	int left;
 	private void load() {
-		try (var rs = res("with rank1 as (select pno, rank() over(partition by cno order by sum(o.quantity) desc) r from `order` o join product p  using(pno) group by pno)\r\n"
+		System.out.println("with rank1 as (select pno, rank() over(partition by cno order by sum(o.quantity) desc) r from `order` o right join product p  using(pno) group by pno)\r\n"
+				+ "select pno,img,pname, description, cnam, p.price, avg(rating) star, p.quantity ,r from product p join rank1 using(pno) left join `order` o using(pno) left join review using(ono) join category using(cno) where pno = "+pno+" group by pno;");
+		try (var rs = res("with rank1 as (select pno, rank() over(partition by cno order by sum(o.quantity) desc) r from `order` o right join product p  using(pno) group by pno)\r\n"
 				+ "select pno,img,pname, description, cnam, p.price, avg(rating) star, p.quantity ,r from product p join rank1 using(pno) left join `order` o using(pno) left join review using(ono) join category using(cno) where pno = "+pno+" group by pno;")) {
 			rs.next();
 			label_1.setVisible(rs.getInt("r")==1);
-			System.out.println(rs.getInt("r"));
 			label.setIcon(getIcon(rs.getBytes("img"), label.getWidth(),label.getHeight()));
 			label_2.setText("상품명 : "+rs.getString(3));
 			label_3.setText("<html>"+rs.getString(4));

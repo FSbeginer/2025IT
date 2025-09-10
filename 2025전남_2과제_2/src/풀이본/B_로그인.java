@@ -118,7 +118,7 @@ public class B_로그인 extends BF {
 						if(checkBox.isSelected()) prev = id;
 						else prev = "";
 						msgInfo(rs2.getString(2)+"님 환영합니다.");
-						showPage(new L_선생님메인(),"L_선생님메인");
+						showPage(new 도트그래픽_선생님메인(),"L_선생님메인");
 					}
 					else {
 						msgErr("아이디또는 비밀번호가 올바르지 않습니다.");

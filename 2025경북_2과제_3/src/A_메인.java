@@ -46,6 +46,8 @@ public class A_∏ﬁ¿Œ extends BP {
 
 	private void load() {
 		panel.removeAll();
+		System.out.println("select p.*, sum(o.quantity) cnt,  avg(rating) star from (select *, row_number() over(order by date desc) from `order`) o join product p using(pno) left join review using(ono) where true "
+				+ where + " group by pno order by " + order + " limit 10");
 		try (var rs = res(
 				"select p.*, sum(o.quantity) cnt,  avg(rating) star from (select *, row_number() over(order by date desc) from `order`) o join product p using(pno) left join review using(ono) where true "
 						+ where + " group by pno order by " + order + " limit 10")) {
