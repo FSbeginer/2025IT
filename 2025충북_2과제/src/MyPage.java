@@ -4,6 +4,9 @@ import javax.swing.JFrame;
 import java.awt.BorderLayout;
 import javax.swing.JPanel;
 import java.awt.GridLayout;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.sql.SQLException;
 
 import javax.swing.JScrollPane;
@@ -27,25 +30,6 @@ public class MyPage extends BF {
 	public JLabel lblSize;
 	public JLabel lblSize2;
 
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					MyPage frame = new MyPage();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-
-	/**
-	 * Create the frame.
-	 */
 	public MyPage() {
 		setTitle("내 정보");
 		setBounds(100, 100, 786, 517);
@@ -86,7 +70,7 @@ public class MyPage extends BF {
 		
 		lblSize = new JLabel("New label");
 		lblSize.setVisible(false);
-		lblSize.setBounds(0, 0, 174, 169);
+		lblSize.setBounds(0, 0, 174, 140);
 		panel_2.add(lblSize);
 		
 		scrollPane_1 = new JScrollPane();
@@ -98,22 +82,56 @@ public class MyPage extends BF {
 		
 		lblSize2 = new JLabel("New label");
 		lblSize2.setVisible(false);
-		lblSize2.setBounds(0, 0, 194, 211);
+		lblSize2.setBounds(0, 0, 169, 211);
 		panel_3.add(lblSize2);
-
+		
+		label.setIcon(getIcon("user/"+uno+".jpg", label.getWidth(), label.getHeight()));
+		try (var rs = res("select * from user where u_no = "+uno)) {
+			rs.next();
+			label_1.setText(rs.getString("u_id"));
+			label_2.setText(rs.getString("u_name"));
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 		load();
 	}
 
 	private void load() {
-		try (var rs = res("select * from fb where u_no = "+uno)) {
+		try (var rs = res("select * from fb join food using(f_no) where u_no = "+uno)) {
 			int w = lblSize.getWidth(), h = lblSize.getHeight();
+			int i = 0;
 			while(rs.next()) {
 				마이페이지패널 pp = new 마이페이지패널();
-				
 				pp.label.setIcon(getIcon("foods/"+rs.getInt("f_no")+".jpg", w-80,h-20));
-//				pp.label.
-				
+				pp.label_1.setText(rs.getString("f_name"));
+				pp.setSize(lblSize.getSize());
+				pp.setLocation(w*(i%2),h*(i/2));
+				panel_2.add(pp);
+				i++;
 			}
+			panel_2.setPreferredSize(new Dimension(0, h*(i/2)));
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		try (var rs = res("select * from reservation r join movie m using(m_no) where u_no ="+uno)) {
+			int w = lblSize2.getWidth(), h = lblSize2.getHeight(), i = 0;
+			while(rs.next()) {
+				마이페이지패널 pp = new 마이페이지패널();
+				pp.label.setIcon(getIcon("movies/"+rs.getInt("m_no")+".jpg",w-80,h-20));
+				pp.label_1.setText(rs.getString("m_name"));
+				int mno = rs.getInt("m_no");
+				pp.addMouseListener(new MouseAdapter() {
+					@Override
+					public void mouseClicked(MouseEvent e) {
+						showPage(new MovieInfoForm(mno), "MovieInfoForm");
+					}
+				});
+				pp.setSize(lblSize2.getSize());
+				pp.setLocation(w*(i%2), h*(i/2));
+				panel_3.add(pp);
+				i++;
+			}
+			panel_3.setPreferredSize(new Dimension(0,h*(i/2)));
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}

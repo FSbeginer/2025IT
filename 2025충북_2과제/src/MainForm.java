@@ -262,7 +262,13 @@ public class MainForm extends BF {
 	}
 	private class Button_3ActionListener implements ActionListener {
 		public void actionPerformed(ActionEvent e) {
-			showPage(new Kiosk(), "Kiosk");
+			if(uno!=0) {
+				showPage(new Kiosk(), "Kiosk");
+			}
+			else {
+				msgErr("로그인을 해주세요.");
+				showPage(new LoginForm(),"LoginForm");
+			}
 		}
 	}
 	private class Button_2ActionListener implements ActionListener {
