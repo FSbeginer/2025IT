@@ -9,11 +9,15 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JLabel;
+import javax.swing.JComboBox;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class TEST extends JFrame {
 
 	private JPanel contentPane;
 	public JLabel label;
+	public JComboBox comboBox;
 
 	/**
 	 * Launch the application.
@@ -53,6 +57,19 @@ public class TEST extends JFrame {
 		};
 		label.setBounds(82, 79, 114, 126);
 		contentPane.add(label);
+		
+		comboBox = new JComboBox();
+		comboBox.addActionListener(new ComboBoxActionListener());
+		comboBox.setBounds(256, 102, 32, 23);
+		contentPane.add(comboBox);
+		System.out.println(comboBox.getSelectedIndex());
+		comboBox.addItem("tq");
+		comboBox.addItem("tq");
+		
 	}
-
+	private class ComboBoxActionListener implements ActionListener {
+		public void actionPerformed(ActionEvent e) {
+			System.out.println(1);
+		}
+	}
 }

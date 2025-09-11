@@ -5,13 +5,14 @@
 		<item key="DIALOG_Y_ORIGIN" value="403"/>
 	</section>
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog">
-		<item key="selection" value=""/>
+		<item key="selection" value="&#x09;&#x09;&#x09;&#x09;&#x09;&#x09;}"/>
 		<item key="wrap" value="true"/>
 		<item key="casesensitive" value="false"/>
 		<item key="wholeword" value="false"/>
 		<item key="incremental" value="false"/>
 		<item key="isRegEx" value="false"/>
 		<list key="findhistory">
+			<item value="&#x09;&#x09;&#x09;&#x09;&#x09;&#x09;}"/>
 			<item value="sno ="/>
 			<item value="sno = 1"/>
 			<item value="model"/>
@@ -19,14 +20,6 @@
 			<item value="load2"/>
 			<item value="D_예매"/>
 			<item value="card"/>
-			<item value="cal()"/>
-			<item value="cal"/>
-			<item value="cak"/>
-			<item value="loadpage2"/>
-			<item value="loadpage"/>
-			<item value="pageload3"/>
-			<item value="page3"/>
-			<item value="pageload"/>
 		</list>
 		<list key="replacehistory">
 		</list>

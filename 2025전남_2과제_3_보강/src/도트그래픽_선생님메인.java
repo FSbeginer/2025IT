@@ -37,21 +37,20 @@ public class 도트그래픽_선생님메인 extends BF {
 	public JLabel label_1;
 	public JLabel label_2;
 	public JButton button;
+	public JButton button_1;
 	Timer timer;
-	String[] name = new String[5];
 	int[] cnt = new int[5];
-	int selIdx = -1;
-	int prev = -1;
+	int selIdx = -1, prev = -1, spin = 0;
 	Arc2D[] arcs = new Arc2D.Double[5];
 	Color[] c = { Color.red, Color.yellow, Color.green, Color.blue, Color.magenta };
-	int spin = 0, dotsize = 5, size = 100;
-	Point2D cp;
+	int dotsize = 5, size = 100;
+	Point2D cp, hp;
 	double zoom = 1.0;
 	List<List<Point>> points;
 	List<List<Point>> targetPoints = new ArrayList<List<Point>>();
 	List<List<Color>> targetColors = new ArrayList<List<Color>>();
 	AffineTransform af;
-	public JButton button_1;
+	boolean hold = false;
 
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
@@ -67,7 +66,7 @@ public class 도트그래픽_선생님메인 extends BF {
 	}
 
 	public 도트그래픽_선생님메인() {
-		setTitle("?��?��?�� 메인");
+		setTitle("선생님 메인");
 		setBounds(100, 100, 827, 702);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		getContentPane().setLayout(null);
@@ -89,13 +88,6 @@ public class 도트그래픽_선생님메인 extends BF {
 
 				g.drawImage(img, 0, 0, null);
 			}
-
-//			@Override
-//			public boolean contains(int x, int y) {
-//				if (selIdx != -1)
-//					return arcs[selIdx].contains(x, y);
-//				return super.contains(x, y);
-//			}
 		};
 		label_2.addMouseListener(new Label_2MouseListener());
 		label_2.addMouseMotionListener(new Label_2MouseMotionListener());
@@ -133,8 +125,7 @@ public class 도트그래픽_선생님메인 extends BF {
 		for (int i = 0; i < img.getWidth(); i++) {
 			for (int j = 0; j < img.getHeight(); j++) {
 				int idx1 = i, idx2 = j;
-				var selC = Arrays.stream(c).filter(x -> x.getRGB() == img.getRGB(idx1, idx2)).findAny()
-						.orElse(null);
+				var selC = Arrays.stream(c).filter(x -> x.getRGB() == img.getRGB(idx1, idx2)).findAny().orElse(null);
 				if (selC != null) {
 					int idx = Arrays.asList(c).indexOf(selC);
 					points.get(idx).add(new Point(i * dotsize, j * dotsize));
@@ -177,8 +168,14 @@ public class 도트그래픽_선생님메인 extends BF {
 		for (int i = 0; i < arcs.length; i++) {
 			int deg = (int) Math.round(((double) cnt[i] / Arrays.stream(cnt).sum() * 360));
 			if (spin == 360 && selIdx == i) {
-				arcs[i] = new Arc2D.Double(x + Math.cos(Math.toRadians(ang + deg / 2)) * 15,
-						y - Math.sin(Math.toRadians(ang + deg / 2)) * 15, size, size, ang, deg, Arc2D.PIE);
+//				if(hold) {
+//					double newX =-hp.getX()/2;
+//					double newY =-hp.getY()/2;
+//					arcs[i] = new Arc2D.Double(newX,newY, size, size, ang, deg, Arc2D.PIE);
+//				}else {
+					arcs[i] = new Arc2D.Double(x + Math.cos(Math.toRadians(ang + deg / 2)) * 15,
+							y - Math.sin(Math.toRadians(ang + deg / 2)) * 15, size, size, ang, deg, Arc2D.PIE);
+//				}
 			} else
 				arcs[i] = new Arc2D.Double(x, y, size, size, ang, deg, Arc2D.PIE);
 			g.setColor(c[i]);
@@ -196,8 +193,6 @@ public class 도트그래픽_선생님메인 extends BF {
 			public void actionPerformed(ActionEvent e) {
 				if (prev != -1) {
 					selIdx = prev;
-//					label_2.setToolTipText(name[selIdx] + ": "
-//							+ String.format("%.1f%%", cnt[selIdx] * 1.0 / Arrays.stream(cnt).sum() * 100));
 					new Thread(new Runnable() {
 						@Override
 						public void run() {
@@ -221,10 +216,9 @@ public class 도트그래픽_선생님메인 extends BF {
 	private void load() {
 		try {
 			var rs = res(
-					"select concat(left(tname,1),'?��?��') name ,count(*) cnt from course_registration join certi using(cno) join teacher using(tno) group by tno order by cnt desc;");
+					"select concat(left(tname,1),'선생') name ,count(*) cnt from course_registration join certi using(cno) join teacher using(tno) group by tno order by cnt desc;");
 			int i = 0;
 			while (rs.next()) {
-				name[i] = rs.getString(1);
 				cnt[i] = rs.getInt(2);
 				i++;
 			}
@@ -257,10 +251,26 @@ public class 도트그래픽_선생님메인 extends BF {
 
 			prev = idx;
 		}
+		@Override
+		public void mouseDragged(MouseEvent e) {
+			hp = e.getPoint();
+			repaint();
+		}
 	}
 
-
 	private class Label_2MouseListener extends MouseAdapter {
+		@Override
+		public void mousePressed(MouseEvent e) {
+			if(zoom==1.0) {
+				hold = true;	
+				hp = e.getPoint();
+			}
+		}
+		@Override
+		public void mouseReleased(MouseEvent e) {
+			hold = false;
+		}
+		
 		@Override
 		public void mouseClicked(MouseEvent e) {
 			var img = getDot();
@@ -268,7 +278,8 @@ public class 도트그래픽_선생님메인 extends BF {
 					.orElse(null);
 			if (selc != null) {
 				int imsi = Arrays.asList(c).indexOf(selc);
-				if(imsi!=selIdx) return;
+				if (imsi != selIdx)
+					return;
 				try {
 					repaint();
 					cp = af.inverseTransform(e.getPoint(), null);
@@ -294,8 +305,7 @@ public class 도트그래픽_선생님메인 extends BF {
 						var jcc = new JColorChooser();
 						var result = jcc.showDialog(null, "색상선택", Color.gray);
 						int idx = Arrays.asList(c).indexOf(selc);
-						var target = points.get(idx).stream().filter(p -> p.distance(cp) <= 5).findAny()
-								.orElse(null);
+						var target = points.get(idx).stream().filter(p -> p.distance(cp) <= 5).findAny().orElse(null);
 						targetPoints.get(idx).add(target);
 						targetColors.get(idx).add(result);
 						repaint();
