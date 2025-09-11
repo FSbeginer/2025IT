@@ -105,8 +105,10 @@ public class BF extends JFrame {
 		stack.addAll(Arrays.asList(Window.getWindows()));
 		while (!stack.isEmpty()) {
 			var window = stack.pop();
-			if (window.getName().equals(name))
+			if (window.getName().equals(name)) {
+				window.setVisible(true);
 				break;
+			}
 			else {
 				window.setName("´Ý¾Æ");
 				window.dispose();

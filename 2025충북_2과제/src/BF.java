@@ -90,6 +90,7 @@ public class BF extends JFrame {
 		while (!windows.isEmpty()) {
 			var window = windows.pop();
 			if(window.getName().equals(name)) {
+				window.setVisible(true);
 				break;
 			}
 			else {

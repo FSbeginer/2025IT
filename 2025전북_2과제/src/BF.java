@@ -1,5 +1,7 @@
 import java.awt.Color;
 import java.awt.Window;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.sql.Connection;
@@ -14,6 +16,7 @@ import java.util.Stack;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.UIManager;
 import javax.swing.border.MatteBorder;
@@ -22,9 +25,12 @@ public class BF extends JFrame {
 
 	public static int uno = 1;
 	public static Color blue = new Color(120, 150, 250).brighter();
+
+	public BF() {
+		setIconImage(getIcon("logo.png").getImage());
+	}
 	
 	public void updateForm() {
-		setIconImage(getIcon("logo.png").getImage());
 	}
 	public void showPage(JFrame jf, String name) {
 		jf.setName(name);
@@ -39,6 +45,7 @@ public class BF extends JFrame {
 				}
 			}
 		});
+		jf.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		jf.setVisible(true);
 
 	}
@@ -48,8 +55,10 @@ public class BF extends JFrame {
 		stack.addAll(Arrays.asList(Window.getWindows()));
 		while (!stack.isEmpty()) {
 			var jf = stack.pop();
-			if(jf.getName().equals(name))
+			if(jf.getName().equals(name)) {
+				jf.setVisible(true);
 				break;
+			}
 			else {
 				jf.setName("close");
 				jf.dispose();
@@ -98,6 +107,7 @@ public class BF extends JFrame {
 		UIManager.put("Button.background", null);
 		UIManager.put("Button.foreground", null);
 	}
+	
 
 	public static Connection con;
 	public static Statement stmt;
