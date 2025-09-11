@@ -54,8 +54,6 @@ public class MainForm extends BF {
 		panel.setLayout(null);
 
 		panel_1 = new JPanel();
-		panel_1.addMouseListener(new Panel_1MouseListener());
-		panel_1.addMouseMotionListener(new Panel_1MouseMotionListener());
 		panel_1.setBounds(12, 355, 351, 254);
 		getContentPane().add(panel_1);
 		panel_1.setLayout(null);
@@ -76,8 +74,6 @@ public class MainForm extends BF {
 		panel_1.add(psize);
 
 		panel_2 = new JPanel();
-		panel_2.addMouseMotionListener(new Panel_2MouseMotionListener());
-		panel_2.addMouseListener(new Panel_2MouseListener());
 		panel_2.setBounds(377, 355, 351, 254);
 		getContentPane().add(panel_2);
 		panel_2.setLayout(null);
@@ -154,7 +150,7 @@ public class MainForm extends BF {
 			int mno = rs.getInt("m_no");
 			pp.addMouseListener(new MouseAdapter() {
 				@Override
-				public void mousePressed(MouseEvent e) {
+				public void mouseClicked(MouseEvent e) {
 					showPage(new MovieInfoForm(mno), "MovieInfoForm");
 				}
 			});
