@@ -23,6 +23,9 @@ import java.awt.event.ActionListener;
 import java.awt.geom.AffineTransform;
 import java.awt.image.BufferedImage;
 import java.awt.event.ActionEvent;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseMotionAdapter;
 
 public class J_분석 extends BF {
 	public JLabel label;
@@ -72,10 +75,11 @@ public class J_분석 extends BF {
 			protected void paintComponent(Graphics g) {
 				super.paintComponent(g);
 				Graphics2D g2 = (Graphics2D) g;
-				g2.drawImage(getChart(), 0, 0, null);
+				g2.drawImage(buf = getChart(), 0, 0, null);
 			}
 
 		};
+		panel.addMouseMotionListener(new PanelMouseMotionListener());
 		panel.setBounds(0, 91, 685, 354);
 		getContentPane().add(panel);
 		panel.setLayout(null);
@@ -84,7 +88,7 @@ public class J_분석 extends BF {
 		label_1.setHorizontalAlignment(SwingConstants.RIGHT);
 		label_1.setVerticalAlignment(SwingConstants.TOP);
 		label_1.setVerticalTextPosition(SwingConstants.TOP);
-		label_1.setBounds(481, 10, 192, 334);
+		label_1.setBounds(334, 10, 339, 334);
 		panel.add(label_1);
 		
 		comboBox = new JComboBox();
@@ -168,7 +172,7 @@ public class J_분석 extends BF {
 			this.c=c;
 			String sql = comboBox.getSelectedIndex()==0?"record":"reservation";
 			try {
-				var rs = res("select * from "+sql+" where dno = "+dno);
+				var rs = res("select * from "+sql+" where dno = "+dno+" order by date");
 				while(rs.next()) {
 					date.add(rs.getString("date"));
 				}
@@ -180,6 +184,7 @@ public class J_분석 extends BF {
 			panel_1.add(jl);
 		}
 	}
+	BufferedImage buf;
 	private BufferedImage getChart() {
 		BufferedImage bi = new BufferedImage(panel.getWidth(), panel.getHeight(), 2);
 		Graphics2D g2 = bi.createGraphics();
@@ -189,29 +194,45 @@ public class J_분석 extends BF {
 		int x = panel.getWidth()/2-150;
 		int sum = datas.stream().mapToInt(e->e.cnt).sum();
 		
-		for (int i = 0; i < 5; i++) {
-			data d = datas.get(i);
+		for (data d : datas) {
 			int deg = (int) ((double)d.cnt/sum * 360);
-			
 			g2.setColor(d.c);
 			g2.fillArc(x, 0, 300, 300, ang, -deg);
-			
-			
-			String str = String.format("%.1f", (double)d.cnt/sum*100);
-			int w = g2.getFontMetrics().stringWidth(str)/2;
-			
-			g2.rotate(-Math.toRadians(ang-deg/2), x+150-w, 150);
-			g2.rotate(Math.toRadians(ang-deg/2), x+150+150-w, 150);
-			g2.setColor(Color.black);
-			g2.drawString(str, x+300-w, 0);
-			
+			ang -= deg;
+		}
+		ang = 90;
+		g2.setColor(Color.black);
+		for (data d : datas) {
+			int deg = (int) ((double)d.cnt/sum*360);
+			g2.rotate(-Math.toRadians(ang-(deg/2)), x+150, 150);
+			g2.rotate(Math.toRadians(ang-(deg/2)), x+300, 150);
+			String txt =String.format("%.1f%%", (double)d.cnt/sum*100);
+			g2.drawString(txt, x+300-g2.getFontMetrics().stringWidth(txt)/2, 150);
 			g2.setTransform(ori);
-			
 			ang -= deg;
 		}
 		
 		g2.setColor(Color.white);
 		g2.fillOval(x+50, 50, 200, 200);
 		return bi;
+	}
+
+	private class PanelMouseMotionListener extends MouseMotionAdapter {
+		
+		@Override
+		public void mouseMoved(MouseEvent e) {
+			int rgb =buf.getRGB(e.getX(), e.getY());
+			var d= datas.stream().filter(x->x.c.getRGB()==rgb).findAny().orElse(null);
+			if(d!=null) {
+				String s = "<html>";
+				for (var txt : d.date) {
+					s+= d.dname+"/"+d.hname+"/"+txt+"<br>";
+				}
+				label_1.setText(s);
+			}
+			else {
+				label_1.setText("");
+			}
+		}
 	}
 }
