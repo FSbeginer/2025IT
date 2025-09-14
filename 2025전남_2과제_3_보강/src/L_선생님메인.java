@@ -31,6 +31,8 @@ import javax.swing.plaf.ColorChooserUI;
 import java.awt.event.MouseMotionAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseAdapter;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 
 public class L_선생님메인 extends BF {
 	public JLabel label;
@@ -67,6 +69,7 @@ public class L_선생님메인 extends BF {
 	}
 
 	public L_선생님메인() {
+		addWindowListener(new ThisWindowListener());
 		setTitle("선생님 메인");
 		setBounds(100, 100, 827, 702);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -262,7 +265,7 @@ public class L_선생님메인 extends BF {
 
 	private class ButtonActionListener implements ActionListener {
 		public void actionPerformed(ActionEvent e) {
-//			showPage(new 후기작성폼(1), "후기작성폼");
+			showPage(new I_고객센터(), "I_고객센터");
 		}
 	}
 
@@ -317,6 +320,13 @@ public class L_선생님메인 extends BF {
 		public void actionPerformed(ActionEvent e) {
 			zoom = 1.0;
 			label_2.repaint();
+		}
+	}
+	private class ThisWindowListener extends WindowAdapter {
+		@Override
+		public void windowClosing(WindowEvent e) {
+			isAdmin = false;
+			uno = 0;
 		}
 	}
 }

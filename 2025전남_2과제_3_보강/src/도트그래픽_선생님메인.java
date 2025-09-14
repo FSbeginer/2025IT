@@ -97,6 +97,7 @@ public class 도트그래픽_선생님메인 extends BF {
 		getContentPane().add(label_2);
 
 		button = new JButton("문의답변하기");
+		button.addActionListener(new ButtonActionListener());
 		button.setBackground(Color.BLUE);
 		button.setForeground(Color.WHITE);
 		button.setBounds(265, 622, 284, 31);
@@ -321,6 +322,11 @@ public class 도트그래픽_선생님메인 extends BF {
 		public void actionPerformed(ActionEvent e) {
 			zoom = 1.0;
 			label_2.repaint();
+		}
+	}
+	private class ButtonActionListener implements ActionListener {
+		public void actionPerformed(ActionEvent e) {
+			showPage(new I_고객센터(),"I_고객센터");
 		}
 	}
 }

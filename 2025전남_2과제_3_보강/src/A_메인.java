@@ -1,22 +1,29 @@
+import java.awt.CardLayout;
+import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.EventQueue;
-
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JTextField;
-import javax.swing.JPanel;
-import java.awt.GridLayout;
-import javax.swing.SwingConstants;
 import java.awt.Font;
+import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.event.WindowAdapter;
+import java.sql.SQLException;
+import java.util.LinkedList;
+import java.util.Queue;
+
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
-import java.awt.CardLayout;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
 import javax.swing.JScrollPane;
-import javax.swing.border.MatteBorder;
-import java.awt.Color;
+import javax.swing.JTextField;
+import javax.swing.SwingConstants;
+import javax.swing.Timer;
 import javax.swing.border.LineBorder;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
+import javax.swing.border.MatteBorder;
 
 public class A_메인 extends BF {
 	public JLabel label;
@@ -42,6 +49,7 @@ public class A_메인 extends BF {
 	public JPanel panel_6;
 	public JPanel panel_7;
 	public JLabel label_8;
+	public JLabel label_9;
 
 	/**
 	 * Launch the application.
@@ -69,181 +77,424 @@ public class A_메인 extends BF {
 		setBounds(100, 100, 1003, 647);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		getContentPane().setLayout(null);
-		
-		label = new Logo(43,43,false);
+
+		label = new Logo(43, 43, false);
 		label.setBounds(12, 10, 57, 43);
 		getContentPane().add(label);
-		
+
 		label_1 = new JLabel("SKills Qualification Association");
 		label_1.setFont(new Font("맑은 고딕", Font.BOLD, 15));
 		label_1.setBounds(81, 10, 220, 43);
 		getContentPane().add(label_1);
-		
+
 		textField = new JTextField();
 		textField.setBounds(313, 17, 274, 29);
 		getContentPane().add(textField);
 		textField.setColumns(10);
-		
-		label_2 = new JLabel(getIcon("icon/search.png",49,49));
+
+		label_2 = new JLabel(getIcon("icon/search.png", 49, 49));
 		label_2.setBounds(599, 10, 57, 49);
 		getContentPane().add(label_2);
-		
+
 		panel = new JPanel();
 		panel.setBounds(23, 74, 930, 49);
 		getContentPane().add(panel);
 		panel.setLayout(new GridLayout(0, 4, 0, 0));
-		
+
 		label_3 = new JLabel("\uC790\uACA9\uC99D \uBAA9\uB85D");
 		label_3.addMouseListener(new Label_3MouseListener());
 		label_3.setFont(new Font("맑은 고딕", Font.BOLD, 14));
 		label_3.setHorizontalAlignment(SwingConstants.CENTER);
 		panel.add(label_3);
-		
+
 		label_4 = new JLabel("\uC2DC\uD5D8 \uC77C\uC815");
 		label_4.addMouseListener(new Label_4MouseListener());
 		label_4.setFont(new Font("맑은 고딕", Font.BOLD, 14));
 		label_4.setHorizontalAlignment(SwingConstants.CENTER);
 		panel.add(label_4);
-		
+
 		label_5 = new JLabel("\uACE0\uAC1D\uC13C\uD130");
 		label_5.addMouseListener(new Label_5MouseListener());
 		label_5.setFont(new Font("맑은 고딕", Font.BOLD, 14));
 		label_5.setHorizontalAlignment(SwingConstants.CENTER);
 		panel.add(label_5);
-		
+
 		label_6 = new JLabel("\uC790\uACA9\uC99D\uBC1C\uAE09");
 		label_6.addMouseListener(new Label_6MouseListener());
 		label_6.setFont(new Font("맑은 고딕", Font.BOLD, 14));
 		label_6.setHorizontalAlignment(SwingConstants.CENTER);
 		panel.add(label_6);
-		
+
 		panel_1 = new JPanel();
 		panel_1.setBounds(23, 147, 455, 253);
 		getContentPane().add(panel_1);
-		
+		panel_1.setLayout(null);
+
 		panel_2 = new JPanel();
 		panel_2.setBounds(488, 147, 230, 253);
 		getContentPane().add(panel_2);
 		panel_2.setLayout(null);
-		
+
 		panel_3 = new JPanel();
-		panel_3.setBounds(0, 51, 232, 202);
+		panel_3.setBounds(0, 51, 230, 202);
 		panel_2.add(panel_3);
-		
+		panel_3.setLayout(new GridLayout(5, 0, 0, 0));
+
 		button = new JButton("\uCD94\uCC9C\uC21C");
+		button.addActionListener(new ButtonActionListener());
 		button.setBounds(12, 10, 97, 31);
 		panel_2.add(button);
-		
+
 		button_1 = new JButton("\uBCC4\uC810\uC21C");
+		button_1.addActionListener(new Button_1ActionListener());
 		button_1.setBounds(123, 10, 97, 31);
 		panel_2.add(button_1);
-		
+
 		panel_4 = new JPanel();
 		panel_4.setBounds(730, 147, 245, 253);
 		getContentPane().add(panel_4);
 		panel_4.setLayout(null);
-		
+
 		button_2 = new JButton("\uB85C\uADF8\uC778");
 		button_2.addActionListener(new Button_2ActionListener());
-		button_2.setBounds(12, 10, 107, 31);
+		button_2.setBounds(12, 58, 107, 24);
 		panel_4.add(button_2);
-		
+
 		button_3 = new JButton("\uB0B4 \uC815\uBCF4");
 		button_3.addActionListener(new Button_3ActionListener());
-		button_3.setBounds(126, 10, 107, 31);
+		button_3.setBounds(126, 58, 107, 24);
 		panel_4.add(button_3);
-		
+
 		panel_5 = new JPanel();
-		panel_5.setBounds(0, 48, 245, 205);
+		panel_5.setBounds(0, 92, 245, 161);
 		panel_4.add(panel_5);
 		panel_5.setLayout(new CardLayout(0, 0));
-		
-		label_7 = new JLabel("<html><font color = red>\uB85C\uADF8\uC778\uC774 \uD544\uC694\uD569\uB2C8\uB2E4.</font><br><b>1.</b> \uC720\uD6A8\uD55C \uC0AC\uC6A9\uC790 \uC815\uBCF4\uB97C \uC785\uB825\uD558\uC138\uC694.<br><b>2.</b> \uC778\uC99D \uC808\uCC28\uB97C \uC644\uB8CC\uD558\uC138\uC694.<br><b>3.</b> \uB85C\uADF8\uC778 \uD6C4 \uC774\uC6A9 \uAC00\uB2A5\uD569\uB2C8\uB2E4.<br><b>4.</b>\uC624\uB958\uAC00 \uC9C0\uC18D\uB418\uBA74 \uAD00\uB9AC\uC790\uC5D0\uAC8C \uBB38\uC758\uD558\uC138\uC694.");
+
+		label_7 = new JLabel(
+				"<html><font color = red>\uB85C\uADF8\uC778\uC774 \uD544\uC694\uD569\uB2C8\uB2E4.</font><br><b>1.</b> \uC720\uD6A8\uD55C \uC0AC\uC6A9\uC790 \uC815\uBCF4\uB97C \uC785\uB825\uD558\uC138\uC694.<br><b>2.</b> \uC778\uC99D \uC808\uCC28\uB97C \uC644\uB8CC\uD558\uC138\uC694.<br><b>3.</b> \uB85C\uADF8\uC778 \uD6C4 \uC774\uC6A9 \uAC00\uB2A5\uD569\uB2C8\uB2E4.<br><b>4.</b>\uC624\uB958\uAC00 \uC9C0\uC18D\uB418\uBA74 \uAD00\uB9AC\uC790\uC5D0\uAC8C \uBB38\uC758\uD558\uC138\uC694.");
 		label_7.setBorder(new MatteBorder(1, 1, 1, 1, (Color) new Color(0, 0, 0)));
 		label_7.setFont(new Font("맑은 고딕", Font.PLAIN, 12));
 		panel_5.add(label_7, "name_31395232314300");
-		
+
 		scrollPane = new JScrollPane();
 		panel_5.add(scrollPane, "name_31432306097200");
-		
+
 		panel_6 = new JPanel();
 		panel_6.setBorder(new LineBorder(new Color(0, 0, 0)));
 		scrollPane.setViewportView(panel_6);
-		
+
+		label_9 = new JLabel("\uB85C\uADF8\uC778\uC774 \uD544\uC694\uD569\uB2C8\uB2E4/");
+		label_9.setFont(new Font("맑은 고딕", Font.BOLD, 20));
+		label_9.setIcon(getIcon("icon/check.png", 40, 40));
+		label_9.setBounds(0, 10, 245, 41);
+		panel_4.add(label_9);
+
 		panel_7 = new JPanel();
+		panel_7.setBorder(new LineBorder(new Color(0, 0, 0)));
 		panel_7.setBounds(0, 467, 987, 187);
 		getContentPane().add(panel_7);
-		
+
 		label_8 = new JLabel("\uC790\uACA9\uC99D\uC744 \uC120\uD0DD\uD574 \uC8FC\uC0C8\uC694.");
-		label_8.setIcon(getIcon("icon/medel.png",40,40));
+		label_8.setIcon(getIcon("icon/medel.png", 40, 40));
 		label_8.setFont(new Font("맑은 고딕", Font.BOLD, 15));
 		label_8.setBounds(23, 412, 274, 45);
 		getContentPane().add(label_8);
 
+		updateForm();
+		setCategory();
+		setA();
+		setB();
 	}
-	
-	@Override
-	public void updateForm() {
-		button_3.setVisible(uno==0);
-		if(uno==0) {
-			button_2.setText("로그인");
-		}else {
-			button_2.setText("로그아웃");
+
+	JLabel[] jls2 = new JLabel[5];
+	private Timer timer;
+
+	private void setB() {
+		for (int i = 0; i < jls2.length; i++) {
+			jls2[i] = new JLabel();
+			panel_3.add(jls2[i]);
+		}
+		jls2[2].setBorder(new LineBorder(Color.blue));
+		jls2[2].addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				var data = datas.peek();
+				showPage(new H_상세내용((int) data[0]), "H_상세내용");
+			}
+		});
+		getData("cnt desc");
+		timer = new Timer(1000, new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				var d = datas.poll();
+				datas.add(d);
+				lenderingB();
+			}
+
+		});
+		timer.start();
+		lenderingB();
+	}
+
+	private void lenderingB() {
+		for (int i = 0; i < 5; i++) {
+			var d = datas.poll();
+			jls2[i].setText(d[1].toString());
+			datas.add(d);
 		}
 	}
-	
+
+	Queue<Object[]> datas = new LinkedList<Object[]>();
+
+	private void getData(String sql) {
+		datas.clear();
+		try (var rs = res(
+				"select cno,cname, avg(review.rstar) star ,count(*) cnt from course_registration right join certi using (cno) left join review using(cno) group by cno order by "
+						+ sql + ", cno limit 5;")) {
+			while (rs.next()) {
+				datas.add(new Object[] { rs.getInt(1), rs.getString(2) });
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+
+	JLabel[] jls = new JLabel[5];
+
+	private void setA() {
+		int[] cnos = { 10, 1, 15, -1, 4 };
+		for (int i = 0; i < jls.length; i++) {
+			jls[i] = new JLabel(getIcon("main/" + (i + 1) + ".png", panel_1.getWidth(), panel_1.getHeight()));
+			jls[i].setSize(panel_1.getSize());
+			jls[i].setLocation(panel_1.getWidth() * i, 0);
+			int cno = cnos[i];
+			jls[i].addMouseListener(new MouseAdapter() {
+				@Override
+				public void mouseClicked(MouseEvent e) {
+					if (uno == 0) {
+						msgErr("로그인을 해주세요.");
+						var l = new B_로그인();
+						l.addWindowListener(new WindowAdapter() {
+							public void windowClosed(java.awt.event.WindowEvent e) {
+								if (uno != 0 && !isAdmin) {
+									if (cno == -1) {
+										msgErr("해당하는 자격증이 존재하지 않습니다.");
+										return;
+									}
+									showPage(new H_상세내용(cno), "H_상세내용");
+								}
+							};
+						});
+						showPage(l, "로그인");
+						l.setName("D");
+					}
+					if (cno == -1) {
+						msgErr("해당하는 자격증이 존재하지 않습니다.");
+						return;
+					}
+					showPage(new H_상세내용(cno), "H_상세내용");
+				}
+
+				@Override
+				public void mousePressed(MouseEvent e) {
+					cx = e.getX();
+				}
+
+				@Override
+				public void mouseReleased(MouseEvent e) {
+					int dx = e.getX() - cx;
+					System.out.println(dx);
+					if (dx >= 50) {
+						moveRight();
+					} else if (dx <= -50) {
+						moveLeft();
+					}
+				}
+
+				private void moveLeft() {
+					for (var jl : jls) {
+						jl.setLocation(jl.getX() - jl.getWidth(), jl.getY());
+						if (jl.getX() <= -jl.getWidth()) {
+							jl.setLocation(jl.getX() + jl.getWidth() * 5, jl.getY());
+						} else if (jl.getX() >= jl.getWidth() * 4) {
+							jl.setLocation(jl.getX() - jl.getWidth() * 5, jl.getY());
+						}
+					}
+				}
+
+				private void moveRight() {
+					for (var jl : jls) {
+						jl.setLocation(jl.getX() + jl.getWidth(), jl.getY());
+						if (jl.getX() <= -jl.getWidth()) {
+							jl.setLocation(jl.getX() + jl.getWidth() * 5, jl.getY());
+						} else if (jl.getX() >= jl.getWidth() * 4) {
+							jl.setLocation(jl.getX() - jl.getWidth() * 5, jl.getY());
+						}
+					}
+				}
+			});
+			panel_1.add(jls[i]);
+		}
+		new Thread(new Runnable() {
+			boolean stop = true;
+
+			@Override
+			public void run() {
+				while (true) {
+					try {
+						if (stop) {
+							stop = false;
+							Thread.sleep(1000);
+						} else {
+							Thread.sleep(1);
+						}
+					} catch (InterruptedException e) {
+						e.printStackTrace();
+					}
+					for (var jl : jls) {
+						jl.setLocation(jl.getX() - 1, jl.getY());
+						if (jl.getX() == -jl.getWidth()) {
+							jl.setLocation(jl.getWidth() * 4, jl.getY());
+							stop = true;
+						}
+					}
+				}
+			}
+		}).start();
+	}
+
+	int cx;
+
+	private void setCategory() {
+		String[] path = "it,cooking,volunteer,aviation,hospital".split(",");
+		int[] cgno = { 5, 2, 1, 6, 3 };
+		for (int i = 0; i < path.length; i++) {
+			try {
+				var rs = res("select * from category where cgno = " + cgno[i]);
+				rs.next();
+				MyLabel jl = new MyLabel(getIcon("icon/" + path[i] + ".png", 60, 60), rs.getString(2));
+				jl.setPreferredSize(new Dimension(60, 60));
+				jl.addMouseListener(new MouseAdapter() {
+					@Override
+					public void mouseClicked(MouseEvent e) {
+//자격증목록
+					}
+				});
+				panel_7.add(jl);
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+	}
+
+	@Override
+	public void updateForm() {
+		button_3.setVisible(uno != 0);
+		if (uno == 0) {
+			button_2.setText("로그인");
+			label_9.setText("로그인이 필요합니다.");
+			((CardLayout)panel_5.getLayout()).first(panel_5);
+		} else {
+			button_2.setText("로그아웃");
+			label_9.setText(uname + "님, 환영합니다.");
+			((CardLayout)panel_5.getLayout()).last(panel_5);
+		}
+	}
+
 	private class Label_5MouseListener extends MouseAdapter {
 		@Override
 		public void mouseClicked(MouseEvent e) {
-			if(uno==0) {
+			if (uno == 0) {
 				msgErr("로그인이 되어있지 않습니다.");
-				showPage(new B_로그인(),"B_로그인");
+				showPage(new B_로그인(), "B_로그인");
 				return;
 			}
-			showPage(new I_고객센터(),"I_고객센터");
+			showPage(new I_고객센터(), "I_고객센터");
 		}
 	}
+
 	private class Label_6MouseListener extends MouseAdapter {
 		@Override
 		public void mouseClicked(MouseEvent e) {
-			if(uno==0) {
+			if (uno == 0) {
 				msgErr("로그인이 되어있지 않습니다.");
-				showPage(new B_로그인(),"B_로그인");
+				showPage(new B_로그인(), "B_로그인");
 				return;
 			}
-			showPage(new J_자격증폼(),"J_자격증폼");
+			showPage(new J_자격증폼(), "J_자격증폼");
 		}
 	}
+
 	private class Label_4MouseListener extends MouseAdapter {
 		@Override
 		public void mouseClicked(MouseEvent e) {
-			if(uno==0) {
+			if (uno == 0) {
 				msgErr("로그인이 되어있지 않습니다.");
-				showPage(new B_로그인(),"B_로그인");
+				showPage(new B_로그인(), "B_로그인");
 				return;
 			}
-			showPage(new D_시험일정(),"D_시험일정");
+			showPage(new D_시험일정(), "D_시험일정");
 		}
 	}
+
 	private class Label_3MouseListener extends MouseAdapter {
 		@Override
 		public void mouseClicked(MouseEvent e) {
-			if(uno==0) {
+			if (uno == 0) {
 				msgErr("로그인이 되어있지 않습니다.");
-				showPage(new B_로그인(),"B_로그인");
+				showPage(new B_로그인(), "B_로그인");
 				return;
 			}
-			showPage(new C_자격증목록(),"C_자격증목록");
+			showPage(new C_자격증목록(), "C_자격증목록");
 		}
 	}
+
 	private class Button_2ActionListener implements ActionListener {
 		public void actionPerformed(ActionEvent e) {
-			showPage(new B_로그인(),"B_로그인"); 
+			showPage(new B_로그인(), "B_로그인");
 		}
 	}
+
 	private class Button_3ActionListener implements ActionListener {
 		public void actionPerformed(ActionEvent e) {
-			showPage(new G_나의과정(),"G_나의과정");
+			showPage(new G_나의과정(), "G_나의과정");
 		}
+	}
+
+	private class ButtonActionListener implements ActionListener {
+		public void actionPerformed(ActionEvent e) {
+			timer.stop();
+			getData("cnt desc");
+			lenderingB();
+			timer.start();
+		}
+	}
+
+	private class Button_1ActionListener implements ActionListener {
+		public void actionPerformed(ActionEvent e) {
+			timer.stop();
+			getData("star desc");
+			lenderingB();
+			timer.start();
+		}
+	}
+}
+
+class MyLabel extends JLabel {
+	public MyLabel(ImageIcon icon, String name) {
+		setToolTipText(name);
+		ImageIcon small = new ImageIcon(icon.getImage().getScaledInstance(50, 50, 1));
+		setIcon(small);
+		addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				setIcon(icon);
+			}
+
+			@Override
+			public void mouseExited(MouseEvent e) {
+				setIcon(small);
+			}
+		});
 	}
 }

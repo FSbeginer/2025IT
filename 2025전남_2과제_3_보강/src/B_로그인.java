@@ -103,7 +103,8 @@ public class B_로그인 extends BF {
 				var rs = pre.executeQuery();
 				if (rs.next()) {
 					uno = rs.getInt(1);
-					msgInfo(rs.getString("uname")+"님 환영합니다.");
+					uname =rs.getString("uname");
+					msgInfo(uname+"님 환영합니다.");
 					if(checkBox.isSelected()) prev = id;
 					else prev ="";
 					dispose();
@@ -112,7 +113,7 @@ public class B_로그인 extends BF {
 					preSet(pre2, id, pw);
 					var rs2 = pre2.executeQuery();
 					if (rs2.next()) {
-						uno =rs.getInt(1);
+						uno =rs2.getInt(1);
 						isAdmin = true;
 						msgInfo(rs2.getString("tname")+"님 환영합니다.");
 						if(checkBox.isSelected()) prev = id;

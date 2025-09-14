@@ -11,7 +11,7 @@ public class H_상세내용 extends BF {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					H_상세내용 frame = new H_상세내용();
+					H_상세내용 frame = new H_상세내용(1);
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -23,7 +23,9 @@ public class H_상세내용 extends BF {
 	/**
 	 * Create the frame.
 	 */
-	public H_상세내용() {
+	int cno;
+	public H_상세내용(int cno) {
+		this.cno = cno;
 		setBounds(100, 100, 450, 300);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 

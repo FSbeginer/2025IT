@@ -26,6 +26,7 @@ import javax.swing.UIManager;
 
 public class BF extends JFrame {
 	public static int uno = 0;
+	public static String uname;
 	public static boolean isAdmin = false;
 	
 	public static void msgInfo(String name) {
