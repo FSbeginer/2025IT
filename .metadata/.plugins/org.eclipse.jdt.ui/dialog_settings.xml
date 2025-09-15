@@ -77,9 +77,11 @@
 		<item key="FatJarPackageWizardPage.ANTSCRIPT_SAVE" value="false"/>
 		<item key="FatJarPackageWizardPage.ANTSCRIPT_LOCATION" value="E:\---2025전국대회 과제지 선정\JavaWorkspace"/>
 		<item key="FatJarPackageWizardPage.LIBRARY_HANDLING" value="1"/>
-		<item key="FatJarPackageWizardPage.LAUNCH_CONFIGURATION_SELECTION_NAME" value="A_메인 - 2025전남_2과제_4"/>
-		<item key="FatJarPackageWizardPage.DESTINATION_PATH_SELECTION" value="C:\Users\user\Desktop\전남제출\Project.jar"/>
+		<item key="FatJarPackageWizardPage.LAUNCH_CONFIGURATION_SELECTION_NAME" value="A_메인 - 2025충북_2과제_4"/>
+		<item key="FatJarPackageWizardPage.DESTINATION_PATH_SELECTION" value="C:\Users\user\Desktop\충북\Project.jar"/>
 		<list key="FatJarPackageWizardPage.DESTINATION_NAMES_ID">
+			<item value="C:\Users\user\Desktop\충북\Project.jar"/>
+			<item value="C:\Users\user\Desktop\전북제출\Project.jar"/>
 			<item value="C:\Users\user\Desktop\전남제출\Project.jar"/>
 			<item value="C:\Users\user\Desktop\경남2과제\Project.jar"/>
 			<item value="C:\Users\user\Desktop\전북2과제\Project.jar"/>
