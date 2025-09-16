@@ -116,7 +116,7 @@ public class D_상세정보 extends BF {
 
 	private void load() {
 		try (var rs = res(
-						"with rank1 as (select pno, rank() over(partition by cno order by count(*) desc) rank1 , count(*) cnt  from product left join `order` using(pno) group by pno)\r\n"
+						"with rank1 as (select pno,pname,cno, rank() over(partition by cno order by sum(`order`.quantity) desc) rank1 , sum(`order`.quantity) cnt  from product left join `order` using(pno) group by pno)\r\n"
 						+ "select *, avg(rating) star, p.quantity l from product p join category using(cno) left join `order` using(pno) left join review using(ono) left join rank1 using(pno) where pno = "
 						+ pno + " group by pno;")) {
 			rs.next();

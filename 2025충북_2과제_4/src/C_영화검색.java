@@ -178,7 +178,7 @@ public class C_영화검색 extends BF {
 			var txt = textField.getText();
 			like = "and m_name like '%"+txt+"%'";
 			load();
-			if(panel.getComponentCount()==0) {
+			if(panel_2.getComponentCount()==0) {
 				msgErr("검색결과가 없습니다.");
 				like = "";
 				comboBox.setSelectedIndex(0);

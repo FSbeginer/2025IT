@@ -140,9 +140,11 @@ public class J_메뉴정보 extends BF {
 	}
 	private class ButtonActionListener implements ActionListener {
 		public void actionPerformed(ActionEvent e) {
+			
 			cnt = Math.max(1, cnt-1);
 			label_3.setText(cnt+"");
 			label_1.setText("가격: "+String.format("%,d", price*cnt));
+			
 		}
 	}
 	private class Button_1ActionListener implements ActionListener {

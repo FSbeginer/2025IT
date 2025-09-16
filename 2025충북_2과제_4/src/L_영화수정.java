@@ -1,5 +1,7 @@
 import java.awt.EventQueue;
 import java.sql.SQLException;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -135,7 +137,9 @@ public class L_영화수정 extends BF {
 				msgErr("수정된 부분이 없습니다.");
 				return;
 			}
-			if(txt.matches("^.*(시발|개새끼|존나|병신)+.*$")) {
+			Pattern p = Pattern.compile("시발|개새끼|존나|병신");
+			Matcher m = p.matcher(txt);
+			if(m.find()) {
 				msgErr("욕설을 포함하고 있습니다.");
 				return;
 			}
