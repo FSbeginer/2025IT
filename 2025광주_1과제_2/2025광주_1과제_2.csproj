@@ -1,0 +1,349 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{1B5B8FAB-BBA5-447A-802E-E50FCDB8199E}</ProjectGuid>
+    <OutputType>Exe</OutputType>
+    <RootNamespace>_2025광주_1과제_2</RootNamespace>
+    <AssemblyName>2025광주_1과제_2</AssemblyName>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject />
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework, Version=5.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.5.0.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.Entity" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="A_메인.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="A_메인.Designer.cs">
+      <DependentUpon>A_메인.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Model\applicationemployment.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\comment.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\company.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\education.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\employment.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\jobposting.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\jobtype.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\location.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\Model1.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Model1.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\Model1.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\Model1.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Model1.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Model\occupation.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\searchhistory.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\selfintroduction.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\user.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Hp.cs" />
+    <Compile Include="MyControl\관심있는소개서.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="MyControl\관심있는소개서.Designer.cs">
+      <DependentUpon>관심있는소개서.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MyControl\관심있는회사공고.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="MyControl\관심있는회사공고.Designer.cs">
+      <DependentUpon>관심있는회사공고.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MyControl\댓글.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="MyControl\댓글.Designer.cs">
+      <DependentUpon>댓글.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MyControl\마이페이지.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="MyControl\마이페이지.Designer.cs">
+      <DependentUpon>마이페이지.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MyControl\소개서.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="MyControl\소개서.Designer.cs">
+      <DependentUpon>소개서.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MyControl\PlaceHolder.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="MyControl\SearchControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="MyControl\SearchControl.Designer.cs">
+      <DependentUpon>SearchControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MyControl\신입인턴패널.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="MyControl\신입인턴패널.Designer.cs">
+      <DependentUpon>신입인턴패널.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Template\BF.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Template\BF.Designer.cs">
+      <DependentUpon>BF.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\B_로그인.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\B_로그인.Designer.cs">
+      <DependentUpon>B_로그인.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\C_신입인턴.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\C_신입인턴.Designer.cs">
+      <DependentUpon>C_신입인턴.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\D_채용공고.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\D_채용공고.Designer.cs">
+      <DependentUpon>D_채용공고.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\E_소개서.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\E_소개서.Designer.cs">
+      <DependentUpon>E_소개서.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\F_소개서내용.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\F_소개서내용.Designer.cs">
+      <DependentUpon>F_소개서내용.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\G_마이페이지.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\G_마이페이지.Designer.cs">
+      <DependentUpon>G_마이페이지.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\H_소개서추가.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\H_소개서추가.Designer.cs">
+      <DependentUpon>H_소개서추가.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\ImageForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\ImageForm.Designer.cs">
+      <DependentUpon>ImageForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\I_댓글확인.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\I_댓글확인.Designer.cs">
+      <DependentUpon>I_댓글확인.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\J_회사메인.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\J_회사메인.Designer.cs">
+      <DependentUpon>J_회사메인.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\캡차.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\캡차.Designer.cs">
+      <DependentUpon>캡차.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="A_메인.resx">
+      <DependentUpon>A_메인.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MyControl\관심있는소개서.resx">
+      <DependentUpon>관심있는소개서.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MyControl\관심있는회사공고.resx">
+      <DependentUpon>관심있는회사공고.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MyControl\댓글.resx">
+      <DependentUpon>댓글.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MyControl\마이페이지.resx">
+      <DependentUpon>마이페이지.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MyControl\소개서.resx">
+      <DependentUpon>소개서.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MyControl\SearchControl.resx">
+      <DependentUpon>SearchControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MyControl\신입인턴패널.resx">
+      <DependentUpon>신입인턴패널.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <EmbeddedResource Include="Template\BF.resx">
+      <DependentUpon>BF.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\B_로그인.resx">
+      <DependentUpon>B_로그인.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\C_신입인턴.resx">
+      <DependentUpon>C_신입인턴.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\D_채용공고.resx">
+      <DependentUpon>D_채용공고.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\E_소개서.resx">
+      <DependentUpon>E_소개서.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\F_소개서내용.resx">
+      <DependentUpon>F_소개서내용.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\G_마이페이지.resx">
+      <DependentUpon>G_마이페이지.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\H_소개서추가.resx">
+      <DependentUpon>H_소개서추가.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\ImageForm.resx">
+      <DependentUpon>ImageForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\I_댓글확인.resx">
+      <DependentUpon>I_댓글확인.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\J_회사메인.resx">
+      <DependentUpon>J_회사메인.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\캡차.resx">
+      <DependentUpon>캡차.cs</DependentUpon>
+    </EmbeddedResource>
+    <EntityDeploy Include="Model\Model1.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>Model1.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="Model\Model1.edmx.diagram">
+      <DependentUpon>Model1.edmx</DependentUpon>
+    </None>
+    <None Include="packages.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="bin\Debug\datafiles\icon\save2.png" />
+    <None Include="bin\Debug\datafiles\icon\save1.png" />
+    <None Include="bin\Debug\datafiles\icon\reset.jpg" />
+    <None Include="bin\Debug\datafiles\icon\introduction.png" />
+    <None Include="bin\Debug\datafiles\icon\comment.png" />
+    <Content Include="Model\Model1.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>Model1.Context.cs</LastGenOutput>
+      <DependentUpon>Model1.edmx</DependentUpon>
+    </Content>
+    <Content Include="Model\Model1.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>Model1.edmx</DependentUpon>
+      <LastGenOutput>Model1.cs</LastGenOutput>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

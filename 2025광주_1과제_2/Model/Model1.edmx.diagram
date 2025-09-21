@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="2df1ddefa72e4071a913437557f0a2d2" Name="Diagram1">
+        <EntityTypeShape EntityType="placementModel.applicationemployment" Width="1.5" PointX="8.25" PointY="13.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="placementModel.comment" Width="1.5" PointX="8.25" PointY="9.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="placementModel.company" Width="1.5" PointX="0.75" PointY="4.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="placementModel.education" Width="1.5" PointX="0.75" PointY="13.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="placementModel.employment" Width="1.5" PointX="3" PointY="8.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="placementModel.jobposting" Width="1.5" PointX="6" PointY="7.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="placementModel.jobtype" Width="1.5" PointX="3.75" PointY="1.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="placementModel.location" Width="1.5" PointX="3.75" PointY="18.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="placementModel.occupation" Width="1.5" PointX="0.75" PointY="8.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="placementModel.searchhistory" Width="1.5" PointX="5.25" PointY="13.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="placementModel.selfintroduction" Width="1.5" PointX="3" PointY="4.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="placementModel.user" Width="1.5" PointX="3" PointY="12.625" IsExpanded="true" />
+        <AssociationConnector Association="placementModel.FK_applicationemployment_jobposting" ManuallyRouted="false" />
+        <AssociationConnector Association="placementModel.FK_applicationemployment_user" ManuallyRouted="false" />
+        <AssociationConnector Association="placementModel.FK_comment_selfintroduction" ManuallyRouted="false" />
+        <AssociationConnector Association="placementModel.FK_comment_user" ManuallyRouted="false" />
+        <AssociationConnector Association="placementModel.FK_employment_company" ManuallyRouted="false" />
+        <AssociationConnector Association="placementModel.FK_jobposting_company" ManuallyRouted="false" />
+        <AssociationConnector Association="placementModel.FK_searchhistory_company" ManuallyRouted="false" />
+        <AssociationConnector Association="placementModel.FK_jobposting_education" ManuallyRouted="false" />
+        <AssociationConnector Association="placementModel.FK_user_education" ManuallyRouted="false" />
+        <AssociationConnector Association="placementModel.FK_employment_occupation" ManuallyRouted="false" />
+        <AssociationConnector Association="placementModel.FK_employment_user" ManuallyRouted="false" />
+        <AssociationConnector Association="placementModel.FK_jobposting_jobtype" ManuallyRouted="false" />
+        <AssociationConnector Association="placementModel.FK_jobposting_location" ManuallyRouted="false" />
+        <AssociationConnector Association="placementModel.FK_jobposting_occupation" ManuallyRouted="false" />
+        <AssociationConnector Association="placementModel.FK_selfintroduction_occupation" ManuallyRouted="false" />
+        <AssociationConnector Association="placementModel.FK_user_occupation" ManuallyRouted="false" />
+        <AssociationConnector Association="placementModel.FK_searchhistory_user" ManuallyRouted="false" />
+        <AssociationConnector Association="placementModel.FK_selfintroduction_user" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
