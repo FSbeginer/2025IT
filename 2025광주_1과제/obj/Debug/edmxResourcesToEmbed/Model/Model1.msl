@@ -1,0 +1,134 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="placementModelStoreContainer" CdmEntityContainer="placementEntities">
+    <EntitySetMapping Name="applicationemployment">
+      <EntityTypeMapping TypeName="placementModel.applicationemployment">
+        <MappingFragment StoreEntitySet="applicationemployment">
+          <ScalarProperty Name="ae_no" ColumnName="ae_no" />
+          <ScalarProperty Name="jp_no" ColumnName="jp_no" />
+          <ScalarProperty Name="u_no" ColumnName="u_no" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="comment">
+      <EntityTypeMapping TypeName="placementModel.comment">
+        <MappingFragment StoreEntitySet="comment">
+          <ScalarProperty Name="cm_no" ColumnName="cm_no" />
+          <ScalarProperty Name="cm_explan" ColumnName="cm_explan" />
+          <ScalarProperty Name="si_no" ColumnName="si_no" />
+          <ScalarProperty Name="u_no" ColumnName="u_no" />
+          <ScalarProperty Name="cm_date" ColumnName="cm_date" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="company">
+      <EntityTypeMapping TypeName="placementModel.company">
+        <MappingFragment StoreEntitySet="company">
+          <ScalarProperty Name="c_no" ColumnName="c_no" />
+          <ScalarProperty Name="c_name" ColumnName="c_name" />
+          <ScalarProperty Name="c_id" ColumnName="c_id" />
+          <ScalarProperty Name="c_pw" ColumnName="c_pw" />
+          <ScalarProperty Name="c_information" ColumnName="c_information" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="education">
+      <EntityTypeMapping TypeName="placementModel.education">
+        <MappingFragment StoreEntitySet="education">
+          <ScalarProperty Name="e_no" ColumnName="e_no" />
+          <ScalarProperty Name="e_name" ColumnName="e_name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="employment">
+      <EntityTypeMapping TypeName="placementModel.employment">
+        <MappingFragment StoreEntitySet="employment">
+          <ScalarProperty Name="ep_no" ColumnName="ep_no" />
+          <ScalarProperty Name="u_no" ColumnName="u_no" />
+          <ScalarProperty Name="c_no" ColumnName="c_no" />
+          <ScalarProperty Name="o_no" ColumnName="o_no" />
+          <ScalarProperty Name="ep_date" ColumnName="ep_date" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="jobposting">
+      <EntityTypeMapping TypeName="placementModel.jobposting">
+        <MappingFragment StoreEntitySet="jobposting">
+          <ScalarProperty Name="jp_no" ColumnName="jp_no" />
+          <ScalarProperty Name="jp_title" ColumnName="jp_title" />
+          <ScalarProperty Name="jt_no" ColumnName="jt_no" />
+          <ScalarProperty Name="l_no" ColumnName="l_no" />
+          <ScalarProperty Name="jp_sc" ColumnName="jp_sc" />
+          <ScalarProperty Name="o_no" ColumnName="o_no" />
+          <ScalarProperty Name="jp_situation" ColumnName="jp_situation" />
+          <ScalarProperty Name="start_date" ColumnName="start_date" />
+          <ScalarProperty Name="end_date" ColumnName="end_date" />
+          <ScalarProperty Name="write_date" ColumnName="write_date" />
+          <ScalarProperty Name="c_no" ColumnName="c_no" />
+          <ScalarProperty Name="e_no" ColumnName="e_no" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="jobtype">
+      <EntityTypeMapping TypeName="placementModel.jobtype">
+        <MappingFragment StoreEntitySet="jobtype">
+          <ScalarProperty Name="jt_no" ColumnName="jt_no" />
+          <ScalarProperty Name="jt_name" ColumnName="jt_name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="location">
+      <EntityTypeMapping TypeName="placementModel.location">
+        <MappingFragment StoreEntitySet="location">
+          <ScalarProperty Name="l_no" ColumnName="l_no" />
+          <ScalarProperty Name="l_name" ColumnName="l_name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="occupation">
+      <EntityTypeMapping TypeName="placementModel.occupation">
+        <MappingFragment StoreEntitySet="occupation">
+          <ScalarProperty Name="o_no" ColumnName="o_no" />
+          <ScalarProperty Name="o_name" ColumnName="o_name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="searchhistory">
+      <EntityTypeMapping TypeName="placementModel.searchhistory">
+        <MappingFragment StoreEntitySet="searchhistory">
+          <ScalarProperty Name="sh_no" ColumnName="sh_no" />
+          <ScalarProperty Name="u_no" ColumnName="u_no" />
+          <ScalarProperty Name="c_no" ColumnName="c_no" />
+          <ScalarProperty Name="sh_date" ColumnName="sh_date" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="selfintroduction">
+      <EntityTypeMapping TypeName="placementModel.selfintroduction">
+        <MappingFragment StoreEntitySet="selfintroduction">
+          <ScalarProperty Name="si_no" ColumnName="si_no" />
+          <ScalarProperty Name="u_no" ColumnName="u_no" />
+          <ScalarProperty Name="si_title" ColumnName="si_title" />
+          <ScalarProperty Name="si_subtitle" ColumnName="si_subtitle" />
+          <ScalarProperty Name="si_explan" ColumnName="si_explan" />
+          <ScalarProperty Name="o_no" ColumnName="o_no" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="user">
+      <EntityTypeMapping TypeName="placementModel.user">
+        <MappingFragment StoreEntitySet="user">
+          <ScalarProperty Name="u_no" ColumnName="u_no" />
+          <ScalarProperty Name="u_name" ColumnName="u_name" />
+          <ScalarProperty Name="u_id" ColumnName="u_id" />
+          <ScalarProperty Name="u_pw" ColumnName="u_pw" />
+          <ScalarProperty Name="u_sc" ColumnName="u_sc" />
+          <ScalarProperty Name="u_si" ColumnName="u_si" />
+          <ScalarProperty Name="u_situation" ColumnName="u_situation" />
+          <ScalarProperty Name="e_no" ColumnName="e_no" />
+          <ScalarProperty Name="o_no" ColumnName="o_no" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

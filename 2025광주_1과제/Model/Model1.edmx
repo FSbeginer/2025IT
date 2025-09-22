@@ -1,0 +1,1045 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="placementModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="applicationemployment">
+          <Key>
+            <PropertyRef Name="ae_no" />
+          </Key>
+          <Property Name="ae_no" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="jp_no" Type="int" Nullable="false" />
+          <Property Name="u_no" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="comment">
+          <Key>
+            <PropertyRef Name="cm_no" />
+          </Key>
+          <Property Name="cm_no" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="cm_explan" Type="varchar" MaxLength="150" Nullable="false" />
+          <Property Name="si_no" Type="int" Nullable="false" />
+          <Property Name="u_no" Type="int" Nullable="false" />
+          <Property Name="cm_date" Type="date" Nullable="false" />
+        </EntityType>
+        <EntityType Name="company">
+          <Key>
+            <PropertyRef Name="c_no" />
+          </Key>
+          <Property Name="c_no" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="c_name" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="c_id" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="c_pw" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="c_information" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="education">
+          <Key>
+            <PropertyRef Name="e_no" />
+          </Key>
+          <Property Name="e_no" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="e_name" Type="varchar" MaxLength="20" Nullable="false" />
+        </EntityType>
+        <EntityType Name="employment">
+          <Key>
+            <PropertyRef Name="ep_no" />
+          </Key>
+          <Property Name="ep_no" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="u_no" Type="int" Nullable="false" />
+          <Property Name="c_no" Type="int" Nullable="false" />
+          <Property Name="o_no" Type="int" Nullable="false" />
+          <Property Name="ep_date" Type="date" Nullable="false" />
+        </EntityType>
+        <EntityType Name="jobposting">
+          <Key>
+            <PropertyRef Name="jp_no" />
+          </Key>
+          <Property Name="jp_no" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="jp_title" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="jt_no" Type="int" Nullable="false" />
+          <Property Name="l_no" Type="int" Nullable="false" />
+          <Property Name="jp_sc" Type="int" Nullable="false" />
+          <Property Name="o_no" Type="int" Nullable="false" />
+          <Property Name="jp_situation" Type="int" Nullable="false" />
+          <Property Name="start_date" Type="date" Nullable="false" />
+          <Property Name="end_date" Type="date" Nullable="false" />
+          <Property Name="write_date" Type="date" Nullable="false" />
+          <Property Name="c_no" Type="int" Nullable="false" />
+          <Property Name="e_no" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="jobtype">
+          <Key>
+            <PropertyRef Name="jt_no" />
+          </Key>
+          <Property Name="jt_no" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="jt_name" Type="varchar" MaxLength="20" />
+        </EntityType>
+        <EntityType Name="location">
+          <Key>
+            <PropertyRef Name="l_no" />
+          </Key>
+          <Property Name="l_no" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="l_name" Type="varchar" MaxLength="10" />
+        </EntityType>
+        <EntityType Name="occupation">
+          <Key>
+            <PropertyRef Name="o_no" />
+          </Key>
+          <Property Name="o_no" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="o_name" Type="varchar" MaxLength="40" />
+        </EntityType>
+        <EntityType Name="searchhistory">
+          <Key>
+            <PropertyRef Name="sh_no" />
+          </Key>
+          <Property Name="sh_no" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="u_no" Type="int" Nullable="false" />
+          <Property Name="c_no" Type="int" Nullable="false" />
+          <Property Name="sh_date" Type="date" Nullable="false" />
+        </EntityType>
+        <EntityType Name="selfintroduction">
+          <Key>
+            <PropertyRef Name="si_no" />
+          </Key>
+          <Property Name="si_no" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="u_no" Type="int" Nullable="false" />
+          <Property Name="si_title" Type="varchar" MaxLength="40" Nullable="false" />
+          <Property Name="si_subtitle" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="si_explan" Type="varchar" MaxLength="500" Nullable="false" />
+          <Property Name="o_no" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="user">
+          <Key>
+            <PropertyRef Name="u_no" />
+          </Key>
+          <Property Name="u_no" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="u_name" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="u_id" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="u_pw" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="u_sc" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="u_si" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="u_situation" Type="int" Nullable="false" />
+          <Property Name="e_no" Type="int" Nullable="false" />
+          <Property Name="o_no" Type="int" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_applicationemployment_jobposting">
+          <End Role="jobposting" Type="Self.jobposting" Multiplicity="1" />
+          <End Role="applicationemployment" Type="Self.applicationemployment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="jobposting">
+              <PropertyRef Name="jp_no" />
+            </Principal>
+            <Dependent Role="applicationemployment">
+              <PropertyRef Name="jp_no" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_applicationemployment_user">
+          <End Role="user" Type="Self.user" Multiplicity="1" />
+          <End Role="applicationemployment" Type="Self.applicationemployment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="user">
+              <PropertyRef Name="u_no" />
+            </Principal>
+            <Dependent Role="applicationemployment">
+              <PropertyRef Name="u_no" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_comment_selfintroduction">
+          <End Role="selfintroduction" Type="Self.selfintroduction" Multiplicity="1" />
+          <End Role="comment" Type="Self.comment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="selfintroduction">
+              <PropertyRef Name="si_no" />
+            </Principal>
+            <Dependent Role="comment">
+              <PropertyRef Name="si_no" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_comment_user">
+          <End Role="user" Type="Self.user" Multiplicity="1" />
+          <End Role="comment" Type="Self.comment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="user">
+              <PropertyRef Name="u_no" />
+            </Principal>
+            <Dependent Role="comment">
+              <PropertyRef Name="u_no" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_employment_company">
+          <End Role="company" Type="Self.company" Multiplicity="1" />
+          <End Role="employment" Type="Self.employment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="company">
+              <PropertyRef Name="c_no" />
+            </Principal>
+            <Dependent Role="employment">
+              <PropertyRef Name="c_no" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_employment_occupation">
+          <End Role="occupation" Type="Self.occupation" Multiplicity="1" />
+          <End Role="employment" Type="Self.employment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="occupation">
+              <PropertyRef Name="o_no" />
+            </Principal>
+            <Dependent Role="employment">
+              <PropertyRef Name="o_no" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_employment_user">
+          <End Role="user" Type="Self.user" Multiplicity="1" />
+          <End Role="employment" Type="Self.employment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="user">
+              <PropertyRef Name="u_no" />
+            </Principal>
+            <Dependent Role="employment">
+              <PropertyRef Name="u_no" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_jobposting_company">
+          <End Role="company" Type="Self.company" Multiplicity="1" />
+          <End Role="jobposting" Type="Self.jobposting" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="company">
+              <PropertyRef Name="c_no" />
+            </Principal>
+            <Dependent Role="jobposting">
+              <PropertyRef Name="c_no" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_jobposting_education">
+          <End Role="education" Type="Self.education" Multiplicity="1" />
+          <End Role="jobposting" Type="Self.jobposting" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="education">
+              <PropertyRef Name="e_no" />
+            </Principal>
+            <Dependent Role="jobposting">
+              <PropertyRef Name="e_no" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_jobposting_jobtype">
+          <End Role="jobtype" Type="Self.jobtype" Multiplicity="1" />
+          <End Role="jobposting" Type="Self.jobposting" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="jobtype">
+              <PropertyRef Name="jt_no" />
+            </Principal>
+            <Dependent Role="jobposting">
+              <PropertyRef Name="jt_no" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_jobposting_location">
+          <End Role="location" Type="Self.location" Multiplicity="1" />
+          <End Role="jobposting" Type="Self.jobposting" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="location">
+              <PropertyRef Name="l_no" />
+            </Principal>
+            <Dependent Role="jobposting">
+              <PropertyRef Name="l_no" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_jobposting_occupation">
+          <End Role="occupation" Type="Self.occupation" Multiplicity="1" />
+          <End Role="jobposting" Type="Self.jobposting" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="occupation">
+              <PropertyRef Name="o_no" />
+            </Principal>
+            <Dependent Role="jobposting">
+              <PropertyRef Name="o_no" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_searchhistory_company">
+          <End Role="company" Type="Self.company" Multiplicity="1" />
+          <End Role="searchhistory" Type="Self.searchhistory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="company">
+              <PropertyRef Name="c_no" />
+            </Principal>
+            <Dependent Role="searchhistory">
+              <PropertyRef Name="c_no" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_searchhistory_user">
+          <End Role="user" Type="Self.user" Multiplicity="1" />
+          <End Role="searchhistory" Type="Self.searchhistory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="user">
+              <PropertyRef Name="u_no" />
+            </Principal>
+            <Dependent Role="searchhistory">
+              <PropertyRef Name="u_no" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_selfintroduction_occupation">
+          <End Role="occupation" Type="Self.occupation" Multiplicity="1" />
+          <End Role="selfintroduction" Type="Self.selfintroduction" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="occupation">
+              <PropertyRef Name="o_no" />
+            </Principal>
+            <Dependent Role="selfintroduction">
+              <PropertyRef Name="o_no" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_selfintroduction_user">
+          <End Role="user" Type="Self.user" Multiplicity="1" />
+          <End Role="selfintroduction" Type="Self.selfintroduction" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="user">
+              <PropertyRef Name="u_no" />
+            </Principal>
+            <Dependent Role="selfintroduction">
+              <PropertyRef Name="u_no" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_user_education">
+          <End Role="education" Type="Self.education" Multiplicity="1" />
+          <End Role="user" Type="Self.user" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="education">
+              <PropertyRef Name="e_no" />
+            </Principal>
+            <Dependent Role="user">
+              <PropertyRef Name="e_no" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_user_occupation">
+          <End Role="occupation" Type="Self.occupation" Multiplicity="1" />
+          <End Role="user" Type="Self.user" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="occupation">
+              <PropertyRef Name="o_no" />
+            </Principal>
+            <Dependent Role="user">
+              <PropertyRef Name="o_no" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="placementModelStoreContainer">
+          <EntitySet Name="applicationemployment" EntityType="Self.applicationemployment" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="comment" EntityType="Self.comment" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="company" EntityType="Self.company" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="education" EntityType="Self.education" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="employment" EntityType="Self.employment" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="jobposting" EntityType="Self.jobposting" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="jobtype" EntityType="Self.jobtype" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="location" EntityType="Self.location" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="occupation" EntityType="Self.occupation" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="searchhistory" EntityType="Self.searchhistory" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="selfintroduction" EntityType="Self.selfintroduction" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="user" EntityType="Self.user" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_applicationemployment_jobposting" Association="Self.FK_applicationemployment_jobposting">
+            <End Role="jobposting" EntitySet="jobposting" />
+            <End Role="applicationemployment" EntitySet="applicationemployment" />
+          </AssociationSet>
+          <AssociationSet Name="FK_applicationemployment_user" Association="Self.FK_applicationemployment_user">
+            <End Role="user" EntitySet="user" />
+            <End Role="applicationemployment" EntitySet="applicationemployment" />
+          </AssociationSet>
+          <AssociationSet Name="FK_comment_selfintroduction" Association="Self.FK_comment_selfintroduction">
+            <End Role="selfintroduction" EntitySet="selfintroduction" />
+            <End Role="comment" EntitySet="comment" />
+          </AssociationSet>
+          <AssociationSet Name="FK_comment_user" Association="Self.FK_comment_user">
+            <End Role="user" EntitySet="user" />
+            <End Role="comment" EntitySet="comment" />
+          </AssociationSet>
+          <AssociationSet Name="FK_employment_company" Association="Self.FK_employment_company">
+            <End Role="company" EntitySet="company" />
+            <End Role="employment" EntitySet="employment" />
+          </AssociationSet>
+          <AssociationSet Name="FK_employment_occupation" Association="Self.FK_employment_occupation">
+            <End Role="occupation" EntitySet="occupation" />
+            <End Role="employment" EntitySet="employment" />
+          </AssociationSet>
+          <AssociationSet Name="FK_employment_user" Association="Self.FK_employment_user">
+            <End Role="user" EntitySet="user" />
+            <End Role="employment" EntitySet="employment" />
+          </AssociationSet>
+          <AssociationSet Name="FK_jobposting_company" Association="Self.FK_jobposting_company">
+            <End Role="company" EntitySet="company" />
+            <End Role="jobposting" EntitySet="jobposting" />
+          </AssociationSet>
+          <AssociationSet Name="FK_jobposting_education" Association="Self.FK_jobposting_education">
+            <End Role="education" EntitySet="education" />
+            <End Role="jobposting" EntitySet="jobposting" />
+          </AssociationSet>
+          <AssociationSet Name="FK_jobposting_jobtype" Association="Self.FK_jobposting_jobtype">
+            <End Role="jobtype" EntitySet="jobtype" />
+            <End Role="jobposting" EntitySet="jobposting" />
+          </AssociationSet>
+          <AssociationSet Name="FK_jobposting_location" Association="Self.FK_jobposting_location">
+            <End Role="location" EntitySet="location" />
+            <End Role="jobposting" EntitySet="jobposting" />
+          </AssociationSet>
+          <AssociationSet Name="FK_jobposting_occupation" Association="Self.FK_jobposting_occupation">
+            <End Role="occupation" EntitySet="occupation" />
+            <End Role="jobposting" EntitySet="jobposting" />
+          </AssociationSet>
+          <AssociationSet Name="FK_searchhistory_company" Association="Self.FK_searchhistory_company">
+            <End Role="company" EntitySet="company" />
+            <End Role="searchhistory" EntitySet="searchhistory" />
+          </AssociationSet>
+          <AssociationSet Name="FK_searchhistory_user" Association="Self.FK_searchhistory_user">
+            <End Role="user" EntitySet="user" />
+            <End Role="searchhistory" EntitySet="searchhistory" />
+          </AssociationSet>
+          <AssociationSet Name="FK_selfintroduction_occupation" Association="Self.FK_selfintroduction_occupation">
+            <End Role="occupation" EntitySet="occupation" />
+            <End Role="selfintroduction" EntitySet="selfintroduction" />
+          </AssociationSet>
+          <AssociationSet Name="FK_selfintroduction_user" Association="Self.FK_selfintroduction_user">
+            <End Role="user" EntitySet="user" />
+            <End Role="selfintroduction" EntitySet="selfintroduction" />
+          </AssociationSet>
+          <AssociationSet Name="FK_user_education" Association="Self.FK_user_education">
+            <End Role="education" EntitySet="education" />
+            <End Role="user" EntitySet="user" />
+          </AssociationSet>
+          <AssociationSet Name="FK_user_occupation" Association="Self.FK_user_occupation">
+            <End Role="occupation" EntitySet="occupation" />
+            <End Role="user" EntitySet="user" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="placementModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="applicationemployment">
+          <Key>
+            <PropertyRef Name="ae_no" />
+          </Key>
+          <Property Name="ae_no" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="jp_no" Type="Int32" Nullable="false" />
+          <Property Name="u_no" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="jobposting" Relationship="Self.FK_applicationemployment_jobposting" FromRole="applicationemployment" ToRole="jobposting" />
+          <NavigationProperty Name="user" Relationship="Self.FK_applicationemployment_user" FromRole="applicationemployment" ToRole="user" />
+        </EntityType>
+        <EntityType Name="comment">
+          <Key>
+            <PropertyRef Name="cm_no" />
+          </Key>
+          <Property Name="cm_no" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="cm_explan" Type="String" MaxLength="150" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="si_no" Type="Int32" Nullable="false" />
+          <Property Name="u_no" Type="Int32" Nullable="false" />
+          <Property Name="cm_date" Type="DateTime" Nullable="false" Precision="0" />
+          <NavigationProperty Name="selfintroduction" Relationship="Self.FK_comment_selfintroduction" FromRole="comment" ToRole="selfintroduction" />
+          <NavigationProperty Name="user" Relationship="Self.FK_comment_user" FromRole="comment" ToRole="user" />
+        </EntityType>
+        <EntityType Name="company">
+          <Key>
+            <PropertyRef Name="c_no" />
+          </Key>
+          <Property Name="c_no" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="c_name" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="c_id" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="c_pw" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="c_information" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="employment" Relationship="Self.FK_employment_company" FromRole="company" ToRole="employment" />
+          <NavigationProperty Name="jobposting" Relationship="Self.FK_jobposting_company" FromRole="company" ToRole="jobposting" />
+          <NavigationProperty Name="searchhistory" Relationship="Self.FK_searchhistory_company" FromRole="company" ToRole="searchhistory" />
+        </EntityType>
+        <EntityType Name="education">
+          <Key>
+            <PropertyRef Name="e_no" />
+          </Key>
+          <Property Name="e_no" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="e_name" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="jobposting" Relationship="Self.FK_jobposting_education" FromRole="education" ToRole="jobposting" />
+          <NavigationProperty Name="user" Relationship="Self.FK_user_education" FromRole="education" ToRole="user" />
+        </EntityType>
+        <EntityType Name="employment">
+          <Key>
+            <PropertyRef Name="ep_no" />
+          </Key>
+          <Property Name="ep_no" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="u_no" Type="Int32" Nullable="false" />
+          <Property Name="c_no" Type="Int32" Nullable="false" />
+          <Property Name="o_no" Type="Int32" Nullable="false" />
+          <Property Name="ep_date" Type="DateTime" Nullable="false" Precision="0" />
+          <NavigationProperty Name="company" Relationship="Self.FK_employment_company" FromRole="employment" ToRole="company" />
+          <NavigationProperty Name="occupation" Relationship="Self.FK_employment_occupation" FromRole="employment" ToRole="occupation" />
+          <NavigationProperty Name="user" Relationship="Self.FK_employment_user" FromRole="employment" ToRole="user" />
+        </EntityType>
+        <EntityType Name="jobposting">
+          <Key>
+            <PropertyRef Name="jp_no" />
+          </Key>
+          <Property Name="jp_no" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="jp_title" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="jt_no" Type="Int32" Nullable="false" />
+          <Property Name="l_no" Type="Int32" Nullable="false" />
+          <Property Name="jp_sc" Type="Int32" Nullable="false" />
+          <Property Name="o_no" Type="Int32" Nullable="false" />
+          <Property Name="jp_situation" Type="Int32" Nullable="false" />
+          <Property Name="start_date" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="end_date" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="write_date" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="c_no" Type="Int32" Nullable="false" />
+          <Property Name="e_no" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="applicationemployment" Relationship="Self.FK_applicationemployment_jobposting" FromRole="jobposting" ToRole="applicationemployment" />
+          <NavigationProperty Name="company" Relationship="Self.FK_jobposting_company" FromRole="jobposting" ToRole="company" />
+          <NavigationProperty Name="education" Relationship="Self.FK_jobposting_education" FromRole="jobposting" ToRole="education" />
+          <NavigationProperty Name="jobtype" Relationship="Self.FK_jobposting_jobtype" FromRole="jobposting" ToRole="jobtype" />
+          <NavigationProperty Name="location" Relationship="Self.FK_jobposting_location" FromRole="jobposting" ToRole="location" />
+          <NavigationProperty Name="occupation" Relationship="Self.FK_jobposting_occupation" FromRole="jobposting" ToRole="occupation" />
+        </EntityType>
+        <EntityType Name="jobtype">
+          <Key>
+            <PropertyRef Name="jt_no" />
+          </Key>
+          <Property Name="jt_no" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="jt_name" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="jobposting" Relationship="Self.FK_jobposting_jobtype" FromRole="jobtype" ToRole="jobposting" />
+        </EntityType>
+        <EntityType Name="location">
+          <Key>
+            <PropertyRef Name="l_no" />
+          </Key>
+          <Property Name="l_no" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="l_name" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="jobposting" Relationship="Self.FK_jobposting_location" FromRole="location" ToRole="jobposting" />
+        </EntityType>
+        <EntityType Name="occupation">
+          <Key>
+            <PropertyRef Name="o_no" />
+          </Key>
+          <Property Name="o_no" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="o_name" Type="String" MaxLength="40" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="employment" Relationship="Self.FK_employment_occupation" FromRole="occupation" ToRole="employment" />
+          <NavigationProperty Name="jobposting" Relationship="Self.FK_jobposting_occupation" FromRole="occupation" ToRole="jobposting" />
+          <NavigationProperty Name="selfintroduction" Relationship="Self.FK_selfintroduction_occupation" FromRole="occupation" ToRole="selfintroduction" />
+          <NavigationProperty Name="user" Relationship="Self.FK_user_occupation" FromRole="occupation" ToRole="user" />
+        </EntityType>
+        <EntityType Name="searchhistory">
+          <Key>
+            <PropertyRef Name="sh_no" />
+          </Key>
+          <Property Name="sh_no" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="u_no" Type="Int32" Nullable="false" />
+          <Property Name="c_no" Type="Int32" Nullable="false" />
+          <Property Name="sh_date" Type="DateTime" Nullable="false" Precision="0" />
+          <NavigationProperty Name="company" Relationship="Self.FK_searchhistory_company" FromRole="searchhistory" ToRole="company" />
+          <NavigationProperty Name="user" Relationship="Self.FK_searchhistory_user" FromRole="searchhistory" ToRole="user" />
+        </EntityType>
+        <EntityType Name="selfintroduction">
+          <Key>
+            <PropertyRef Name="si_no" />
+          </Key>
+          <Property Name="si_no" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="u_no" Type="Int32" Nullable="false" />
+          <Property Name="si_title" Type="String" MaxLength="40" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="si_subtitle" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="si_explan" Type="String" MaxLength="500" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="o_no" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="comment" Relationship="Self.FK_comment_selfintroduction" FromRole="selfintroduction" ToRole="comment" />
+          <NavigationProperty Name="occupation" Relationship="Self.FK_selfintroduction_occupation" FromRole="selfintroduction" ToRole="occupation" />
+          <NavigationProperty Name="user" Relationship="Self.FK_selfintroduction_user" FromRole="selfintroduction" ToRole="user" />
+        </EntityType>
+        <EntityType Name="user">
+          <Key>
+            <PropertyRef Name="u_no" />
+          </Key>
+          <Property Name="u_no" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="u_name" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="u_id" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="u_pw" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="u_sc" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="u_si" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="u_situation" Type="Int32" Nullable="false" />
+          <Property Name="e_no" Type="Int32" Nullable="false" />
+          <Property Name="o_no" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="applicationemployment" Relationship="Self.FK_applicationemployment_user" FromRole="user" ToRole="applicationemployment" />
+          <NavigationProperty Name="comment" Relationship="Self.FK_comment_user" FromRole="user" ToRole="comment" />
+          <NavigationProperty Name="education" Relationship="Self.FK_user_education" FromRole="user" ToRole="education" />
+          <NavigationProperty Name="employment" Relationship="Self.FK_employment_user" FromRole="user" ToRole="employment" />
+          <NavigationProperty Name="occupation" Relationship="Self.FK_user_occupation" FromRole="user" ToRole="occupation" />
+          <NavigationProperty Name="searchhistory" Relationship="Self.FK_searchhistory_user" FromRole="user" ToRole="searchhistory" />
+          <NavigationProperty Name="selfintroduction" Relationship="Self.FK_selfintroduction_user" FromRole="user" ToRole="selfintroduction" />
+        </EntityType>
+        <Association Name="FK_applicationemployment_jobposting">
+          <End Role="jobposting" Type="Self.jobposting" Multiplicity="1" />
+          <End Role="applicationemployment" Type="Self.applicationemployment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="jobposting">
+              <PropertyRef Name="jp_no" />
+            </Principal>
+            <Dependent Role="applicationemployment">
+              <PropertyRef Name="jp_no" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_applicationemployment_user">
+          <End Role="user" Type="Self.user" Multiplicity="1" />
+          <End Role="applicationemployment" Type="Self.applicationemployment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="user">
+              <PropertyRef Name="u_no" />
+            </Principal>
+            <Dependent Role="applicationemployment">
+              <PropertyRef Name="u_no" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_comment_selfintroduction">
+          <End Role="selfintroduction" Type="Self.selfintroduction" Multiplicity="1" />
+          <End Role="comment" Type="Self.comment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="selfintroduction">
+              <PropertyRef Name="si_no" />
+            </Principal>
+            <Dependent Role="comment">
+              <PropertyRef Name="si_no" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_comment_user">
+          <End Role="user" Type="Self.user" Multiplicity="1" />
+          <End Role="comment" Type="Self.comment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="user">
+              <PropertyRef Name="u_no" />
+            </Principal>
+            <Dependent Role="comment">
+              <PropertyRef Name="u_no" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_employment_company">
+          <End Role="company" Type="Self.company" Multiplicity="1" />
+          <End Role="employment" Type="Self.employment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="company">
+              <PropertyRef Name="c_no" />
+            </Principal>
+            <Dependent Role="employment">
+              <PropertyRef Name="c_no" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_jobposting_company">
+          <End Role="company" Type="Self.company" Multiplicity="1" />
+          <End Role="jobposting" Type="Self.jobposting" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="company">
+              <PropertyRef Name="c_no" />
+            </Principal>
+            <Dependent Role="jobposting">
+              <PropertyRef Name="c_no" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_searchhistory_company">
+          <End Role="company" Type="Self.company" Multiplicity="1" />
+          <End Role="searchhistory" Type="Self.searchhistory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="company">
+              <PropertyRef Name="c_no" />
+            </Principal>
+            <Dependent Role="searchhistory">
+              <PropertyRef Name="c_no" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_jobposting_education">
+          <End Role="education" Type="Self.education" Multiplicity="1" />
+          <End Role="jobposting" Type="Self.jobposting" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="education">
+              <PropertyRef Name="e_no" />
+            </Principal>
+            <Dependent Role="jobposting">
+              <PropertyRef Name="e_no" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_user_education">
+          <End Role="education" Type="Self.education" Multiplicity="1" />
+          <End Role="user" Type="Self.user" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="education">
+              <PropertyRef Name="e_no" />
+            </Principal>
+            <Dependent Role="user">
+              <PropertyRef Name="e_no" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_employment_occupation">
+          <End Role="occupation" Type="Self.occupation" Multiplicity="1" />
+          <End Role="employment" Type="Self.employment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="occupation">
+              <PropertyRef Name="o_no" />
+            </Principal>
+            <Dependent Role="employment">
+              <PropertyRef Name="o_no" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_employment_user">
+          <End Role="user" Type="Self.user" Multiplicity="1" />
+          <End Role="employment" Type="Self.employment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="user">
+              <PropertyRef Name="u_no" />
+            </Principal>
+            <Dependent Role="employment">
+              <PropertyRef Name="u_no" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_jobposting_jobtype">
+          <End Role="jobtype" Type="Self.jobtype" Multiplicity="1" />
+          <End Role="jobposting" Type="Self.jobposting" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="jobtype">
+              <PropertyRef Name="jt_no" />
+            </Principal>
+            <Dependent Role="jobposting">
+              <PropertyRef Name="jt_no" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_jobposting_location">
+          <End Role="location" Type="Self.location" Multiplicity="1" />
+          <End Role="jobposting" Type="Self.jobposting" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="location">
+              <PropertyRef Name="l_no" />
+            </Principal>
+            <Dependent Role="jobposting">
+              <PropertyRef Name="l_no" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_jobposting_occupation">
+          <End Role="occupation" Type="Self.occupation" Multiplicity="1" />
+          <End Role="jobposting" Type="Self.jobposting" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="occupation">
+              <PropertyRef Name="o_no" />
+            </Principal>
+            <Dependent Role="jobposting">
+              <PropertyRef Name="o_no" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_selfintroduction_occupation">
+          <End Role="occupation" Type="Self.occupation" Multiplicity="1" />
+          <End Role="selfintroduction" Type="Self.selfintroduction" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="occupation">
+              <PropertyRef Name="o_no" />
+            </Principal>
+            <Dependent Role="selfintroduction">
+              <PropertyRef Name="o_no" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_user_occupation">
+          <End Role="occupation" Type="Self.occupation" Multiplicity="1" />
+          <End Role="user" Type="Self.user" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="occupation">
+              <PropertyRef Name="o_no" />
+            </Principal>
+            <Dependent Role="user">
+              <PropertyRef Name="o_no" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_searchhistory_user">
+          <End Role="user" Type="Self.user" Multiplicity="1" />
+          <End Role="searchhistory" Type="Self.searchhistory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="user">
+              <PropertyRef Name="u_no" />
+            </Principal>
+            <Dependent Role="searchhistory">
+              <PropertyRef Name="u_no" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_selfintroduction_user">
+          <End Role="user" Type="Self.user" Multiplicity="1" />
+          <End Role="selfintroduction" Type="Self.selfintroduction" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="user">
+              <PropertyRef Name="u_no" />
+            </Principal>
+            <Dependent Role="selfintroduction">
+              <PropertyRef Name="u_no" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="placementEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="applicationemployment" EntityType="Self.applicationemployment" />
+          <EntitySet Name="comment" EntityType="Self.comment" />
+          <EntitySet Name="company" EntityType="Self.company" />
+          <EntitySet Name="education" EntityType="Self.education" />
+          <EntitySet Name="employment" EntityType="Self.employment" />
+          <EntitySet Name="jobposting" EntityType="Self.jobposting" />
+          <EntitySet Name="jobtype" EntityType="Self.jobtype" />
+          <EntitySet Name="location" EntityType="Self.location" />
+          <EntitySet Name="occupation" EntityType="Self.occupation" />
+          <EntitySet Name="searchhistory" EntityType="Self.searchhistory" />
+          <EntitySet Name="selfintroduction" EntityType="Self.selfintroduction" />
+          <EntitySet Name="user" EntityType="Self.user" />
+          <AssociationSet Name="FK_applicationemployment_jobposting" Association="Self.FK_applicationemployment_jobposting">
+            <End Role="jobposting" EntitySet="jobposting" />
+            <End Role="applicationemployment" EntitySet="applicationemployment" />
+          </AssociationSet>
+          <AssociationSet Name="FK_applicationemployment_user" Association="Self.FK_applicationemployment_user">
+            <End Role="user" EntitySet="user" />
+            <End Role="applicationemployment" EntitySet="applicationemployment" />
+          </AssociationSet>
+          <AssociationSet Name="FK_comment_selfintroduction" Association="Self.FK_comment_selfintroduction">
+            <End Role="selfintroduction" EntitySet="selfintroduction" />
+            <End Role="comment" EntitySet="comment" />
+          </AssociationSet>
+          <AssociationSet Name="FK_comment_user" Association="Self.FK_comment_user">
+            <End Role="user" EntitySet="user" />
+            <End Role="comment" EntitySet="comment" />
+          </AssociationSet>
+          <AssociationSet Name="FK_employment_company" Association="Self.FK_employment_company">
+            <End Role="company" EntitySet="company" />
+            <End Role="employment" EntitySet="employment" />
+          </AssociationSet>
+          <AssociationSet Name="FK_jobposting_company" Association="Self.FK_jobposting_company">
+            <End Role="company" EntitySet="company" />
+            <End Role="jobposting" EntitySet="jobposting" />
+          </AssociationSet>
+          <AssociationSet Name="FK_searchhistory_company" Association="Self.FK_searchhistory_company">
+            <End Role="company" EntitySet="company" />
+            <End Role="searchhistory" EntitySet="searchhistory" />
+          </AssociationSet>
+          <AssociationSet Name="FK_jobposting_education" Association="Self.FK_jobposting_education">
+            <End Role="education" EntitySet="education" />
+            <End Role="jobposting" EntitySet="jobposting" />
+          </AssociationSet>
+          <AssociationSet Name="FK_user_education" Association="Self.FK_user_education">
+            <End Role="education" EntitySet="education" />
+            <End Role="user" EntitySet="user" />
+          </AssociationSet>
+          <AssociationSet Name="FK_employment_occupation" Association="Self.FK_employment_occupation">
+            <End Role="occupation" EntitySet="occupation" />
+            <End Role="employment" EntitySet="employment" />
+          </AssociationSet>
+          <AssociationSet Name="FK_employment_user" Association="Self.FK_employment_user">
+            <End Role="user" EntitySet="user" />
+            <End Role="employment" EntitySet="employment" />
+          </AssociationSet>
+          <AssociationSet Name="FK_jobposting_jobtype" Association="Self.FK_jobposting_jobtype">
+            <End Role="jobtype" EntitySet="jobtype" />
+            <End Role="jobposting" EntitySet="jobposting" />
+          </AssociationSet>
+          <AssociationSet Name="FK_jobposting_location" Association="Self.FK_jobposting_location">
+            <End Role="location" EntitySet="location" />
+            <End Role="jobposting" EntitySet="jobposting" />
+          </AssociationSet>
+          <AssociationSet Name="FK_jobposting_occupation" Association="Self.FK_jobposting_occupation">
+            <End Role="occupation" EntitySet="occupation" />
+            <End Role="jobposting" EntitySet="jobposting" />
+          </AssociationSet>
+          <AssociationSet Name="FK_selfintroduction_occupation" Association="Self.FK_selfintroduction_occupation">
+            <End Role="occupation" EntitySet="occupation" />
+            <End Role="selfintroduction" EntitySet="selfintroduction" />
+          </AssociationSet>
+          <AssociationSet Name="FK_user_occupation" Association="Self.FK_user_occupation">
+            <End Role="occupation" EntitySet="occupation" />
+            <End Role="user" EntitySet="user" />
+          </AssociationSet>
+          <AssociationSet Name="FK_searchhistory_user" Association="Self.FK_searchhistory_user">
+            <End Role="user" EntitySet="user" />
+            <End Role="searchhistory" EntitySet="searchhistory" />
+          </AssociationSet>
+          <AssociationSet Name="FK_selfintroduction_user" Association="Self.FK_selfintroduction_user">
+            <End Role="user" EntitySet="user" />
+            <End Role="selfintroduction" EntitySet="selfintroduction" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="placementModelStoreContainer" CdmEntityContainer="placementEntities">
+          <EntitySetMapping Name="applicationemployment">
+            <EntityTypeMapping TypeName="placementModel.applicationemployment">
+              <MappingFragment StoreEntitySet="applicationemployment">
+                <ScalarProperty Name="ae_no" ColumnName="ae_no" />
+                <ScalarProperty Name="jp_no" ColumnName="jp_no" />
+                <ScalarProperty Name="u_no" ColumnName="u_no" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="comment">
+            <EntityTypeMapping TypeName="placementModel.comment">
+              <MappingFragment StoreEntitySet="comment">
+                <ScalarProperty Name="cm_no" ColumnName="cm_no" />
+                <ScalarProperty Name="cm_explan" ColumnName="cm_explan" />
+                <ScalarProperty Name="si_no" ColumnName="si_no" />
+                <ScalarProperty Name="u_no" ColumnName="u_no" />
+                <ScalarProperty Name="cm_date" ColumnName="cm_date" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="company">
+            <EntityTypeMapping TypeName="placementModel.company">
+              <MappingFragment StoreEntitySet="company">
+                <ScalarProperty Name="c_no" ColumnName="c_no" />
+                <ScalarProperty Name="c_name" ColumnName="c_name" />
+                <ScalarProperty Name="c_id" ColumnName="c_id" />
+                <ScalarProperty Name="c_pw" ColumnName="c_pw" />
+                <ScalarProperty Name="c_information" ColumnName="c_information" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="education">
+            <EntityTypeMapping TypeName="placementModel.education">
+              <MappingFragment StoreEntitySet="education">
+                <ScalarProperty Name="e_no" ColumnName="e_no" />
+                <ScalarProperty Name="e_name" ColumnName="e_name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="employment">
+            <EntityTypeMapping TypeName="placementModel.employment">
+              <MappingFragment StoreEntitySet="employment">
+                <ScalarProperty Name="ep_no" ColumnName="ep_no" />
+                <ScalarProperty Name="u_no" ColumnName="u_no" />
+                <ScalarProperty Name="c_no" ColumnName="c_no" />
+                <ScalarProperty Name="o_no" ColumnName="o_no" />
+                <ScalarProperty Name="ep_date" ColumnName="ep_date" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="jobposting">
+            <EntityTypeMapping TypeName="placementModel.jobposting">
+              <MappingFragment StoreEntitySet="jobposting">
+                <ScalarProperty Name="jp_no" ColumnName="jp_no" />
+                <ScalarProperty Name="jp_title" ColumnName="jp_title" />
+                <ScalarProperty Name="jt_no" ColumnName="jt_no" />
+                <ScalarProperty Name="l_no" ColumnName="l_no" />
+                <ScalarProperty Name="jp_sc" ColumnName="jp_sc" />
+                <ScalarProperty Name="o_no" ColumnName="o_no" />
+                <ScalarProperty Name="jp_situation" ColumnName="jp_situation" />
+                <ScalarProperty Name="start_date" ColumnName="start_date" />
+                <ScalarProperty Name="end_date" ColumnName="end_date" />
+                <ScalarProperty Name="write_date" ColumnName="write_date" />
+                <ScalarProperty Name="c_no" ColumnName="c_no" />
+                <ScalarProperty Name="e_no" ColumnName="e_no" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="jobtype">
+            <EntityTypeMapping TypeName="placementModel.jobtype">
+              <MappingFragment StoreEntitySet="jobtype">
+                <ScalarProperty Name="jt_no" ColumnName="jt_no" />
+                <ScalarProperty Name="jt_name" ColumnName="jt_name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="location">
+            <EntityTypeMapping TypeName="placementModel.location">
+              <MappingFragment StoreEntitySet="location">
+                <ScalarProperty Name="l_no" ColumnName="l_no" />
+                <ScalarProperty Name="l_name" ColumnName="l_name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="occupation">
+            <EntityTypeMapping TypeName="placementModel.occupation">
+              <MappingFragment StoreEntitySet="occupation">
+                <ScalarProperty Name="o_no" ColumnName="o_no" />
+                <ScalarProperty Name="o_name" ColumnName="o_name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="searchhistory">
+            <EntityTypeMapping TypeName="placementModel.searchhistory">
+              <MappingFragment StoreEntitySet="searchhistory">
+                <ScalarProperty Name="sh_no" ColumnName="sh_no" />
+                <ScalarProperty Name="u_no" ColumnName="u_no" />
+                <ScalarProperty Name="c_no" ColumnName="c_no" />
+                <ScalarProperty Name="sh_date" ColumnName="sh_date" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="selfintroduction">
+            <EntityTypeMapping TypeName="placementModel.selfintroduction">
+              <MappingFragment StoreEntitySet="selfintroduction">
+                <ScalarProperty Name="si_no" ColumnName="si_no" />
+                <ScalarProperty Name="u_no" ColumnName="u_no" />
+                <ScalarProperty Name="si_title" ColumnName="si_title" />
+                <ScalarProperty Name="si_subtitle" ColumnName="si_subtitle" />
+                <ScalarProperty Name="si_explan" ColumnName="si_explan" />
+                <ScalarProperty Name="o_no" ColumnName="o_no" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="user">
+            <EntityTypeMapping TypeName="placementModel.user">
+              <MappingFragment StoreEntitySet="user">
+                <ScalarProperty Name="u_no" ColumnName="u_no" />
+                <ScalarProperty Name="u_name" ColumnName="u_name" />
+                <ScalarProperty Name="u_id" ColumnName="u_id" />
+                <ScalarProperty Name="u_pw" ColumnName="u_pw" />
+                <ScalarProperty Name="u_sc" ColumnName="u_sc" />
+                <ScalarProperty Name="u_si" ColumnName="u_si" />
+                <ScalarProperty Name="u_situation" ColumnName="u_situation" />
+                <ScalarProperty Name="e_no" ColumnName="e_no" />
+                <ScalarProperty Name="o_no" ColumnName="o_no" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="true" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="없음" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
