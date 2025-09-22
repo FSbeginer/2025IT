@@ -5,21 +5,28 @@
 		<item key="DIALOG_Y_ORIGIN" value="403"/>
 	</section>
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog">
-		<item key="selection" value="&#x09;&#x09;&#x09;}"/>
+		<item key="selection" value="showPa"/>
 		<item key="wrap" value="true"/>
 		<item key="casesensitive" value="false"/>
 		<item key="wholeword" value="false"/>
 		<item key="incremental" value="false"/>
 		<item key="isRegEx" value="false"/>
 		<list key="findhistory">
+			<item value="showpa"/>
+			<item value="br"/>
+			<item value="해당하는"/>
+			<item value="cgno"/>
+			<item value="chno"/>
+			<item value="windowclo"/>
+			<item value="AreaC"/>
+			<item value="windowclos"/>
+			<item value="areab"/>
+			<item value="object"/>
 			<item value="&#x09;&#x09;&#x09;}"/>
 			<item value="main"/>
 			<item value="upda"/>
 			<item value="bi"/>
 			<item value="bios"/>
-			<item value="biis"/>
-			<item value="sele"/>
-			<item value="load"/>
 		</list>
 		<list key="replacehistory">
 		</list>

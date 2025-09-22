@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <section name="Workbench">
 	<section name="NewWizardAction">
-		<item key="NewWizardSelectionPage.STORE_SELECTED_ID" value="org.eclipse.wb.swing.JPanel"/>
+		<item key="NewWizardSelectionPage.STORE_SELECTED_ID" value="org.eclipse.wb.swing.JFrame"/>
 		<list key="NewWizardSelectionPage.STORE_EXPANDED_CATEGORIES_ID">
 			<item value="org.eclipse.wb"/>
 			<item value="org.eclipse.wb/org.eclipse.wb.swing"/>
@@ -19,6 +19,8 @@
 		<item key="WizardZipFileResourceExportPage1.STORE_CREATE_STRUCTURE_ID" value="true"/>
 		<item key="WizardZipFileResourceExportPage1.STORE_COMPRESS_CONTENTS_ID" value="true"/>
 		<list key="WizardZipFileResourceExportPage1.STORE_DESTINATION_NAMES_ID">
+			<item value="C:\Users\user\Desktop\2025전남_2과제_완성70%_이건규.zip"/>
+			<item value="C:\Users\user\Desktop\2025경남_2과제_완성90%_이건규.zip"/>
 			<item value="C:\Users\user\Desktop\2025전북_2과제_완성85%.zip"/>
 			<item value="C:\Users\user\Desktop\2025충북_2과제_완성80.zip"/>
 			<item value="C:\Users\user\Desktop\test.zip"/>
