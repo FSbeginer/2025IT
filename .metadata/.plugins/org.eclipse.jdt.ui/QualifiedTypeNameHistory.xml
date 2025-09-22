@@ -1,8 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <qualifiedTypeNameHistroy>
-    <fullyQualifiedTypeName name="E_장바구니"/>
-    <fullyQualifiedTypeName name="F_구매목록"/>
-    <fullyQualifiedTypeName name="I_배송처리"/>
     <fullyQualifiedTypeName name="G_배송정보"/>
     <fullyQualifiedTypeName name="J_분석"/>
     <fullyQualifiedTypeName name="BP"/>
@@ -14,7 +11,6 @@
     <fullyQualifiedTypeName name="javax.smartcardio.Card"/>
     <fullyQualifiedTypeName name="java.awt.CardLayout"/>
     <fullyQualifiedTypeName name="A_Panel"/>
-    <fullyQualifiedTypeName name="java.awt.event.MouseAdapter"/>
     <fullyQualifiedTypeName name="D_상세정보"/>
     <fullyQualifiedTypeName name="C_검색"/>
     <fullyQualifiedTypeName name="java.sql.SQLException"/>
@@ -51,13 +47,17 @@
     <fullyQualifiedTypeName name="java.awt.RenderingHints"/>
     <fullyQualifiedTypeName name="J_막대차트"/>
     <fullyQualifiedTypeName name="J_버블차트"/>
-    <fullyQualifiedTypeName name="java.lang.Thread"/>
     <fullyQualifiedTypeName name="java.util.List"/>
     <fullyQualifiedTypeName name="J_막대패널"/>
     <fullyQualifiedTypeName name="java.util.ArrayList"/>
     <fullyQualifiedTypeName name="javax.swing.JToolTip"/>
-    <fullyQualifiedTypeName name="java.awt.Color"/>
     <fullyQualifiedTypeName name="java.lang.Math"/>
-    <fullyQualifiedTypeName name="java.awt.Dimension"/>
     <fullyQualifiedTypeName name="javax.swing.JOptionPane"/>
+    <fullyQualifiedTypeName name="javax.swing.JPanel"/>
+    <fullyQualifiedTypeName name="java.awt.Color"/>
+    <fullyQualifiedTypeName name="java.awt.Dimension"/>
+    <fullyQualifiedTypeName name="java.awt.event.MouseAdapter"/>
+    <fullyQualifiedTypeName name="javax.swing.JFrame"/>
+    <fullyQualifiedTypeName name="java.lang.Thread"/>
+    <fullyQualifiedTypeName name="java.lang.Runnable"/>
 </qualifiedTypeNameHistroy>
