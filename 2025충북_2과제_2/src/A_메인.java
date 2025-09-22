@@ -12,6 +12,8 @@ import java.awt.event.MouseEvent;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class A_메인 extends BF {
 	public JPanel panel;
@@ -69,6 +71,7 @@ public class A_메인 extends BF {
 		panel_3.add(button);
 		
 		button_1 = new JButton("먹거리 키오스크");
+		button_1.addActionListener(new Button_1ActionListener());
 		button_1.setFont(new Font("굴림", Font.PLAIN, 11));
 		button_1.setBounds(140, 10, 116, 23);
 		panel_3.add(button_1);
@@ -243,5 +246,10 @@ public class A_메인 extends BF {
 				}
 			}
 		}).start();
+	}
+	private class Button_1ActionListener implements ActionListener {
+		public void actionPerformed(ActionEvent e) {
+			showPage(new I_키오스크(),"I_키오스크");
+		}
 	}
 }
