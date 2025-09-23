@@ -12,6 +12,8 @@
 		<item key="incremental" value="false"/>
 		<item key="isRegEx" value="false"/>
 		<list key="findhistory">
+			<item value="sno ="/>
+			<item value="sno = 1"/>
 			<item value="model"/>
 			<item value="nidek"/>
 			<item value="load2"/>
@@ -25,8 +27,6 @@
 			<item value="pageload3"/>
 			<item value="page3"/>
 			<item value="pageload"/>
-			<item value="gray"/>
-			<item value="onos"/>
 		</list>
 		<list key="replacehistory">
 		</list>
