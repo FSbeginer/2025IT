@@ -9,7 +9,7 @@ import javax.swing.JButton;
 import javax.swing.SwingConstants;
 import java.awt.Font;
 
-public class D_SchedulePanel extends JPanel {
+public class D_SChedulePanel extends JPanel {
 	public JLabel label;
 	public JLabel label_1;
 	public JButton button;
@@ -26,7 +26,7 @@ public class D_SchedulePanel extends JPanel {
 	 * @param explain 
 	 * @param rating, 
 	 */
-	public D_SchedulePanel(ImageIcon img, String name, int rating, LocalDate edate, LocalDate sdate, String cgname, String location, String explain) {
+	public D_SChedulePanel(ImageIcon img, String name, int rating, LocalDate edate, LocalDate sdate, String cgname, String location, String explain) {
 		setBorder(new LineBorder(new Color(0, 0, 0)));
 		setSize(649, 227);
 		setLayout(null);

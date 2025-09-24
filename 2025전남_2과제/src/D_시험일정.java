@@ -96,7 +96,7 @@ public class D_시험일정 extends BF {
 		try (var rs = res("select cno, cname, ratring, exam_date, schedule.start_date, cgname, address, contents, scno from schedule left join certi using(cno) left join category using(cgno) left join course_registration using(cno) left join user using(uno) left join lecture using(cno) where true "+where +" "+like+" group by scno, ratring order by scno;")) {
 			int w= 0 , h=0,i=0;
 			while(rs.next()) {
-				D_SchedulePanel pp= new D_SchedulePanel(getIcon("certification/"+rs.getInt(1)+".png",160,160), rs.getString(2), rs.getInt(3),rs.getDate(4).toLocalDate(), rs.getDate(5).toLocalDate(), rs.getString(6), rs.getString(7), rs.getString(8));
+				D_SChedulePanel pp= new D_SChedulePanel(getIcon("certification/"+rs.getInt(1)+".png",160,160), rs.getString(2), rs.getInt(3),rs.getDate(4).toLocalDate(), rs.getDate(5).toLocalDate(), rs.getString(6), rs.getString(7), rs.getString(8));
 				w = pp.getWidth();
 				h = pp.getHeight();
 				pp.setLocation(0, (h+3)*i);

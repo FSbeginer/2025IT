@@ -25,8 +25,8 @@ public class BP extends JPanel {
 	 * Create the panel.
 	 */
 	public BP() {
-		setSize(876, 459);
 		setLayout(null);
+		setSize(876, 459);
 	}
 
 	
